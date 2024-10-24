@@ -3,6 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\mlina\\Projektmunka\\",
   "Documents": [
     {
+<<<<<<< Updated upstream
       "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|c:\\users\\mlina\\projektmunka\\assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,10 +16,31 @@
       "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+=======
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|c:\\users\\mlina\\projektmunka\\assets\\toonsoldiers_ww2_demo\\toonsoldiers_ww2_demo_readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\toonsoldiers_ww2_demo\\toonsoldiers_ww2_demo_readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|c:\\users\\mlina\\projektmunka\\assets\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+>>>>>>> Stashed changes
       "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\trailconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\trailconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+<<<<<<< Updated upstream
+=======
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\gunscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\gunscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+>>>>>>> Stashed changes
       "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\playergunselector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\playergunselector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -38,16 +60,42 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< Updated upstream
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
+=======
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ToonSoldiers_WW2_demo_README.txt",
+              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\ToonSoldiers_WW2_demo\\ToonSoldiers_WW2_demo_README.txt",
+              "RelativeDocumentMoniker": "Assets\\ToonSoldiers_WW2_demo\\ToonSoldiers_WW2_demo_README.txt",
+              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\ToonSoldiers_WW2_demo\\ToonSoldiers_WW2_demo_README.txt",
+              "RelativeToolTip": "Assets\\ToonSoldiers_WW2_demo\\ToonSoldiers_WW2_demo_README.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-10-24T18:53:42.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+>>>>>>> Stashed changes
               "Title": "FirstPersonController.cs",
               "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\FirstPersonController.cs",
               "RelativeDocumentMoniker": "Assets\\FirstPersonController.cs",
               "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\FirstPersonController.cs",
               "RelativeToolTip": "Assets\\FirstPersonController.cs",
+<<<<<<< Updated upstream
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-24T17:44:31.719Z",
@@ -56,6 +104,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
+=======
+              "ViewState": "AgIAAEQAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T17:44:31.719Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+>>>>>>> Stashed changes
               "Title": "GunController.cs",
               "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\GunController.cs",
               "RelativeDocumentMoniker": "Assets\\GunController.cs",
@@ -67,7 +124,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 6,
+=======
+              "DocumentIndex": 7,
+>>>>>>> Stashed changes
               "Title": "PlayerAction.cs",
               "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\PlayerAction.cs",
               "RelativeDocumentMoniker": "Assets\\PlayerAction.cs",
@@ -79,12 +140,17 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 2,
+=======
+              "DocumentIndex": 1,
+>>>>>>> Stashed changes
               "Title": "ShootConfigurationScriptableObject.cs",
               "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\ShootConfigurationScriptableObject.cs",
               "RelativeDocumentMoniker": "Assets\\ShootConfigurationScriptableObject.cs",
               "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\ShootConfigurationScriptableObject.cs",
               "RelativeToolTip": "Assets\\ShootConfigurationScriptableObject.cs",
+<<<<<<< Updated upstream
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-28T20:39:48.284Z"
@@ -92,6 +158,16 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
+=======
+              "ViewState": "AgIAAAcAAAAAAAAAAABRwAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T20:39:48.284Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+>>>>>>> Stashed changes
               "Title": "PlayerGunSelector.cs",
               "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\PlayerGunSelector.cs",
               "RelativeDocumentMoniker": "Assets\\PlayerGunSelector.cs",
@@ -115,7 +191,11 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 1,
+=======
+              "DocumentIndex": 4,
+>>>>>>> Stashed changes
               "Title": "GunScriptableObject.cs",
               "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\GunScriptableObject.cs",
               "RelativeDocumentMoniker": "Assets\\GunScriptableObject.cs",
@@ -123,8 +203,12 @@
               "RelativeToolTip": "Assets\\GunScriptableObject.cs",
               "ViewState": "AgIAAD8AAAAAAAAAAAAYwEgAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+<<<<<<< Updated upstream
               "WhenOpened": "2024-09-25T17:07:09.628Z",
               "EditorCaption": ""
+=======
+              "WhenOpened": "2024-09-25T17:07:09.628Z"
+>>>>>>> Stashed changes
             }
           ]
         }

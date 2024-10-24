@@ -3,12 +3,21 @@
   "WorkspaceRootPath": "C:\\Users\\mlina\\Projektmunka\\",
   "Documents": [
     {
+<<<<<<< Updated upstream
       "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|c:\\users\\mlina\\projektmunka\\assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> Stashed changes
     },
     {
       "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\trailconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,7 +47,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< Updated upstream
           "SelectedChildIndex": 4,
+=======
+          "SelectedChildIndex": 1,
+>>>>>>> Stashed changes
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,13 +59,21 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 1,
+=======
+              "DocumentIndex": 0,
+>>>>>>> Stashed changes
               "Title": "FirstPersonController.cs",
               "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\FirstPersonController.cs",
               "RelativeDocumentMoniker": "Assets\\FirstPersonController.cs",
               "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\FirstPersonController.cs",
               "RelativeToolTip": "Assets\\FirstPersonController.cs",
+<<<<<<< Updated upstream
               "ViewState": "AgIAAEQAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+=======
+              "ViewState": "AgIAADkAAAAAAAAAAAAqwFYAAAAZAAAAAAAAAA==",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-24T17:44:31.719Z",
               "EditorCaption": ""
@@ -83,16 +104,26 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 0,
+=======
+              "DocumentIndex": 1,
+>>>>>>> Stashed changes
               "Title": "ShootConfigurationScriptableObject.cs",
               "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\ShootConfigurationScriptableObject.cs",
               "RelativeDocumentMoniker": "Assets\\ShootConfigurationScriptableObject.cs",
               "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\ShootConfigurationScriptableObject.cs",
               "RelativeToolTip": "Assets\\ShootConfigurationScriptableObject.cs",
+<<<<<<< Updated upstream
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-28T20:39:48.284Z",
               "EditorCaption": ""
+=======
+              "ViewState": "AgIAAAcAAAAAAAAAAABRwAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T20:39:48.284Z"
+>>>>>>> Stashed changes
             },
             {
               "$type": "Document",
@@ -116,8 +147,12 @@
               "RelativeToolTip": "Assets\\TrailConfigurationScriptableObject.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+<<<<<<< Updated upstream
               "WhenOpened": "2024-09-28T17:58:03.763Z",
               "EditorCaption": ""
+=======
+              "WhenOpened": "2024-09-28T17:58:03.763Z"
+>>>>>>> Stashed changes
             },
             {
               "$type": "Document",
