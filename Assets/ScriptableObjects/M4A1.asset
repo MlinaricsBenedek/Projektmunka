@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2353c4a507408834cba4c85445383b5b, type: 3}
+  m_Name: M4A1
+  m_EditorClassIdentifier: 
+  gunType: 1
+  Name: m4a1
+  modelPrefab: {fileID: 3975065950860830439, guid: 096c00718d61c814581b1ab089542576, type: 3}
+  SpawnPosint: {x: 0, y: 0, z: 0}
+  SpawnRotation: {x: 0, y: 0, z: 0}
+  shootConfigurationScriptableObject: {fileID: 11400000, guid: 590fa287671ee2b45a2cbe89a36d8dad, type: 2}
+  trailConfigurationScriptableObject: {fileID: 11400000, guid: 072936dfe0754bc43915266305789904, type: 2}
+  trailStartPosition: {fileID: 0}

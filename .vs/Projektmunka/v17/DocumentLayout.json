@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mlina\\Projektmunka\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|c:\\users\\mlina\\projektmunka\\assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\trailconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\trailconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\gunscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\gunscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\playergunselector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\playergunselector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\guncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\guncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\playeraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\playeraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FirstPersonController.cs",
+              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\FirstPersonController.cs",
+              "RelativeDocumentMoniker": "Assets\\FirstPersonController.cs",
+              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\FirstPersonController.cs",
+              "RelativeToolTip": "Assets\\FirstPersonController.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T17:44:31.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GunController.cs",
+              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\GunController.cs",
+              "RelativeDocumentMoniker": "Assets\\GunController.cs",
+              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\GunController.cs",
+              "RelativeToolTip": "Assets\\GunController.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAgwBAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T17:38:27.811Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlayerAction.cs",
+              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\PlayerAction.cs",
+              "RelativeDocumentMoniker": "Assets\\PlayerAction.cs",
+              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\PlayerAction.cs",
+              "RelativeToolTip": "Assets\\PlayerAction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T16:20:54.704Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ShootConfigurationScriptableObject.cs",
+              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\ShootConfigurationScriptableObject.cs",
+              "RelativeDocumentMoniker": "Assets\\ShootConfigurationScriptableObject.cs",
+              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\ShootConfigurationScriptableObject.cs",
+              "RelativeToolTip": "Assets\\ShootConfigurationScriptableObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T20:39:48.284Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PlayerGunSelector.cs",
+              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\PlayerGunSelector.cs",
+              "RelativeDocumentMoniker": "Assets\\PlayerGunSelector.cs",
+              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\PlayerGunSelector.cs",
+              "RelativeToolTip": "Assets\\PlayerGunSelector.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T20:39:20.295Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TrailConfigurationScriptableObject.cs",
+              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\TrailConfigurationScriptableObject.cs",
+              "RelativeDocumentMoniker": "Assets\\TrailConfigurationScriptableObject.cs",
+              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\TrailConfigurationScriptableObject.cs",
+              "RelativeToolTip": "Assets\\TrailConfigurationScriptableObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T17:58:03.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GunScriptableObject.cs",
+              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\GunScriptableObject.cs",
+              "RelativeDocumentMoniker": "Assets\\GunScriptableObject.cs",
+              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\GunScriptableObject.cs",
+              "RelativeToolTip": "Assets\\GunScriptableObject.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAYwEgAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T17:07:09.628Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

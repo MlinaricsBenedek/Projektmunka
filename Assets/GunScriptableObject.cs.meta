@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2353c4a507408834cba4c85445383b5b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - modelPrefab: {fileID: -4787329708185074652, guid: 4e98271e1c60ef549b3240179519b7bf, type: 3}
+  - shootConfigurationScriptableObject: {fileID: 11400000, guid: 6d342c76f11ade24cab9f621cd32bc0d, type: 2}
+  - trailConfigurationScriptableObject: {fileID: 11400000, guid: e09e68970f00b80458abb92c7a2c9f1f, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

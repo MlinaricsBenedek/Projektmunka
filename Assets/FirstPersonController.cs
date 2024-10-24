@@ -421,8 +421,7 @@ public class FirstPersonController : MonoBehaviour
 
             }
         }
-
-
+  
     }
 
     // Sets isGrounded based on a raycast sent straigth down from the player object

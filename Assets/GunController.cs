@@ -13,7 +13,7 @@ public class GunController : MonoBehaviour
     public float dropForwardForce, dropUpwardForce;
     public bool equipped = false;
     public static bool slotFull;
-    float ChangeDiagnole = 0.25f;
+    Animation shootingAnim;
 
     private void Start()
     {
