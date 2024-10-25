@@ -9,9 +9,10 @@ public class FirstPersonController : MonoBehaviour
     private Rigidbody rb;
 
     public Camera playerCamera;
+    public Bullet bullet;
 
     public Animator animator;
-    
+    public Transform GunPosisition; 
     public float fov = 60f;
     public bool invertCamera = false;
     public bool cameraCanMove = true;
@@ -48,42 +49,6 @@ public class FirstPersonController : MonoBehaviour
 
     // Internal Variables
     private bool isWalking = false;
-
-
-
-   
-    // Sprint Bar
-    public bool useSprintBar = true;
-    public bool hideBarWhenFull = true;
-    public Image sprintBarBG;
-    public Image sprintBar;
-    public float sprintBarWidthPercent = .3f;
-    public float sprintBarHeightPercent = .015f;
-
-    // Internal Variables
-    private CanvasGroup sprintBarCG;
-    private bool isSprinting = false;
-    private float sprintRemaining;
-    private float sprintBarWidth;
-    private float sprintBarHeight;
-    private bool isSprintCooldown = false;
-    private float sprintCooldownReset;
-
- 
-    public bool enableJump = true;
-    public KeyCode jumpKey = KeyCode.Space;
-    public float jumpPower = 5f;
-
-    // Internal Variables
-    private bool isGrounded = false;
-
-
-    public bool enableCrouch = true;
-    public bool holdToCrouch = true;
-    public KeyCode crouchKey = KeyCode.LeftControl;
-    public float crouchHeight = .75f;
-    public float speedReduction = .5f;
-
     // Internal Variables
     private Vector3 originalScale;
 
@@ -118,36 +83,6 @@ public class FirstPersonController : MonoBehaviour
         {
             crosshairObject.gameObject.SetActive(false);
         }
-
-      
-        sprintBarCG = GetComponentInChildren<CanvasGroup>();
-
-        if (useSprintBar)
-        {
-            sprintBarBG.gameObject.SetActive(true);
-            sprintBar.gameObject.SetActive(true);
-
-            float screenWidth = Screen.width;
-            float screenHeight = Screen.height;
-
-            sprintBarWidth = screenWidth * sprintBarWidthPercent;
-            sprintBarHeight = screenHeight * sprintBarHeightPercent;
-
-            sprintBarBG.rectTransform.sizeDelta = new Vector3(sprintBarWidth, sprintBarHeight, 0f);
-            sprintBar.rectTransform.sizeDelta = new Vector3(sprintBarWidth - 2, sprintBarHeight - 2, 0f);
-
-            if (hideBarWhenFull)
-            {
-                sprintBarCG.alpha = 0;
-            }
-        }
-        else
-        {
-            sprintBarBG.gameObject.SetActive(false);
-            sprintBar.gameObject.SetActive(false);
-        }
-
-
     }
 
     float camRotation;
@@ -184,7 +119,7 @@ public class FirstPersonController : MonoBehaviour
         {
             // Changes isZoomed when key is pressed
             // Behavior for toogle zoom
-            if (Input.GetKeyDown(zoomKey) && !holdToZoom && !isSprinting)
+            if (Input.GetKeyDown(zoomKey) && !holdToZoom)
             {
                 if (!isZoomed)
                 {
@@ -196,7 +131,7 @@ public class FirstPersonController : MonoBehaviour
                 }
             }
 
-            if (holdToZoom && !isSprinting)
+            if (holdToZoom)
             {
                 if (Input.GetKeyDown(zoomKey))
                 {
@@ -213,15 +148,14 @@ public class FirstPersonController : MonoBehaviour
             {
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, zoomFOV, zoomStepTime * Time.deltaTime);
             }
-            else if (!isZoomed && !isSprinting)
+            else if (!isZoomed)
             {
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, fov, zoomStepTime * Time.deltaTime);
             }
         }
-
+        Shoot();
         #endregion
         #endregion
-        CheckGround();
     }
 
     void FixedUpdate()
@@ -233,7 +167,7 @@ public class FirstPersonController : MonoBehaviour
             Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             // Checks if player is walking and isGrounded
             // Will allow head bob
-            if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
+            if (targetVelocity.x != 0 || targetVelocity.z != 0)
             {
 
                 isWalking = true;
@@ -260,26 +194,25 @@ public class FirstPersonController : MonoBehaviour
 
             rb.AddForce(velocityChange, ForceMode.VelocityChange);
         }
-<<<<<<< Updated upstream
-  
-=======
-       
->>>>>>> Stashed changes
     }
-    private void CheckGround()
+    private void Shoot()
     {
-        Vector3 origin = new Vector3(transform.position.x, transform.position.y - (transform.localScale.y * .5f), transform.position.z);
-        Vector3 direction = transform.TransformDirection(Vector3.down);
-        float distance = .75f;
-
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
+        RaycastHit hit;
+       Debug.DrawRay(GunPosisition.transform.position, GunPosisition.transform.forward * 10f, Color.red);
+        if (Input.GetMouseButton(0))
         {
-            Debug.DrawRay(origin, direction * distance, Color.red);
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
+            animator.SetBool("IsShooting", true);
+            StartCoroutine(WaitForShootAnimation());
+            if (Physics.Raycast(GunPosisition.transform.position, GunPosisition.transform.forward, out hit, 10f))
+            {
+                bullet.shootBullet(GunPosisition);
+            }
         }
     }
+    IEnumerator WaitForShootAnimation()
+    {
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("IsShooting", false);
+    }
+
 }
