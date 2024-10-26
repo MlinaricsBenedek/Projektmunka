@@ -12,7 +12,8 @@ public class FirstPersonController : MonoBehaviour
     public Bullet bullet;
 
     public Animator animator;
-    public Transform GunPosisition; 
+    public Transform GunPosisition;
+    private bool playerCanShoot = true;
     public float fov = 60f;
     public bool invertCamera = false;
     public bool cameraCanMove = true;
@@ -21,9 +22,6 @@ public class FirstPersonController : MonoBehaviour
 
     // Crosshair
     public bool lockCursor = true;
-    public bool crosshair = true;
-    public Sprite crosshairImage;
-    public Color crosshairColor = Color.white;
 
     // Internal Variables
     private float yaw = 0.0f;
@@ -57,11 +55,6 @@ public class FirstPersonController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        if (rb == null)
-        {
-            Debug.Log("nem talaltuk a rigit");
-        }
-        crosshairObject = GetComponentInChildren<Image>();
 
         // Set internal variables
         playerCamera.fieldOfView = fov;
@@ -72,16 +65,6 @@ public class FirstPersonController : MonoBehaviour
         if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
-        }
-
-        if (crosshair)
-        {
-            crosshairObject.sprite = crosshairImage;
-            crosshairObject.color = crosshairColor;
-        }
-        else
-        {
-            crosshairObject.gameObject.SetActive(false);
         }
     }
 
@@ -172,7 +155,6 @@ public class FirstPersonController : MonoBehaviour
 
                 isWalking = true;
                 animator.SetBool("IsMoving", false);
-                Debug.Log("isWalking:" + isWalking);
             }
             else
             {
@@ -182,9 +164,7 @@ public class FirstPersonController : MonoBehaviour
                 targetVelocity = transform.TransformDirection(targetVelocity) * walkSpeed;
                // Debug.Log("Target Velocity: " + targetVelocity);
                 // Apply a force that attempts to reach our target velocity
-                Debug.Log("Current Velocity: " + rb.velocity);
                 Vector3 velocity = rb.velocity;
-                Debug.Log("mozog");
                 Vector3 velocityChange = (targetVelocity - velocity);
                 //Debug.Log("velocitychange:" + velocityChange);
                 velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
@@ -197,22 +177,33 @@ public class FirstPersonController : MonoBehaviour
     }
     private void Shoot()
     {
-        RaycastHit hit;
-       Debug.DrawRay(GunPosisition.transform.position, GunPosisition.transform.forward * 10f, Color.red);
-        if (Input.GetMouseButton(0))
-        {
-            animator.SetBool("IsShooting", true);
-            StartCoroutine(WaitForShootAnimation());
-            if (Physics.Raycast(GunPosisition.transform.position, GunPosisition.transform.forward, out hit, 10f))
+       
+            RaycastHit hit;
+            Debug.DrawRay(GunPosisition.transform.position, GunPosisition.transform.forward * 10f, Color.red);
+            if (Input.GetMouseButton(0) && playerCanShoot)
             {
-                bullet.shootBullet(GunPosisition);
+                playerCanShoot = false;
+                animator.SetBool("IsShooting", true);
+                StartCoroutine(WaitForShoot());
+                //if (Physics.Raycast(GunPosisition.transform.position, GunPosisition.transform.forward, out hit, 10f))
+                //{
+
+                //    bullet.shootBullet(GunPosisition);
+                //}
+                
             }
-        }
+       
     }
-    IEnumerator WaitForShootAnimation()
+    IEnumerator WaitForShoot()
     {
+        //first for the animation!!!
+        
         yield return new WaitForSeconds(1f);
+        bullet.shootBullet(GunPosisition);
         animator.SetBool("IsShooting", false);
+        //Handle the weapon reloading time
+        yield return new WaitForSeconds(10f);
+        playerCanShoot = true;
     }
 
 }

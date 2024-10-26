@@ -9,7 +9,8 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     
     public void shootBullet(Transform startPosition)
-    { 
+    {
+        Debug.Log("meghívtak a shootBulletet");
     GameObject gm=Instantiate(bullet,startPosition.position,bullet.transform.rotation);
        Rigidbody rb = gm.GetComponent<Rigidbody>();
         rb.AddForce(startPosition.forward*bulletSpeed,ForceMode.Impulse);
