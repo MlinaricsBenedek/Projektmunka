@@ -389,6 +389,10 @@
 "Assets/PlayerAction.cs"
 "Assets/PlayerGunSelector.cs"
 "Assets/Scripts(pho)/Launcher.cs"
+"Assets/Scripts(pho)/Menu.cs"
+"Assets/Scripts(pho)/MenuManager.cs"
+"Assets/Scripts(pho)/PlayerListItem.cs"
+"Assets/Scripts(pho)/RoomListItem.cs"
 "Assets/ShootConfigurationScriptableObject.cs"
 "Assets/TrailConfigurationScriptableObject.cs"
 -langversion:9.0

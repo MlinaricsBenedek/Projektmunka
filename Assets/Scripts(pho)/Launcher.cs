@@ -5,7 +5,7 @@ using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
 using System.Linq;
-using Photon.Pun.Demo.PunBasics;
+//using Photon.Pun.Demo.PunBasics;
 //using Launcher;
 
 
