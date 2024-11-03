@@ -28,7 +28,7 @@ public class FirstPersonController : MonoBehaviour
     private float horizontalYaw=0.0f;
     private Image crosshairObject;
 
-   // public GameObject aimTarget;
+    public GameObject aimTarget;
 
     public bool enableZoom = true;
     public bool holdToZoom = false;
@@ -64,7 +64,7 @@ public class FirstPersonController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-      //aimTarget.transform.position = new Vector3(0, 0, 0);
+      aimTarget.transform.position = new Vector3(0, 0, 0);
       //  aimTarget.transform.localEulerAngles = new Vector3(270, 0, 90);
     }
 
@@ -108,7 +108,7 @@ public class FirstPersonController : MonoBehaviour
             Vector3 mouseWorldPosition = playerCamera.ScreenToWorldPoint(mouseScreenPosition);
 
             // 3. Beállítjuk a GameObject pozícióját az egér pozíciójának megfelelõen
-        //    aimTarget.transform.position = new Vector3(mouseWorldPosition.x, mouseWorldPosition.y, mouseWorldPosition.z);
+            aimTarget.transform.position = new Vector3(mouseWorldPosition.x, mouseWorldPosition.y, mouseWorldPosition.z);
             // Jelenlegi pozíció mentése
             //Vector3 currentPosition = aimTarget.transform.position;
 
@@ -116,7 +116,7 @@ public class FirstPersonController : MonoBehaviour
             //aimTarget.transform.position = new Vector3(currentPosition.x+ (Mathf.Tan(playerCamera.transform.eulerAngles.y) *Mathf.Deg2Rad) * (-1f) * distance , currentPosition.y, currentPosition.z);
             //aimTarget.transform.position=playerCamera.transform.position;
 
-              //aimTarget.transform.localEulerAngles = playerCamera.transform.localEulerAngles;
+              aimTarget.transform.localEulerAngles = playerCamera.transform.localEulerAngles;
         }
 
         #region Camera Zoom

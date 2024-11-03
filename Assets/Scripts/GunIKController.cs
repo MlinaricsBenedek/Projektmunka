@@ -6,7 +6,9 @@ public class GunIKController : MonoBehaviour
 {
 
     [SerializeField] Animator gunAnim;
-    [SerializeField] GameObject UpperBody;
+    [SerializeField] GameObject Head;
+    [SerializeField] GameObject LeftArm;
+    [SerializeField] GameObject RightArm;
     [SerializeField] Transform targetPosition;
     public bool isIKActive = true;
     private void OnAnimatorIK(int layerIndex)
@@ -20,20 +22,20 @@ public class GunIKController : MonoBehaviour
             }
 
             // Set the right hand target position and rotation, if one has been assigned
-            if (UpperBody != null)
-            {
-                gunAnim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0.1f);
+          
+                gunAnim.SetIKPositionWeight(AvatarIKGoal.RightHand, RightArm.transform.position.y);
                 gunAnim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0.1f);
-                //gunAnim.SetIKPosition(AvatarIKGoal.RightHand, targetPosition.transform.position);
+        
+            //gunAnim.SetIKPosition(AvatarIKGoal.RightHand, targetPosition.transform.position);
                 gunAnim.SetIKRotation(AvatarIKGoal.RightHand, targetPosition.transform.rotation);
 
                 // gunAnim.SetIKRotation(AvatarIKGoal.RightHand, targetPosition.transform.localEulerAngles);
 
                // gunAnim.SetIKPositionWeight(AvatarIKGoal.LeftHand, targetPosition.transform.position.y);
-              gunAnim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
-                gunAnim.SetIKPosition(AvatarIKGoal.LeftHand, (targetPosition.transform.position));
+              gunAnim.SetIKRotationWeight(AvatarIKGoal.LeftHand, targetPosition.transform.rotation.y);
+                gunAnim.SetIKPosition(AvatarIKGoal.LeftHand, RightArm.transform.position);
                // gunAnim.SetIKRotation(AvatarIKGoal.LeftHand, targetPosition.transform.rotation);
-            }
+            
 
         }
 
@@ -42,7 +44,10 @@ public class GunIKController : MonoBehaviour
         {
             gunAnim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
             gunAnim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
+            gunAnim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0);
+            gunAnim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0);
             gunAnim.SetLookAtWeight(0);
+
         }
     }
 
