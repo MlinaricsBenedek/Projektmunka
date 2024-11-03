@@ -83,6 +83,7 @@
     <Compile Include="Assets\GunType.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\FriendItem.cs" />
     <Compile Include="Assets\Scripts(pho)\Launcher.cs" />
+    <Compile Include="Assets\Scripts(pho)\RoomManager.cs" />
     <Compile Include="Assets\TrailConfigurationScriptableObject.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
     <Compile Include="Assets\Scripts(pho)\PlayerListItem.cs" />

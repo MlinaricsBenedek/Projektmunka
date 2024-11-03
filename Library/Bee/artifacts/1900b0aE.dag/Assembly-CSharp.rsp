@@ -393,6 +393,7 @@
 "Assets/Scripts(pho)/MenuManager.cs"
 "Assets/Scripts(pho)/PlayerListItem.cs"
 "Assets/Scripts(pho)/RoomListItem.cs"
+"Assets/Scripts(pho)/RoomManager.cs"
 "Assets/ShootConfigurationScriptableObject.cs"
 "Assets/TrailConfigurationScriptableObject.cs"
 -langversion:9.0
