@@ -24,19 +24,21 @@ public class GunIKController : MonoBehaviour
             // Set the right hand target position and rotation, if one has been assigned
           
                 gunAnim.SetIKPositionWeight(AvatarIKGoal.RightHand, RightArm.transform.position.y);
-                gunAnim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0.1f);
-        
-            //gunAnim.SetIKPosition(AvatarIKGoal.RightHand, targetPosition.transform.position);
+                gunAnim.SetIKRotationWeight(AvatarIKGoal.RightHand, RightArm.transform.rotation.y);
+            
+                gunAnim.SetIKPosition(AvatarIKGoal.RightHand, targetPosition.transform.position);
                 gunAnim.SetIKRotation(AvatarIKGoal.RightHand, targetPosition.transform.rotation);
 
-                // gunAnim.SetIKRotation(AvatarIKGoal.RightHand, targetPosition.transform.localEulerAngles);
+            gunAnim.SetIKPositionWeight(AvatarIKGoal.LeftHand, LeftArm.transform.position.y);
+            gunAnim.SetIKRotationWeight(AvatarIKGoal.RightHand, LeftArm.transform.position.x);
+            //gunAnim.SetIKPositionWeight(AvatarIKGoal.LeftHand, LeftArm.transform.position.z);
+            gunAnim.SetIKRotationWeight(AvatarIKGoal.LeftHand, LeftArm.transform.rotation.y);
+            //gunAnim.SetIKRotationWeight(AvatarIKGoal.LeftHand, LeftArm.transform.rotation.z);
+            // Bal kéz rotációs súly beállítása
 
-               // gunAnim.SetIKPositionWeight(AvatarIKGoal.LeftHand, targetPosition.transform.position.y);
-              gunAnim.SetIKRotationWeight(AvatarIKGoal.LeftHand, targetPosition.transform.rotation.y);
-                gunAnim.SetIKPosition(AvatarIKGoal.LeftHand, RightArm.transform.position);
-               // gunAnim.SetIKRotation(AvatarIKGoal.LeftHand, targetPosition.transform.rotation);
-            
-
+            // Bal kéz pozícióját és rotációját az illeszkedéshez beállítod
+            gunAnim.SetIKPosition(AvatarIKGoal.LeftHand, targetPosition.transform.position);
+            gunAnim.SetIKRotation(AvatarIKGoal.LeftHand, targetPosition.transform.rotation);
         }
 
         //if the IK is not active, set the position and rotation of the hand and head back to the original position
