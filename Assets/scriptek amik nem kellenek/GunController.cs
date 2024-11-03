@@ -50,7 +50,7 @@ public class GunController : MonoBehaviour
         rb.isKinematic = false;
         coll.isTrigger = false;
         //Gun carries momentum of player
-        rb.velocity = player.GetComponent<Rigidbody>().velocity;
+        rb.linearVelocity = player.GetComponent<Rigidbody>().linearVelocity;
         transform.localScale = new Vector3(0,0,0);
         //AddForce
         rb.AddForce(fpsCam.forward * dropForwardForce, ForceMode.Impulse);

@@ -97,22 +97,22 @@ public class FirstPersonController : MonoBehaviour
         //    UpperBody.transform.localEulerAngles=new Vector3(0, 0, horizontalYaw);
             transform.localEulerAngles = new Vector3(0, yaw, 0);
             playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
-            //a kamerának változik a locallocalEulerAngles-e, jelenleg az a hiba hogy ez van átadva a aimtargetnek, pedig ez csak a helyben mozgást változtatja.
-            //ehelyett egy rotation-t kellene átadni, vagy valami fajta elmozdukálást.
-            //ötlet, körszelet alapon, határozzuk meg, a kamera és ennek a távolságából a sugarat, és azon az íven próbáljuk meg mozgatni.
+            //a kamerï¿½nak vï¿½ltozik a locallocalEulerAngles-e, jelenleg az a hiba hogy ez van ï¿½tadva a aimtargetnek, pedig ez csak a helyben mozgï¿½st vï¿½ltoztatja.
+            //ehelyett egy rotation-t kellene ï¿½tadni, vagy valami fajta elmozdukï¿½lï¿½st.
+            //ï¿½tlet, kï¿½rszelet alapon, hatï¿½rozzuk meg, a kamera ï¿½s ennek a tï¿½volsï¿½gï¿½bï¿½l a sugarat, ï¿½s azon az ï¿½ven prï¿½bï¿½ljuk meg mozgatni.
             //   float distance=aimTarget.transform.position.x- playerCamera.transform.position.x;
             Vector3 mouseScreenPosition = Input.mousePosition;
 
-            // 2. Az egér pozícióját világ koordinátákra konvertáljuk, egy adott Z távolság megadásával
-            mouseScreenPosition.z = zDinstance; // Ez határozza meg a kamerától mért távolságot
+            // 2. Az egï¿½r pozï¿½ciï¿½jï¿½t vilï¿½g koordinï¿½tï¿½kra konvertï¿½ljuk, egy adott Z tï¿½volsï¿½g megadï¿½sï¿½val
+            mouseScreenPosition.z = zDinstance; // Ez hatï¿½rozza meg a kamerï¿½tï¿½l mï¿½rt tï¿½volsï¿½got
             Vector3 mouseWorldPosition = playerCamera.ScreenToWorldPoint(mouseScreenPosition);
 
-            // 3. Beállítjuk a GameObject pozícióját az egér pozíciójának megfelelõen
+            // 3. Beï¿½llï¿½tjuk a GameObject pozï¿½ciï¿½jï¿½t az egï¿½r pozï¿½ciï¿½jï¿½nak megfelelï¿½en
         //    aimTarget.transform.position = new Vector3(mouseWorldPosition.x, mouseWorldPosition.y, mouseWorldPosition.z);
-            // Jelenlegi pozíció mentése
+            // Jelenlegi pozï¿½ciï¿½ mentï¿½se
             //Vector3 currentPosition = aimTarget.transform.position;
 
-            // Új pozíció létrehozása az x tengelyen
+            // ï¿½j pozï¿½ciï¿½ lï¿½trehozï¿½sa az x tengelyen
             //aimTarget.transform.position = new Vector3(currentPosition.x+ (Mathf.Tan(playerCamera.transform.eulerAngles.y) *Mathf.Deg2Rad) * (-1f) * distance , currentPosition.y, currentPosition.z);
             //aimTarget.transform.position=playerCamera.transform.position;
 
@@ -187,7 +187,7 @@ public class FirstPersonController : MonoBehaviour
                 targetVelocity = transform.TransformDirection(targetVelocity) * walkSpeed;
                // Debug.Log("Target Velocity: " + targetVelocity);
                 // Apply a force that attempts to reach our target velocity
-                Vector3 velocity = rb.velocity;
+                Vector3 velocity = rb.linearVelocity;
                 Vector3 velocityChange = (targetVelocity - velocity);
                 //Debug.Log("velocitychange:" + velocityChange);
                 velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
@@ -222,7 +222,7 @@ public class FirstPersonController : MonoBehaviour
     {
         //first for the animation!!!
         
-        yield return new WaitForSeconds(1f);//elég?
+        yield return new WaitForSeconds(1f);//elï¿½g?
         bullet.shootBullet(GunPosisition,canShootBullet);
 
         canShootBullet = false;
