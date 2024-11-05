@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 using UnityEditor;
@@ -6,12 +7,15 @@ using UnityEngine;
 
 using Codice.Client.Common;
 using Codice.Client.Common.EventTracking;
+using Codice.Client.Common.FsNodeReaders.Watcher;
 using Codice.Client.Common.Threading;
 using Codice.CM.Common;
 using Codice.LogWrapper;
+using GluonCheckIncomingChanges = PlasticGui.Gluon.WorkspaceWindow.CheckIncomingChanges;
 using GluonGui;
+using GluonNewIncomingChangesUpdater = PlasticGui.Gluon.WorkspaceWindow.NewIncomingChangesUpdater;
+using PlasticAssetModificationProcessor = Unity.PlasticSCM.Editor.AssetUtils.Processor.AssetModificationProcessor;
 using PlasticGui;
-using PlasticGui.WorkspaceWindow;
 using PlasticGui.WorkspaceWindow.NotificationBar;
 using Unity.PlasticSCM.Editor.AssetMenu;
 using Unity.PlasticSCM.Editor.AssetUtils;
@@ -27,38 +31,29 @@ using Unity.PlasticSCM.Editor.Views.CreateWorkspace;
 using Unity.PlasticSCM.Editor.Views.Welcome;
 using Unity.PlasticSCM.Editor.WebApi;
 
-using GluonCheckIncomingChanges = PlasticGui.Gluon.WorkspaceWindow.CheckIncomingChanges;
-using GluonNewIncomingChangesUpdater = PlasticGui.Gluon.WorkspaceWindow.NewIncomingChangesUpdater;
-using PlasticAssetModificationProcessor = Unity.PlasticSCM.Editor.AssetUtils.Processor.AssetModificationProcessor;
-
 namespace Unity.PlasticSCM.Editor
 {
     internal class PlasticWindow : EditorWindow,
-        CheckIncomingChanges.IAutoRefreshIncomingChangesView,
+        PlasticGui.WorkspaceWindow.CheckIncomingChanges.IAutoRefreshIncomingChangesView,
         GluonCheckIncomingChanges.IAutoRefreshIncomingChangesView,
         CreateWorkspaceView.ICreateWorkspaceListener
     {
-        internal bool ShowWelcomeViewForTesting { get; set; }
-
         internal WorkspaceWindow WorkspaceWindowForTesting { get { return mWorkspaceWindow; } }
-        
         internal ViewSwitcher ViewSwitcherForTesting { get { return mViewSwitcher; } }
-
         internal CmConnection CmConnectionForTesting { get { return CmConnection.Get(); } }
-        
-        internal WelcomeView GetWelcomeView()
+
+        internal bool ShowWelcomeViewForTesting;
+
+        internal void SetupWindowTitle(PlasticNotification.Status status)
         {
-            if (mWelcomeView != null)
-                return mWelcomeView;
+            Texture windowIcon = PlasticNotification.GetIcon(status);
 
-            mWelcomeView = new WelcomeView(
-                this,
-                this,
-                PlasticGui.Plastic.API,
-                PlasticGui.Plastic.WebRestAPI,
-                CmConnection.Get());
+            // The titleContent icon does not update unless we also update the title text
+            // Temporarily doing it by adding space characters
+            string title = UnityConstants.PLASTIC_WINDOW_TITLE;
+            title += String.Concat(Enumerable.Repeat(" ", (int)status));
 
-            return mWelcomeView;
+            titleContent = new GUIContent(title, windowIcon);
         }
 
         internal void DisableCollabIfEnabledWhenLoaded()
@@ -66,158 +61,7 @@ namespace Unity.PlasticSCM.Editor
             mDisableCollabIfEnabledWhenLoaded = true;
         }
 
-        internal PlasticProjectSettingsProvider.IAutoRefreshView GetPendingChangesView()
-        {
-            return mViewSwitcher != null ? mViewSwitcher.PendingChangesTab : null;
-        }
-
-        internal void UpdateWindowIcon(PlasticNotification.Status status)
-        {
-            Texture windowIcon = PlasticNotification.GetIcon(status);
-
-            if (titleContent.image != windowIcon)
-                titleContent.image = windowIcon;
-        }
-
-        internal void RefreshWorkspaceUI()
-        {
-            InitializePlastic();
-            Repaint();
-
-            OnFocus();
-        }
-
-        internal void InitializePlastic()
-        {
-            if (mForceToReOpen)
-            {
-                mForceToReOpen = false;
-                return;
-            }
-
-            try
-            {
-                if (UnityConfigurationChecker.NeedsConfiguration())
-                    return;
-
-                mWkInfo = FindWorkspace.InfoForApplicationPath(
-                    ApplicationDataPath.Get(), PlasticGui.Plastic.API);
-
-                if (mWkInfo == null)
-                    return;
-
-                PlasticPlugin.EnableForWorkspace();
-
-                DisableVCSIfEnabled(mWkInfo.ClientPath);
-
-                mIsGluonMode = PlasticGui.Plastic.API.IsGluonWorkspace(mWkInfo);
-
-                mViewHost = new ViewHost();
-
-                mStatusBar = new StatusBar();
-
-                mViewSwitcher = new ViewSwitcher(
-                    PlasticGui.Plastic.API.GetRepositorySpec(mWkInfo),
-                    mWkInfo,
-                    mViewHost,
-                    mIsGluonMode,
-                    PlasticPlugin.AssetStatusCache,
-                    mShowDownloadPlasticExeWindow,
-                    mProcessExecutor,
-                    PlasticPlugin.WorkspaceOperationsMonitor,
-                    mStatusBar,
-                    this);
-
-                InitializeNewIncomingChanges(mWkInfo, mIsGluonMode, mViewSwitcher);
-
-                // Create a CooldownWindowDelayer to make the auto-refresh changes delayed.
-                // In this way, we cover the following scenario:
-                // * When Unity Editor window is activated it writes some files to its Temp
-                //   folder. This causes the fswatcher to process those events.
-                // * We need to wait until the fswatcher finishes processing the events,
-                //   otherwise the NewChangesInWk method will return TRUE because there
-                //   are pending events to process, which causes an unwanted 'get pending
-                //   changes' operation when there are no new changes.
-                // * So, we need to delay the auto-refresh call in order
-                //   to give the fswatcher enough time to process the events.
-                mCooldownAutoRefreshChangesAction = new CooldownWindowDelayer(
-                    () =>
-                    {
-                        mViewSwitcher.AutoRefreshPendingChangesView();
-                        mViewSwitcher.AutoRefreshIncomingChangesView();
-                    },
-                    UnityConstants.AUTO_REFRESH_CHANGES_DELAYED_INTERVAL);
-
-                mWorkspaceWindow = new WorkspaceWindow(
-                    mWkInfo,
-                    mViewHost,
-                    mViewSwitcher,
-                    mViewSwitcher,
-                    mDeveloperNewIncomingChangesUpdater,
-                    this);
-
-                mViewSwitcher.SetWorkspaceWindow(mWorkspaceWindow);
-                mViewSwitcher.ShowInitialView();
-
-                PlasticApp.RegisterWorkspaceWindow(mWorkspaceWindow);
-                PlasticPlugin.WorkspaceOperationsMonitor.RegisterWindow(
-                    mWorkspaceWindow,
-                    mViewHost,
-                    mDeveloperNewIncomingChangesUpdater);
-
-                UnityStyles.Initialize(Repaint);
-
-                AssetMenuItems.BuildOperations(
-                    mWkInfo,
-                    mWorkspaceWindow,
-                    mViewSwitcher,
-                    mViewSwitcher,
-                    mViewHost,
-                    PlasticPlugin.WorkspaceOperationsMonitor,
-                    mDeveloperNewIncomingChangesUpdater,
-                    PlasticPlugin.AssetStatusCache,
-                    mViewSwitcher,
-                    mViewSwitcher,
-                    mShowDownloadPlasticExeWindow,
-                    mIsGluonMode);
-
-                DrawInspectorOperations.BuildOperations(
-                    mWkInfo,
-                    mWorkspaceWindow,
-                    mViewSwitcher,
-                    mViewSwitcher,
-                    mViewHost,
-                    PlasticPlugin.WorkspaceOperationsMonitor,
-                    mDeveloperNewIncomingChangesUpdater,
-                    PlasticPlugin.AssetStatusCache,
-                    mViewSwitcher,
-                    mViewSwitcher,
-                    mShowDownloadPlasticExeWindow,
-                    mIsGluonMode);
-
-                mLastUpdateTime = EditorApplication.timeSinceStartup;
-
-                mViewSwitcher.ShowBranchesViewIfNeeded();
-                mViewSwitcher.ShowLocksViewIfNeeded();
-
-                // Note: this need to be initialized regardless of the type of the UVCS Edition installed
-                InitializeCloudSubscriptionData(mWkInfo);
-
-                if (!EditionToken.IsCloudEdition())
-                    return;
-
-                InitializeNotificationBarUpdater(
-                    mWkInfo, mStatusBar.NotificationBar);
-            }
-            catch (Exception ex)
-            {
-                mException = ex;
-
-                ExceptionsHandler.HandleException("InitializePlastic", ex);
-            }
-        }
-
-        void CheckIncomingChanges.IAutoRefreshIncomingChangesView.IfVisible()
+        void PlasticGui.WorkspaceWindow.CheckIncomingChanges.IAutoRefreshIncomingChangesView.IfVisible()
         {
             mViewSwitcher.AutoRefreshIncomingChangesView();
         }
@@ -243,6 +87,14 @@ namespace Unity.PlasticSCM.Editor
             Repaint();
         }
 
+        internal void RefreshWorkspaceUI()
+        {
+            InitializePlastic();
+            Repaint();
+
+            OnFocus();
+        }
+
         void OnEnable()
         {
             mLog.Debug("OnEnable");
@@ -256,7 +108,7 @@ namespace Unity.PlasticSCM.Editor
                 UnityConstants.PLASTIC_WINDOW_MIN_SIZE_WIDTH,
                 UnityConstants.PLASTIC_WINDOW_MIN_SIZE_HEIGHT);
 
-            UpdateWindowIcon(PlasticNotification.Status.None);
+            SetupWindowTitle(PlasticNotification.Status.None);
 
             RegisterApplicationFocusHandlers(this);
 
@@ -264,7 +116,6 @@ namespace Unity.PlasticSCM.Editor
                 return;
 
             PlasticPlugin.Enable();
-
             InitializePlastic();
         }
 
@@ -279,9 +130,15 @@ namespace Unity.PlasticSCM.Editor
             if (mException != null)
                 return;
 
-            UnRegisterApplicationFocusHandlers(this);
+            if (mWkInfo == null)
+            {
+                ClosePlasticWindow(this);
+                return;
+            }
 
-            ClosePlastic(this);
+            mViewSwitcher.OnDisable();
+
+            ClosePlasticWindow(this);
         }
 
         void OnDestroy()
@@ -294,7 +151,7 @@ namespace Unity.PlasticSCM.Editor
             if (mWkInfo == null)
                 return;
 
-            if (!PlasticApp.HasRunningOperation())
+            if (!mWorkspaceWindow.IsOperationInProgress())
                 return;
 
             bool bCloseWindow = GuiMessage.ShowQuestion(
@@ -306,12 +163,11 @@ namespace Unity.PlasticSCM.Editor
                 return;
 
             mLog.Debug(
-                "Show window again because the user doesn't want " +
+                "Show window again because the user doesn't want " + 
                 "to quit it due to there is an operation running");
 
-            mForceToReOpen = true;
-
-            ReOpenPlasticWindow(this);
+            mForceToOpen = true;
+            ShowPlasticWindow(this);
         }
 
         void OnFocus()
@@ -374,7 +230,7 @@ namespace Unity.PlasticSCM.Editor
 
                 bool clientNeedsConfiguration = UnityConfigurationChecker.NeedsConfiguration() || ShowWelcomeViewForTesting;
 
-                WelcomeView welcomeView = GetWelcomeView();
+                var welcomeView = GetWelcomeView();
 
                 if (clientNeedsConfiguration && welcomeView.autoLoginState == AutoLogin.State.Off)
                 {
@@ -404,7 +260,8 @@ namespace Unity.PlasticSCM.Editor
                     mProcessExecutor,
                     mIsGluonMode,
                     mIsCloudOrganization,
-                    mIsUGOSubscription);
+                    mIsUGOSubscription,
+                    mUpgradePlanUrl);
 
                 mViewSwitcher.TabViewGUI();
 
@@ -471,131 +328,132 @@ namespace Unity.PlasticSCM.Editor
             }
         }
 
-        void OnApplicationActivated()
+        internal void InitializePlastic()
         {
-            mLog.Debug("OnApplicationActivated");
-
-            if (mException != null)
+            if (mForceToOpen)
+            {
+                mForceToOpen = false;
                 return;
+            }
 
-            if (!PlasticPlugin.ConnectionMonitor.IsConnected)
-                return;
+            try
+            {
+                if (UnityConfigurationChecker.NeedsConfiguration())
+                    return;
 
-            Reload.IfWorkspaceConfigChanged(
-                PlasticGui.Plastic.API, mWkInfo, mIsGluonMode,
-                ExecuteFullReload);
+                mWkInfo = FindWorkspace.InfoForApplicationPath(
+                    ApplicationDataPath.Get(), PlasticGui.Plastic.API);
 
-            if (mWkInfo == null)
-                return;
+                if (mWkInfo == null)
+                    return;
 
-            NewIncomingChanges.LaunchUpdater(
-                mDeveloperNewIncomingChangesUpdater,
-                mGluonNewIncomingChangesUpdater);
+                PlasticPlugin.EnableForWorkspace();
 
-            if (!PlasticApp.HasRunningOperation())
-                mCooldownAutoRefreshChangesAction.Ping();
+                DisableVCSIfEnabled(mWkInfo.ClientPath);
 
-            ((IWorkspaceWindow)mWorkspaceWindow).UpdateTitle();
-        }
+                mIsGluonMode = PlasticGui.Plastic.API.IsGluonWorkspace(mWkInfo);
 
-        void OnApplicationDeactivated()
-        {
-            mLog.Debug("OnApplicationDeactivated");
+                ViewHost viewHost = new ViewHost();
 
-            if (mException != null)
-                return;
+                mStatusBar = new StatusBar();
 
-            if (mWkInfo == null)
-                return;
+                mViewSwitcher = new ViewSwitcher(
+                    PlasticGui.Plastic.API.GetRepositorySpec(mWkInfo),
+                    mWkInfo,
+                    viewHost,
+                    mIsGluonMode,
+                    PlasticPlugin.AssetStatusCache,
+                    mShowDownloadPlasticExeWindow,
+                    mProcessExecutor,
+                    PlasticPlugin.WorkspaceOperationsMonitor,
+                    mStatusBar,
+                    this);
 
-            if (!PlasticPlugin.ConnectionMonitor.IsConnected)
-                return;
+                InitializeNewIncomingChanges(mWkInfo, mIsGluonMode, mViewSwitcher);
 
-            NewIncomingChanges.StopUpdater(
-                mDeveloperNewIncomingChangesUpdater,
-                mGluonNewIncomingChangesUpdater);
-        }
-
-        void ExecuteFullReload()
-        {
-            mException = null;
-
-            ClosePlastic(this);
-
-            InitializePlastic();
-        }
-
-        void InitializeCloudSubscriptionData(WorkspaceInfo wkInfo)
-        {
-            mIsCloudOrganization = false;
-            mIsUGOSubscription = false;
-
-            RepositorySpec repSpec = PlasticGui.Plastic.API.GetRepositorySpec(wkInfo);
-
-            if (repSpec == null)
-                return;
-
-            mIsCloudOrganization = PlasticGui.Plastic.API.IsCloud(repSpec.Server);
-
-            if (!mIsCloudOrganization)
-                return;
-
-            string organizationName = ServerOrganizationParser.
-                GetOrganizationFromServer(repSpec.Server);
-
-            Task.Run(
-                () =>
-                {
-                    string authToken = AuthToken.GetForServer(repSpec.Server);
-
-                    if (string.IsNullOrEmpty(authToken))
-                        return null;
-
-                    return WebRestApiClient.PlasticScm.GetSubscriptionDetails(
-                        organizationName, authToken);
-                }).ContinueWith(
-                t =>
-                {
-                    if (t.Result == null)
+                // Create a CooldownWindowDelayer to make the auto-refresh changes delayed.
+                // In this way, we cover the following scenario:
+                // * When Unity Editor window is activated it writes some files to its Temp
+                //   folder. This causes the fswatcher to process those events.
+                // * We need to wait until the fswatcher finishes processing the events,
+                //   otherwise the NewChangesInWk method will return TRUE because there
+                //   are pending events to process, which causes an unwanted 'get pending
+                //   changes' operation when there are no new changes.
+                // * So, we need to delay the auto-refresh call in order
+                //   to give the fswatcher enough time to process the events.
+                mCooldownAutoRefreshChangesAction = new CooldownWindowDelayer(
+                    () =>
                     {
-                        mLog.DebugFormat(
-                            "Error getting Subscription details for organization {0}",
-                            organizationName);
-                        return;
-                    }
+                        mViewSwitcher.AutoRefreshPendingChangesView();
+                        mViewSwitcher.AutoRefreshIncomingChangesView();
+                    },
+                    UnityConstants.AUTO_REFRESH_CHANGES_DELAYED_INTERVAL);
 
-                    mIsUGOSubscription = t.Result.OrderSource == UGO_ORDER_SOURCE;
-                });
-        }
+                mWorkspaceWindow = new WorkspaceWindow(
+                    mWkInfo,
+                    viewHost,
+                    mViewSwitcher,
+                    mViewSwitcher,
+                    mDeveloperNewIncomingChangesUpdater,
+                    this);
 
-        void DoNotConnectedArea()
-        {
-            string labelText = PlasticLocalization.GetString(
-                PlasticLocalization.Name.NotConnectedTryingToReconnect);
+                mViewSwitcher.SetWorkspaceWindow(mWorkspaceWindow);
+                mViewSwitcher.ShowInitialView();
 
-            string buttonText = PlasticLocalization.GetString(
-                PlasticLocalization.Name.TryNowButton);
+                PlasticPlugin.WorkspaceOperationsMonitor.RegisterWindow(
+                    mWorkspaceWindow,
+                    viewHost,
+                    mDeveloperNewIncomingChangesUpdater);
 
-            GUI.enabled = !PlasticPlugin.ConnectionMonitor.IsTryingReconnection;
+                UnityStyles.Initialize(Repaint);
 
-            DrawActionHelpBox.For(
-                Images.GetInfoDialogIcon(), labelText, buttonText,
-                PlasticPlugin.ConnectionMonitor.CheckConnection);
+                AssetMenuItems.BuildOperations(
+                    mWkInfo,
+                    mWorkspaceWindow,
+                    mViewSwitcher,
+                    mViewSwitcher,
+                    viewHost,
+                    PlasticPlugin.WorkspaceOperationsMonitor,
+                    mDeveloperNewIncomingChangesUpdater,
+                    PlasticPlugin.AssetStatusCache,
+                    mViewSwitcher,
+                    mViewSwitcher,
+                    mShowDownloadPlasticExeWindow,
+                    mIsGluonMode);
 
-            GUI.enabled = true;
-        }
+                DrawInspectorOperations.BuildOperations(
+                    mWkInfo,
+                    mWorkspaceWindow,
+                    mViewSwitcher,
+                    mViewSwitcher,
+                    viewHost,
+                    PlasticPlugin.WorkspaceOperationsMonitor,
+                    mDeveloperNewIncomingChangesUpdater,
+                    PlasticPlugin.AssetStatusCache,
+                    mViewSwitcher,
+                    mViewSwitcher,
+                    mShowDownloadPlasticExeWindow,
+                    mIsGluonMode);
 
-        void DoExceptionErrorArea()
-        {
-            string labelText = PlasticLocalization.GetString(
-                PlasticLocalization.Name.UnexpectedError);
+                mLastUpdateTime = EditorApplication.timeSinceStartup;
 
-            string buttonText = PlasticLocalization.GetString(
-                PlasticLocalization.Name.ReloadButton);
+                mViewSwitcher.ShowBranchesViewIfNeeded();
+                mViewSwitcher.ShowLocksViewIfNeeded();
 
-            DrawActionHelpBox.For(
-                Images.GetErrorDialogIcon(), labelText, buttonText,
-                ExecuteFullReload);
+                if (!EditionToken.IsCloudEdition())
+                    return;
+
+                InitializeNotificationBarUpdater(
+                    mWkInfo, mStatusBar.NotificationBar);
+
+                GetSubscriptionDetails(mWkInfo);
+            }
+            catch (Exception ex)
+            {
+                mException = ex;
+
+                ExceptionsHandler.HandleException("InitializePlastic", ex);
+            }
         }
 
         void InitializeNewIncomingChanges(
@@ -637,6 +495,184 @@ namespace Unity.PlasticSCM.Editor
             mNotificationBarUpdater.SetWorkspace(wkInfo);
         }
 
+        void GetSubscriptionDetails(WorkspaceInfo wkInfo)
+        {
+            mIsCloudOrganization = false;
+            mIsUGOSubscription = false;
+            mUpgradePlanUrl = string.Empty;
+
+            RepositorySpec repSpec = PlasticGui.Plastic.API.GetRepositorySpec(wkInfo);
+
+            if (repSpec == null)
+            {
+                return;
+            }
+
+            mIsCloudOrganization = PlasticGui.Plastic.API.IsCloud(repSpec.Server);
+
+            string organizationName = ServerOrganizationParser.GetOrganizationFromServer(repSpec.Server);
+
+            Task.Run(
+                () =>
+                {
+                    string authToken = AuthToken.GetForServer(repSpec.Server);
+
+                    if (string.IsNullOrEmpty(authToken))
+                        return null;
+
+                    return WebRestApiClient.PlasticScm.GetSubscriptionDetails(
+                        organizationName,
+                        authToken);
+                }).ContinueWith(
+                t =>
+                {
+                    if (t.Result == null)
+                    {
+                        mLog.DebugFormat("Error getting Subscription details for organization {0}", organizationName);
+                        return;
+                    }
+
+                    if (t.Result.OrganizationName != organizationName)
+                    {
+                        mLog.DebugFormat("Not requested organization ({0}) subscription has been received", t.Result.OrganizationName);
+                        return;
+                    }
+
+                    mIsUGOSubscription = t.Result.OrderSource == UGO_ORDER_SOURCE;
+                    mUpgradePlanUrl = t.Result.ExtraData.ContainsKey(UGO_CONSUMPTION_URL_KEY) && t.Result.IsAdmin ?
+                        t.Result.ExtraData[UGO_CONSUMPTION_URL_KEY].ToString() : UnityUrl.UnityDashboard.Plastic.Get();
+                });
+        }
+
+        void OnApplicationActivated()
+        {
+            mLog.Debug("OnApplicationActivated");
+
+            if (mException != null)
+                return;
+
+            if (!PlasticPlugin.ConnectionMonitor.IsConnected)
+                return;
+
+            Reload.IfWorkspaceConfigChanged(
+                PlasticGui.Plastic.API, mWkInfo, mIsGluonMode,
+                ExecuteFullReload);
+
+            if (mWkInfo == null)
+                return;
+
+            ((IWorkspaceWindow)mWorkspaceWindow).UpdateTitle();
+
+            NewIncomingChanges.LaunchUpdater(
+                mDeveloperNewIncomingChangesUpdater,
+                mGluonNewIncomingChangesUpdater);
+
+            mCooldownAutoRefreshChangesAction.Ping();
+        }
+
+        void OnApplicationDeactivated()
+        {
+            mLog.Debug("OnApplicationDeactivated");
+
+            if (mException != null)
+                return;
+
+            if (mWkInfo == null)
+                return;
+
+            if (!PlasticPlugin.ConnectionMonitor.IsConnected)
+                return;
+
+            NewIncomingChanges.StopUpdater(
+                mDeveloperNewIncomingChangesUpdater,
+                mGluonNewIncomingChangesUpdater);
+        }
+
+        void ExecuteFullReload()
+        {
+            mException = null;
+
+            DisposeNewIncomingChanges(this);
+
+            DisposeNotificationBarUpdater(this);
+
+            InitializePlastic();
+        }
+
+        void DoNotConnectedArea()
+        {
+            string labelText = PlasticLocalization.GetString(
+                PlasticLocalization.Name.NotConnectedTryingToReconnect);
+
+            string buttonText = PlasticLocalization.GetString(
+                PlasticLocalization.Name.TryNowButton);
+
+            GUI.enabled = !PlasticPlugin.ConnectionMonitor.IsTryingReconnection;
+
+            DrawActionHelpBox.For(
+                Images.GetInfoDialogIcon(), labelText, buttonText,
+                PlasticPlugin.ConnectionMonitor.CheckConnection);
+
+            GUI.enabled = true;
+        }
+
+        void DoExceptionErrorArea()
+        {
+            string labelText = PlasticLocalization.GetString(
+                PlasticLocalization.Name.UnexpectedError);
+
+            string buttonText = PlasticLocalization.GetString(
+                PlasticLocalization.Name.ReloadButton);
+
+            DrawActionHelpBox.For(
+                Images.GetErrorDialogIcon(), labelText, buttonText,
+                ExecuteFullReload);
+        }
+
+        internal WelcomeView GetWelcomeView()
+        {
+            if (mWelcomeView != null)
+                return mWelcomeView;
+
+            mWelcomeView = new WelcomeView(
+                this,
+                this,
+                PlasticGui.Plastic.API,
+                PlasticGui.Plastic.WebRestAPI,
+                CmConnection.Get());
+
+            return mWelcomeView;
+        }
+
+        static void DoSearchField(ViewSwitcher viewSwitcher)
+        {
+            if (viewSwitcher.IsViewSelected(ViewSwitcher.SelectedTab.PendingChanges))
+            {
+                viewSwitcher.PendingChangesTab.DrawSearchFieldForPendingChangesTab();
+                return;
+            }
+            if (viewSwitcher.IsViewSelected(ViewSwitcher.SelectedTab.Changesets))
+            {
+                viewSwitcher.ChangesetsTab.DrawSearchFieldForChangesetsTab();
+                return;
+            }
+            if (viewSwitcher.IsViewSelected(ViewSwitcher.SelectedTab.History))
+            {
+                viewSwitcher.HistoryTab.DrawSearchFieldForHistoryTab();
+                return;
+            }
+            if (viewSwitcher.IsViewSelected(ViewSwitcher.SelectedTab.Branches))
+            {
+                viewSwitcher.BranchesTab.DrawSearchFieldForBranchesTab();
+                return;
+            }
+            if (viewSwitcher.IsViewSelected(ViewSwitcher.SelectedTab.Locks))
+            {
+                viewSwitcher.LocksTab.DrawSearchFieldForLocksTab();
+                return;
+            }
+        }
+
         static void DoTabToolbar(
             WorkspaceInfo workspaceInfo,
             ViewSwitcher viewSwitcher,
@@ -644,7 +680,8 @@ namespace Unity.PlasticSCM.Editor
             LaunchTool.IProcessExecutor processExecutor,
             bool isGluonMode,
             bool isCloudOrganization,
-            bool isUGOSubscription)
+            bool isUGOSubscription,
+            string upgradePlanUrl)
         {
             EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
 
@@ -661,42 +698,101 @@ namespace Unity.PlasticSCM.Editor
                 processExecutor,
                 isGluonMode,
                 isCloudOrganization,
-                isUGOSubscription);
+                isUGOSubscription,
+                upgradePlanUrl);
 
             EditorGUILayout.EndHorizontal();
         }
 
-        static void DoSearchField(ViewSwitcher viewSwitcher)
+        static void OpenBranchListViewAndSendEvent(
+            WorkspaceInfo wkInfo,
+            ViewSwitcher viewSwitcher)
         {
-            if (viewSwitcher.IsViewSelected(ViewSwitcher.SelectedTab.PendingChanges))
-            {
-                viewSwitcher.PendingChangesTab.DrawSearchFieldForPendingChangesTab();
-                return;
-            }
+            viewSwitcher.ShowBranchesView();
+            TrackFeatureUseEvent.For(
+               PlasticGui.Plastic.API.GetRepositorySpec(wkInfo),
+               TrackFeatureUseEvent.Features.OpenBranchesView);
+        }
 
-            if (viewSwitcher.IsViewSelected(ViewSwitcher.SelectedTab.Changesets))
-            {
-                viewSwitcher.ChangesetsTab.DrawSearchFieldForChangesetsTab();
-                return;
-            }
+        static void ShowBranchesContextMenu(
+            WorkspaceInfo wkInfo,
+            ViewSwitcher viewSwitcher,
+            LaunchTool.IShowDownloadPlasticExeWindow showDownloadPlasticExeWindow,
+            LaunchTool.IProcessExecutor processExecutor,
+            bool isGluonMode)
+        {
+            GenericMenu menu = new GenericMenu();
 
-            if (viewSwitcher.IsViewSelected(ViewSwitcher.SelectedTab.History))
-            {
-                viewSwitcher.HistoryTab.DrawSearchFieldForHistoryTab();
-                return;
-            }
+            string branchesListView = PlasticLocalization.GetString(
+                PlasticLocalization.Name.Branches);
 
-            if (viewSwitcher.IsViewSelected(ViewSwitcher.SelectedTab.Branches))
-            {
-                viewSwitcher.BranchesTab.DrawSearchFieldForBranchesTab();
-                return;
-            }
+            menu.AddItem(
+               new GUIContent(branchesListView),
+               false,
+               () => OpenBranchListViewAndSendEvent(wkInfo, viewSwitcher));
 
-            if (viewSwitcher.IsViewSelected(ViewSwitcher.SelectedTab.Locks))
-            {
-                viewSwitcher.LocksTab.DrawSearchFieldForLocksTab();
-                return;
-            }
+            string branchExplorer = PlasticLocalization.GetString(
+            PlasticLocalization.Name.BranchExplorerMenu);
+
+            menu.AddItem(
+              new GUIContent(branchExplorer),
+              false,
+              () => LaunchTool.OpenBranchExplorer(
+                showDownloadPlasticExeWindow,
+                processExecutor,
+                wkInfo,
+                isGluonMode));
+
+            menu.ShowAsContext();
+        }
+
+        static void OpenLocksViewAndSendEvent(
+            WorkspaceInfo wkInfo,
+            ViewSwitcher viewSwitcher)
+        {
+            viewSwitcher.ShowLocksView();
+            TrackFeatureUseEvent.For(
+                PlasticGui.Plastic.API.GetRepositorySpec(wkInfo),
+                TrackFeatureUseEvent.Features.OpenLocksView);
+        }
+
+        static void ShowSettingsContextMenu(
+            LaunchTool.IShowDownloadPlasticExeWindow showDownloadPlasticExeWindow,
+            LaunchTool.IProcessExecutor processExecutor,
+            WorkspaceInfo wkInfo,
+            bool isGluonMode)
+        {
+            GenericMenu menu = new GenericMenu();
+
+            string openToolText = isGluonMode ?
+                PlasticLocalization.Name.OpenInGluon.GetString() :
+                PlasticLocalization.Name.OpenInDesktopApp.GetString();
+
+            menu.AddItem(
+                new GUIContent(openToolText),
+                false,
+                () => LaunchTool.OpenGUIForMode(
+                    showDownloadPlasticExeWindow,
+                    processExecutor,
+                    wkInfo,
+                    isGluonMode));
+
+            menu.AddSeparator("");
+
+            menu.AddItem(
+                new GUIContent(PlasticLocalization.Name.Options.GetString()),
+                false,
+                () => SettingsService.OpenProjectSettings(UnityConstants.PROJECT_SETTINGS_TAB_PATH));
+
+            menu.AddItem(
+                new GUIContent(PlasticAssetModificationProcessor.ForceCheckout ?
+                PlasticLocalization.Name.DisableForcedCheckout.GetString() :
+                PlasticLocalization.Name.EnableForcedCheckout.GetString()),
+                false,
+                ForceCheckout_Clicked,
+                null);
+
+            menu.ShowAsContext();
         }
 
         static void DoToolbarButtons(
@@ -706,7 +802,8 @@ namespace Unity.PlasticSCM.Editor
             LaunchTool.IProcessExecutor processExecutor,
             bool isGluonMode,
             bool isCloudOrganization,
-            bool isUGOSubscription)
+            bool isUGOSubscription,
+            string upgradePlanUrl)
         {
             //TODO: Codice - beta: hide the diff button until the behavior is implemented
             /*GUILayout.Button(PlasticLocalization.GetString(
@@ -718,7 +815,6 @@ namespace Unity.PlasticSCM.Editor
             {
                 viewSwitcher.ChangesetsTab.DrawDateFilter();
             }
-
             if (viewSwitcher.IsViewSelected(ViewSwitcher.SelectedTab.Branches))
             {
                 viewSwitcher.BranchesTab.DrawDateFilter();
@@ -790,9 +886,10 @@ namespace Unity.PlasticSCM.Editor
 
                 if (isUGOSubscription)
                 {
-                    if (DrawToolbarTextButton(PlasticLocalization.Name.UpgradePlan.GetString()))
+                    if (DrawToolbarTextButton(
+                        PlasticLocalization.Name.UpgradePlan.GetString()))
                     {
-                        OpenDevOpsUpgradePlanUrl();
+                        UpgradePlan(upgradePlanUrl);
                     }
                 }
             }
@@ -821,6 +918,11 @@ namespace Unity.PlasticSCM.Editor
             return GUILayout.Button(
                 new GUIContent(text, string.Empty),
                 EditorStyles.toolbarButton);
+        }
+
+        static void UpgradePlan(string upgradePlanUrl)
+        {
+            Application.OpenURL(upgradePlanUrl);
         }
 
         static void InviteMembersToOrganization(WorkspaceInfo wkInfo)
@@ -895,108 +997,16 @@ namespace Unity.PlasticSCM.Editor
                 });
         }
 
-        static void OpenBranchListViewAndSendEvent(
-            WorkspaceInfo wkInfo,
-            ViewSwitcher viewSwitcher)
-        {
-            viewSwitcher.ShowBranchesView();
-
-            TrackFeatureUseEvent.For(
-               PlasticGui.Plastic.API.GetRepositorySpec(wkInfo),
-               TrackFeatureUseEvent.Features.OpenBranchesView);
-        }
-
-        static void OpenLocksViewAndSendEvent(
-            WorkspaceInfo wkInfo,
-            ViewSwitcher viewSwitcher)
-        {
-            viewSwitcher.ShowLocksView();
-
-            TrackFeatureUseEvent.For(
-                PlasticGui.Plastic.API.GetRepositorySpec(wkInfo),
-                TrackFeatureUseEvent.Features.OpenLocksView);
-        }
-
-        static void ShowBranchesContextMenu(
-            WorkspaceInfo wkInfo,
-            ViewSwitcher viewSwitcher,
-            LaunchTool.IShowDownloadPlasticExeWindow showDownloadPlasticExeWindow,
-            LaunchTool.IProcessExecutor processExecutor,
-            bool isGluonMode)
-        {
-            GenericMenu menu = new GenericMenu();
-
-            string branchesListView = PlasticLocalization.GetString(
-                PlasticLocalization.Name.Branches);
-
-            menu.AddItem(
-               new GUIContent(branchesListView),
-               false,
-               () => OpenBranchListViewAndSendEvent(wkInfo, viewSwitcher));
-
-            string branchExplorer = PlasticLocalization.GetString(
-                PlasticLocalization.Name.BranchExplorerMenu);
-
-            menu.AddItem(
-              new GUIContent(branchExplorer),
-              false,
-              () => LaunchTool.OpenBranchExplorer(
-                showDownloadPlasticExeWindow,
-                processExecutor,
-                wkInfo,
-                isGluonMode));
-
-            menu.ShowAsContext();
-        }
-
-        static void ShowSettingsContextMenu(
-            LaunchTool.IShowDownloadPlasticExeWindow showDownloadPlasticExeWindow,
-            LaunchTool.IProcessExecutor processExecutor,
-            WorkspaceInfo wkInfo,
-            bool isGluonMode)
-        {
-            GenericMenu menu = new GenericMenu();
-
-            string openToolText = isGluonMode ?
-                PlasticLocalization.Name.OpenInGluon.GetString() :
-                PlasticLocalization.Name.OpenInDesktopApp.GetString();
-
-            menu.AddItem(
-                new GUIContent(openToolText),
-                false,
-                () => LaunchTool.OpenGUIForMode(
-                    showDownloadPlasticExeWindow,
-                    processExecutor,
-                    wkInfo,
-                    isGluonMode));
-
-            menu.AddSeparator(string.Empty);
-
-            menu.AddItem(
-                new GUIContent(PlasticLocalization.Name.Options.GetString()),
-                false,
-                () => SettingsService.OpenProjectSettings(UnityConstants.PROJECT_SETTINGS_TAB_PATH));
-
-            menu.AddItem(
-                new GUIContent(PlasticAssetModificationProcessor.ForceCheckout ?
-                    PlasticLocalization.Name.DisableForcedCheckout.GetString() :
-                    PlasticLocalization.Name.EnableForcedCheckout.GetString()),
-                false,
-                () => PlasticAssetModificationProcessor.SetForceCheckoutOption(
-                    !PlasticAssetModificationProcessor.ForceCheckout));
-
-            menu.ShowAsContext();
-        }
-
         static void OpenUnityDashboardInviteUsersUrl(string organization)
         {
             Application.OpenURL(UnityUrl.UnityDashboard.Plastic.GetForInviteUsers(
                 organization, UnityUrl.UnityDashboard.UnityCloudRequestSource.Editor));
         }
 
-        static void OpenDevOpsUpgradePlanUrl()
+        static void ForceCheckout_Clicked(object obj)
         {
-            Application.OpenURL(UnityUrl.DevOps.GetSignUp());
+            PlasticAssetModificationProcessor.SetForceCheckoutOption(
+                !PlasticAssetModificationProcessor.ForceCheckout);
         }
 
         static void DisableVCSIfEnabled(string projectPath)
@@ -1007,17 +1017,6 @@ namespace Unity.PlasticSCM.Editor
             VCSPlugin.Disable();
 
             mLog.DebugFormat("Disabled VCS Plugin on Project: {0}",
-                projectPath);
-        }
-
-        static void DisableCollabIfEnabled(string projectPath)
-        {
-            if (!CollabPlugin.IsEnabled())
-                return;
-
-            CollabPlugin.Disable();
-
-            mLog.DebugFormat("Disabled Collab Plugin on Project: {0}",
                 projectPath);
         }
 
@@ -1052,43 +1051,23 @@ namespace Unity.PlasticSCM.Editor
             EditorWindowFocus.OnApplicationDeactivated -= window.OnApplicationDeactivated;
         }
 
-        static void InitializePlasticOnForceToReOpen(PlasticWindow window)
+        static bool IsExitGUIException(Exception ex)
         {
-            if (window.mWkInfo == null)
-                return;
-
-            window.mViewSwitcher.OnEnable();
-
-            window.InitializeNewIncomingChanges(
-                window.mWkInfo,
-                window.mIsGluonMode,
-                window.mViewSwitcher);
-
-            PlasticApp.RegisterWorkspaceWindow(
-                window.mWorkspaceWindow);
-
-            if (PlasticPlugin.WorkspaceOperationsMonitor != null)
-            {
-                PlasticPlugin.WorkspaceOperationsMonitor.RegisterWindow(
-                    window.mWorkspaceWindow,
-                    window.mViewHost,
-                    window.mDeveloperNewIncomingChangesUpdater);
-            }
-
-            if (!EditionToken.IsCloudEdition())
-                return;
-
-            window.InitializeNotificationBarUpdater(
-                window.mWkInfo,
-                window.mStatusBar.NotificationBar);
+            return ex is ExitGUIException;
         }
 
-        static void ClosePlastic(PlasticWindow window)
+        static bool IsIMGUIPaintException(Exception ex)
         {
-            if (window.mViewSwitcher != null)
-                window.mViewSwitcher.OnDisable();
+            if (!(ex is ArgumentException))
+                return false;
 
-            PlasticApp.UnRegisterWorkspaceWindow();
+            return ex.Message.StartsWith("Getting control") &&
+                   ex.Message.Contains("controls when doing repaint");
+        }
+
+        static void ClosePlasticWindow(PlasticWindow window)
+        {
+            UnRegisterApplicationFocusHandlers(window);
 
             if (PlasticPlugin.WorkspaceOperationsMonitor != null)
                 PlasticPlugin.WorkspaceOperationsMonitor.UnRegisterWindow();
@@ -1100,19 +1079,18 @@ namespace Unity.PlasticSCM.Editor
             AvatarImages.Dispose();
         }
 
-        static void ReOpenPlasticWindow(PlasticWindow closedWindow)
+        static void ShowPlasticWindow(PlasticWindow window)
         {
             EditorWindow dockWindow = FindEditorWindow.ToDock<PlasticWindow>();
 
-            PlasticWindow newWindow = InstantiateFrom(closedWindow);
-
-            InitializePlasticOnForceToReOpen(newWindow);
+            PlasticWindow newPlasticWindow = InstantiateFrom(window);
 
             if (DockEditorWindow.IsAvailable())
-                DockEditorWindow.To(dockWindow, newWindow);
+                DockEditorWindow.To(dockWindow, newPlasticWindow);
 
-            newWindow.Show();
-            newWindow.Focus();
+            newPlasticWindow.Show();
+
+            newPlasticWindow.Focus();
         }
 
         static bool NeedsToDisplayWelcomeView(
@@ -1128,41 +1106,39 @@ namespace Unity.PlasticSCM.Editor
             return false;
         }
 
-        static bool IsExitGUIException(Exception ex)
+        static void DisableCollabIfEnabled(string projectPath)
         {
-            return ex is ExitGUIException;
-        }
+            if (!CollabPlugin.IsEnabled())
+                return;
 
-        static bool IsIMGUIPaintException(Exception ex)
-        {
-            if (!(ex is ArgumentException))
-                return false;
+            CollabPlugin.Disable();
 
-            return ex.Message.StartsWith("Getting control") &&
-                   ex.Message.Contains("controls when doing repaint");
+            mLog.DebugFormat("Disabled Collab Plugin on Project: {0}",
+                projectPath);
         }
 
         static PlasticWindow InstantiateFrom(PlasticWindow window)
         {
             PlasticWindow result = Instantiate(window);
-            result.mIsGluonMode = window.mIsGluonMode;
-            result.mIsCloudOrganization = window.mIsCloudOrganization;
-            result.mIsUGOSubscription = window.mIsUGOSubscription;
-            result.mDisableCollabIfEnabledWhenLoaded = window.mDisableCollabIfEnabledWhenLoaded;
-            result.mLastUpdateTime = window.mLastUpdateTime;
             result.mWkInfo = window.mWkInfo;
-            result.mException = window.mException;
-            result.mWelcomeView = window.mWelcomeView;
-            result.mViewSwitcher = window.mViewSwitcher;
-            result.mViewHost = window.mViewHost;
             result.mWorkspaceWindow = window.mWorkspaceWindow;
-            result.mStatusBar = window.mStatusBar;
-            result.mNotificationBarUpdater = window.mNotificationBarUpdater;
+            result.mViewSwitcher = window.mViewSwitcher;
             result.mCooldownAutoRefreshChangesAction = window.mCooldownAutoRefreshChangesAction;
             result.mDeveloperNewIncomingChangesUpdater = window.mDeveloperNewIncomingChangesUpdater;
             result.mGluonNewIncomingChangesUpdater = window.mGluonNewIncomingChangesUpdater;
+            result.mException = window.mException;
+            result.mLastUpdateTime = window.mLastUpdateTime;
+            result.mIsGluonMode = window.mIsGluonMode;
             result.mIncomingChangesNotifier = window.mIncomingChangesNotifier;
+            result.mStatusBar = window.mStatusBar;
+            result.mWelcomeView = window.mWelcomeView;
+            result.mNotificationBarUpdater = window.mNotificationBarUpdater;
             return result;
+        }
+
+        internal PlasticProjectSettingsProvider.IAutoRefreshView GetPendingChangesView()
+        {
+            return mViewSwitcher != null ? mViewSwitcher.PendingChangesTab : null;
         }
 
         static class Reload
@@ -1211,42 +1187,49 @@ namespace Unity.PlasticSCM.Editor
                 if (lastIsGluonMode != currentIsGluonMode)
                     return true;
 
-                if (lastWkInfo == null)
-                    return currentWkInfo != null;
+                if (lastWkInfo == null || currentWkInfo == null)
+                    return true;
 
                 return !lastWkInfo.Equals(currentWkInfo);
             }
         }
 
         [SerializeField]
-        bool mForceToReOpen;
-
-        bool mIsGluonMode;
-        bool mIsCloudOrganization;
-        bool mIsUGOSubscription;
+        bool mForceToOpen;
 
         [NonSerialized]
         WorkspaceInfo mWkInfo;
-        double mLastUpdateTime = 0f;
 
         Exception mException;
-        bool mDisableCollabIfEnabledWhenLoaded;
-        WelcomeView mWelcomeView;
-        ViewHost mViewHost;
-        WorkspaceWindow mWorkspaceWindow;
-        StatusBar mStatusBar;
+
+        internal IIncomingChangesNotifier mIncomingChangesNotifier;
+
+        double mLastUpdateTime = 0f;
+
         CooldownWindowDelayer mCooldownAutoRefreshChangesAction;
-        IIncomingChangesNotifier mIncomingChangesNotifier;
-        ViewSwitcher mViewSwitcher;
+        internal ViewSwitcher mViewSwitcher;
+        WelcomeView mWelcomeView;
+
+        StatusBar mStatusBar;
         NotificationBarUpdater mNotificationBarUpdater;
-        NewIncomingChangesUpdater mDeveloperNewIncomingChangesUpdater;
+
+        PlasticGui.WorkspaceWindow.NewIncomingChangesUpdater mDeveloperNewIncomingChangesUpdater;
         GluonNewIncomingChangesUpdater mGluonNewIncomingChangesUpdater;
+
+        WorkspaceWindow mWorkspaceWindow;
+
+        bool mIsGluonMode;
+        bool mDisableCollabIfEnabledWhenLoaded;
+        bool mIsCloudOrganization;
+        bool mIsUGOSubscription;
+        string mUpgradePlanUrl;
 
         LaunchTool.IShowDownloadPlasticExeWindow mShowDownloadPlasticExeWindow =
             new LaunchTool.ShowDownloadPlasticExeWindow();
         LaunchTool.IProcessExecutor mProcessExecutor =
             new LaunchTool.ProcessExecutor();
 
+        const string UGO_CONSUMPTION_URL_KEY = "consumptionUrl";
         const string UGO_ORDER_SOURCE = "UGO";
 
         static readonly ILog mLog = PlasticApp.GetLogger("PlasticWindow");

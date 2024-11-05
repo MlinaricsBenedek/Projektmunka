@@ -29,9 +29,6 @@ namespace Unity.Cloud.Collaborate
         ToolbarButton()
         {
             PlasticPlugin.OnNotificationUpdated += OnPlasticNotificationUpdated;
-
-            mButtonGUIContent = new GUIContent(
-                string.Empty, PlasticLocalization.Name.UnityVersionControl.GetString());
         }
 
         ~ToolbarButton()
@@ -59,6 +56,8 @@ namespace Unity.Cloud.Collaborate
             EditorGUIUtility.SetIconSize(Vector2.zero);
         }
 
-        GUIContent mButtonGUIContent;
+        static GUIContent mButtonGUIContent = new GUIContent(
+            string.Empty, PlasticLocalization.GetString(
+                PlasticLocalization.Name.UnityVersionControl));
     }
 }

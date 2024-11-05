@@ -165,12 +165,6 @@ namespace Unity.PlasticSCM.Editor.Views.PendingChanges
             mNeedsToShowEmptyCommentDialog = mIsEmptyCheckinCommentWarningNeeded;
         }
 
-        internal void OnEnable()
-        {
-            mSearchField.downOrUpArrowKeyPressed +=
-                SearchField_OnDownOrUpArrowKeyPressed;
-        }
-
         internal void OnDisable()
         {
             mSearchField.downOrUpArrowKeyPressed -=
@@ -203,7 +197,10 @@ namespace Unity.PlasticSCM.Editor.Views.PendingChanges
             if (!string.IsNullOrEmpty(mGluonWarningMessage))
                 DoWarningMessage(mGluonWarningMessage);
 
-            DoActionsToolbar(mProgressControls);
+            DoActionsToolbar(
+                mWkInfo,
+                mIsGluonMode,
+                mProgressControls);
 
             DoChangesArea(
                 mPendingChangesTreeView,
@@ -982,7 +979,10 @@ namespace Unity.PlasticSCM.Editor.Views.PendingChanges
             }
         }
 
-        void DoActionsToolbar(ProgressControlsForViews progressControls)
+        void DoActionsToolbar(
+            WorkspaceInfo workspaceInfo,
+            bool isGluonMode,
+            ProgressControlsForViews progressControls)
         {
             EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
 

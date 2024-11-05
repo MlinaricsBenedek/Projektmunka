@@ -68,7 +68,7 @@ namespace Unity.PlasticSCM.Editor.AssetMenu.Dialogs
                 mergeViewLauncher,
                 gluonViewSwitcher);
 
-            return dialog.RunModal(focusedWindow) == ResponseType.Ok;
+            return dialog.RunModal(null) == ResponseType.Ok;
         }
 
         protected override void OnModalGUI()

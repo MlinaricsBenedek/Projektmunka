@@ -5,36 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-      ticks: 638662382690853949
-    m_Hash: 537835953
-=======
-      ticks: 638610561832126197
-    m_Hash: 674148673
->>>>>>> Stashed changes
-=======
-      ticks: 638664298936274227
-    m_Hash: 537835953
->>>>>>> Stashed changes
+      ticks: 638664320642750824
+    m_Hash: 3794280967
   m_LockFileStatus:
     m_FilePath: E:/unity/Projektmunka2/Projektmunka/Projektmunka/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-      ticks: 638662383099201733
-    m_Hash: 1984799494
-=======
-      ticks: 638610561832239866
-    m_Hash: 2931544661
->>>>>>> Stashed changes
-=======
-      ticks: 638664299324387164
-    m_Hash: 1984799494
->>>>>>> Stashed changes
+      ticks: 638664327686232297
+    m_Hash: 3676623447
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -42,29 +22,102 @@ m_LocalPackages:
 m_ProjectPath: E:/unity/Projektmunka2/Projektmunka/Projektmunka/Packages
 m_EditorVersion: 6000.0.23f1 (1c4764c07fb4)
 m_ResolvedPackages:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-- packageId: com.unity.collab-proxy@2.5.2
+- packageId: com.unity.multiplayer.center@1.0.0
   testable: 0
   isDirectDependency: 1
-  version: 2.5.2
-  source: 1
-  resolvedPath: E:\unity\Projektmunka2\Projektmunka\Projektmunka\Library\PackageCache\com.unity.collab-proxy
-=======
+  version: 1.0.0
+  source: 2
+  resolvedPath: E:\unity\Projektmunka2\Projektmunka\Projektmunka\Library\PackageCache\com.unity.multiplayer.center
+  assetPath: Packages/com.unity.multiplayer.center
+  name: com.unity.multiplayer.center
+  displayName: Multiplayer Center
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: The multiplayer center provides a starting point to create multiplayer
+    games. It will recommend specific packages and enable you to easily access integrations,
+    samples and documentation.
+  errors: []
+  versions:
+    all:
+    - 0.2.1
+    - 0.3.0
+    - 0.4.0
+    - 1.0.0-pre.1
+    - 1.0.0-pre.2
+    - 1.0.0-pre.3
+    - 1.0.0
+    compatible:
+    - 1.0.0
+    recommended: 1.0.0
+    deprecated: []
+  dependencies:
+  - name: com.unity.modules.uielements
+    version: 1.0.0
+  resolvedDependencies:
+  - name: com.unity.modules.uielements
+    version: 1.0.0
+  - name: com.unity.modules.ui
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.modules.hierarchycore
+    version: 1.0.0
+  keywords:
+  - Multiplayer
+  - Netcode
+  - Services
+  - Tools
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 0
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 1.0.0
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: b27203cbee4b0eb1910981fa8a1f299c8134b318
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 6000.0.0a1
 - packageId: com.unity.collab-proxy@2.4.4
-=======
-- packageId: com.unity.collab-proxy@2.5.2
->>>>>>> Stashed changes
   testable: 0
   isDirectDependency: 1
-  version: 2.5.2
+  version: 2.4.4
   source: 1
-<<<<<<< Updated upstream
-  resolvedPath: C:\Users\mlina\Projektmunka\Library\PackageCache\com.unity.collab-proxy@2.4.4
->>>>>>> Stashed changes
-=======
   resolvedPath: E:\unity\Projektmunka2\Projektmunka\Projektmunka\Library\PackageCache\com.unity.collab-proxy
->>>>>>> Stashed changes
   assetPath: Packages/com.unity.collab-proxy
   name: com.unity.collab-proxy
   displayName: Version Control
@@ -73,7 +126,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: Editor
-  type: 
+  type: assets
   description: The package gives you the ability to use Unity Version Control in
     the Unity editor. To use Unity Version Control, a subscription is required. Learn
     more about how you can get started for free by visiting https://unity.com/solutions/version-control
@@ -153,21 +206,11 @@ m_ResolvedPackages:
     - 2.3.1
     - 2.4.3
     - 2.4.4
+    - 2.5.1
+    - 2.5.2
     compatible:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     - 2.5.2
     recommended: 2.5.2
-=======
-    - 2.3.1
-    - 2.4.3
-    - 2.4.4
-    recommended: 2.3.1
->>>>>>> Stashed changes
-=======
-    - 2.5.2
-    recommended: 2.5.2
->>>>>>> Stashed changes
     deprecated: []
   dependencies: []
   resolvedDependencies: []
@@ -198,13 +241,13 @@ m_ResolvedPackages:
   entitlements:
     licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638630364536670000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.collab-proxy@2.5/manual/index.html
+  datePublishedTicks: 638573492230000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.collab-proxy@2.4/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.cloud.collaborate.git
-    revision: c402e6396d3ea20ecb2d59eac908e7e0a30cd7e6
+    revision: 03b1de8d838eb1e427cb1b1d8bf9157f33377542
     path: 
   unityLifecycle:
     version: 2.5.2
@@ -217,16 +260,16 @@ m_ResolvedPackages:
   git:
     hash: 
     revision: 
-  upmReserved: '{"changelog":"### Fixed\n\n- Fix token renewal issue: Can''t obtain
-    a new token (Message: Invalid Refresh Token., Code: 132.104)"}'
+  upmReserved: '{"changelog":"### Fixed\n\n- Fixed the Unity Editor stuck on \"Creating
+    workspace\" when \"Use Unity Version Control\" was selected from the Hub"}'
   assetStore:
     productId: 
-  fingerprint: da7e55b87e08569f31766e7cabc37bc033c9c7f9
+  fingerprint: f073ab5b7d4916dd0953caa6b29a435a4e9a3df8
   editorCompatibility:
-    compatibilityLevel: 0
+    compatibilityLevel: 1
     minimumPackageVersion: 2.5.2
     minimumUnityVersion: 2020.3.48f1
-- packageId: com.unity.feature.development@1.0.2
+- packageId: com.unity.feature.development@1.0.1
   testable: 0
   isDirectDependency: 1
   version: 1.0.2
@@ -327,57 +370,42 @@ m_ResolvedPackages:
     compatibilityLevel: 0
     minimumPackageVersion: 1.0.2
     minimumUnityVersion: 
-- packageId: com.unity.multiplayer.center@1.0.0
+- packageId: com.unity.textmeshpro@3.0.6
   testable: 0
   isDirectDependency: 1
-  version: 1.0.0
+  version: 5.0.0
   source: 2
-  resolvedPath: E:\unity\Projektmunka2\Projektmunka\Projektmunka\Library\PackageCache\com.unity.multiplayer.center
-  assetPath: Packages/com.unity.multiplayer.center
-  name: com.unity.multiplayer.center
-  displayName: Multiplayer Center
+  resolvedPath: E:\unity\Projektmunka2\Projektmunka\Projektmunka\Library\PackageCache\com.unity.textmeshpro
+  assetPath: Packages/com.unity.textmeshpro
+  name: com.unity.textmeshpro
+  displayName: TextMeshPro
   author:
     name: 
     email: 
     url: 
-  category: 
-  type: 
-  description: The multiplayer center provides a starting point to create multiplayer
-    games. It will recommend specific packages and enable you to easily access integrations,
-    samples and documentation.
+  category: Text Rendering
+  type: shim
+  description: This package is no longer supported. TextMeshPro functionalities are
+    now included in the com.unity.ugui package. To continue using them, consider
+    adding it to your project dependencies.
   errors: []
   versions:
     all:
-    - 0.2.1
-    - 0.3.0
-    - 0.4.0
-    - 1.0.0-pre.1
-    - 1.0.0-pre.2
-    - 1.0.0-pre.3
-    - 1.0.0
-    compatible:
-    - 1.0.0
-    recommended: 1.0.0
+    - 5.0.0
+    compatible: []
+    recommended: 
     deprecated: []
   dependencies:
-  - name: com.unity.modules.uielements
-    version: 1.0.0
+  - name: com.unity.ugui
+    version: 2.0.0
   resolvedDependencies:
-  - name: com.unity.modules.uielements
-    version: 1.0.0
+  - name: com.unity.ugui
+    version: 2.0.0
   - name: com.unity.modules.ui
     version: 1.0.0
   - name: com.unity.modules.imgui
     version: 1.0.0
-  - name: com.unity.modules.jsonserialize
-    version: 1.0.0
-  - name: com.unity.modules.hierarchycore
-    version: 1.0.0
-  keywords:
-  - Multiplayer
-  - Netcode
-  - Services
-  - Tools
+  keywords: []
   registry:
     id: main
     name: 
@@ -399,11 +427,13 @@ m_ResolvedPackages:
     revision: 
     path: 
   unityLifecycle:
-    version: 1.0.0
+    version: 
     nextVersion: 
     recommendedVersion: 
-    isDeprecated: 0
-    deprecationMessage: 
+    isDeprecated: 1
+    deprecationMessage: This package is no longer supported. TextMeshPro functionalities
+      are now included in the com.unity.ugui package. To continue using them, consider
+      adding it to your project dependencies.
   isDeprecated: 0
   deprecationMessage: 
   git:
@@ -412,15 +442,15 @@ m_ResolvedPackages:
   upmReserved: 
   assetStore:
     productId: 
-  fingerprint: b27203cbee4b0eb1910981fa8a1f299c8134b318
+  fingerprint: 53f43edfd2e0bf2438ca6e2038ba12107a181253
   editorCompatibility:
     compatibilityLevel: 0
-    minimumPackageVersion: 1.0.0
-    minimumUnityVersion: 6000.0.0a1
-- packageId: com.unity.timeline@1.8.7
+    minimumPackageVersion: 
+    minimumUnityVersion: 2023.2.0a1
+- packageId: com.unity.timeline@1.7.6
   testable: 0
   isDirectDependency: 1
-  version: 1.8.7
+  version: 1.7.6
   source: 1
   resolvedPath: E:\unity\Projektmunka2\Projektmunka\Projektmunka\Library\PackageCache\com.unity.timeline
   assetPath: Packages/com.unity.timeline
@@ -563,13 +593,13 @@ m_ResolvedPackages:
   entitlements:
     licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638524833900000000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.timeline@1.8/manual/index.html
+  datePublishedTicks: 638326112840000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.timeline@1.7/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.timeline.git
-    revision: d6432ca638481c3d0e4c01f87f9cdbe3c4b1d529
+    revision: 02f49ada64a9f88044207cf42ba407dc634ef8e6
     path: 
   unityLifecycle:
     version: 1.8.7
@@ -582,25 +612,18 @@ m_ResolvedPackages:
   git:
     hash: 
     revision: 
-  upmReserved: '{"changelog":"### Added\n\n- Released ronl-workflow-custom-marker.md
-    Added a new workflow to the Timeline Workflows documentation:\n- Released ronl-workflow-custom-marker.md
-    The `Create a custom Notes marker` workflow demonstrates how to create a custom
-    marker for adding notes to Timeline instances. This workflow also demonstrates
-    how to change the default appearance of a custom marker with scripting and a
-    Unity Style Sheet (USS).\n\n### Fixed\n\n- Fixed bug where using , and . (<>)
-    to step frames in the Animation Window while the Timeline Window was linked would
-    sometimes not work. [IN-56667](https://unity3d.atlassian.net/servicedesk/customer/portal/2/IN-56667)\n-
-    When the Timeline and Animation windows are linked and the Timeline Window is
-    active, moving the playhead in the Timeline Window will cause the animation window
-    to repaint immediately."}'
+  upmReserved: '{"changelog":"### Fixed\n\n- Fixed issue where a warning would be
+    logged in the console for `TrackAsset` ([TB-229](https://issuetracker.unity3d.com/product/unity/issues/guid/TB-229)).\n-
+    Fixed issue where changing the name of a group track was not undoable ([TB-218](https://issuetracker.unity3d.com/issues/timeline-track-group-renaming-doesnt-go-into-the-undo-history)).\n-
+    Fixed performance regression when rebuilding the playable graph."}'
   assetStore:
     productId: 
-  fingerprint: c58b4ee65782ad38338e29f7ee67787cb6998f04
+  fingerprint: 5a51cce2c258ee031e9ec9d89af6d301f0d02ee8
   editorCompatibility:
-    compatibilityLevel: 0
+    compatibilityLevel: 1
     minimumPackageVersion: 1.8.7
     minimumUnityVersion: 2019.3.0a1
-- packageId: com.unity.ugui@2.0.0
+- packageId: com.unity.ugui@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 2.0.0
@@ -743,9 +766,11 @@ m_ResolvedPackages:
     - 1.9.1
     - 1.9.2
     - 1.9.4
+    - 1.9.5
     compatible:
     - 1.9.4
-    recommended: 1.9.4
+    - 1.9.5
+    recommended: 1.9.5
     deprecated:
     - 1.8.0-pre.1
   dependencies:
@@ -3394,9 +3419,11 @@ m_ResolvedPackages:
     - 3.0.27
     - 3.0.28
     - 3.0.31
+    - 3.0.34
     compatible:
     - 3.0.31
-    recommended: 3.0.31
+    - 3.0.34
+    recommended: 3.0.34
     deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
@@ -3871,25 +3898,13 @@ m_ResolvedPackages:
     revision: 959db8ff97eedf9b211ad5cf320b87ac01f1e90f
     path: 
   unityLifecycle:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     version: 1.2.6
-=======
-    version: 1.2.5
->>>>>>> Stashed changes
-=======
-    version: 1.2.6
->>>>>>> Stashed changes
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
   git:
     hash: 
     revision: 
@@ -3906,12 +3921,6 @@ m_ResolvedPackages:
     compatibilityLevel: 0
     minimumPackageVersion: 1.2.6
     minimumUnityVersion: 2019.3.0a1
-<<<<<<< Updated upstream
-=======
-  fingerprint: 
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 - packageId: com.unity.settings-manager@2.0.1
   testable: 0
   isDirectDependency: 0
@@ -4054,10 +4063,6 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
   git:
     hash: 
     revision: 
@@ -4070,10 +4075,3 @@ m_ResolvedPackages:
     minimumPackageVersion: 2.0.5
     minimumUnityVersion: 2019.4.0a1
 m_BuiltInPackagesHash: 4f75c37d7db9cb7d9b9c9879cb839d8c6f4a1918
-<<<<<<< Updated upstream
-=======
-  fingerprint: 
-m_BuiltInPackagesHash: a29cfa943ce69a07b2393e4a2cd124567013a253
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes

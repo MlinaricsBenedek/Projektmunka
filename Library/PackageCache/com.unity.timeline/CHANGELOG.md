@@ -2,95 +2,39 @@
 
 All notable changes to this package will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
-## [1.8.7] - 2024-05-24
-
-### Added
-
-- Released ronl-workflow-custom-marker.md Added a new workflow to the Timeline Workflows documentation:
-- Released ronl-workflow-custom-marker.md The `Create a custom Notes marker` workflow demonstrates how to create a custom marker for adding notes to Timeline instances. This workflow also demonstrates how to change the default appearance of a custom marker with scripting and a Unity Style Sheet (USS).
+## [1.7.6] - 2023-10-05
 
 ### Fixed
 
-- Fixed bug where using , and . (<>) to step frames in the Animation Window while the Timeline Window was linked would sometimes not work. [IN-56667](https://unity3d.atlassian.net/servicedesk/customer/portal/2/IN-56667)
-- When the Timeline and Animation windows are linked and the Timeline Window is active, moving the playhead in the Timeline Window will cause the animation window to repaint immediately.
-
-## [1.8.6] - 2023-10-05
-
-### Changed
-
-- In the `Create Asset` menu, the `Signal` and `Timeline` items have been moved to the `Timeline` submenu.
-
-### Fixed
-
-- Fixed issue where changing the name of a group track was not undoable ([TB-218](https://issuetracker.unity3d.com/issues/timeline-track-group-renaming-doesnt-go-into-the-undo-history)).
 - Fixed issue where a warning would be logged in the console for `TrackAsset` ([TB-229](https://issuetracker.unity3d.com/product/unity/issues/guid/TB-229)).
+- Fixed issue where changing the name of a group track was not undoable ([TB-218](https://issuetracker.unity3d.com/issues/timeline-track-group-renaming-doesnt-go-into-the-undo-history)).
 - Fixed performance regression when rebuilding the playable graph.
-- Fixed a `MissingReferenceException` when editing a Timeline that is an instance of a prefab and a bound `Animator` is destroyed ([TB-222](https://issuetracker.unity3d.com/issues/timeline-missingreferenceexceptions-when-undoing-add-animator-from-timeline))
-- Removed warnings due to obsolete analytics API.
 
-## [1.8.5] - 2023-08-24
-
-### Added
-
-- Added two new workflows to the Timeline Workflows documentation:
-- The `Use markers and signals for footsteps` workflow demonstrates how to use Timeline markers, Signal assets, and Signal Receiver components to play audio sources for footsteps.
-- The `Create a Sub-Timeline instance` workflow demonstrates how to create a single cut-scene by nesting a Timeline instance within another Timeline instance.
-
-### Fixed
-
-- Fixed playback and recording when Timeline is linked with the Animation Window.
-
-## [1.8.4] - 2023-06-13
+## [1.7.5] - 2023-06-15
 
 ### Fixed
 
 - Fixed issue where exceptions were thrown when different `ControlTrack`s are referencing the same `TimelineAsset` ([IN-21163](https://issuetracker.unity3d.com/product/unity/issues/guid/TB-165)).
-
-## [1.8.3] - 2023-06-01
-
-### Changed
-
-- Updated the Timeline package documentation to include previously undocumented features and new screen images.
-
-### Fixed
-
-- Enable Timeline Action menu entry for Delete when PlayableDirector component is disabled. (TB-177)
 - The `Text Track` sample has been updated to use the `com.unity.ugui` package.
 - Removed usage of deprecated API: `UnityEditor.MemoryProfiler`
 
-## [1.8.2] - 2023-03-02
+## [1.7.4] - 2023-03-08
 
 ### Fixed
 
 - Fixed issue where previewing the Timeline would create prefab property modifications
-- Fixed issue where `ClipEditor.OnClipChanged` was not invoked when changing the object assigned to a `ExposedReference<UnityEngine.Object>`.
 
-## [1.8.1] - 2023-02-07
-
-### Changed
-
-- Reduced the number of playable graph rebuilds when editing playable assets through the clip inspector.
+## [1.7.3] - 2023-01-31
 
 ### Fixed
 
-- Fixed an issue where the clip inspector was not able to display custom playable asset inspectors rendered with UIToolkit.
 - Fixed issue where modifying curves on an animation clip did not trigger an evaluation of the graph when the Timeline Window is hidden. (TB-117)
-- Fixed an issue where the empty marker track that's automatically created when showing the markers in the Timeline Window would remain in the Timeline Asset when the markers are hidden. ([TB-120])
-
-## [1.8.0] - 2022-10-31
-
-### Added
-- Added field on DirectorControlPlayable: pauseAction. This property controls whether the director is paused or stopped when the playable is paused.
-- Added field on ControlPlayableAsset: directorOnClipEnd. This asset property is passed to DirectorControlPlayable.pauseAction when the DirectorControlPlayable is created.
-
-### Fixed
-
-- Fixed an issue where menu items related to track, marker and clip types in contextual menus would be in arbitrary order in some versions of Unity. Menu items related to types will now be sorted based on their full names, including the assembly name.
 
 ## [1.7.2] - 2022-09-12
 
 ### Fixed
 
+- Fixed an issue where menu items related to track, marker and clip types in contextual menus would be in arbitrary order in some versions of Unity. Menu items related to types will now be sorted based on their full names, including the assembly name.
 - Fix post-extrapolation mode change not recalculating previous clip pre-extrapolation time. ([ATL-1291])
 - Fixed an issue where prefab overrides would be created when keyframing a prefab instance in Timeline. ([TB-108])
 - Fixed an issue where a warning would be raised when using the undo history to undo multiple timeline interactions([TB-119])

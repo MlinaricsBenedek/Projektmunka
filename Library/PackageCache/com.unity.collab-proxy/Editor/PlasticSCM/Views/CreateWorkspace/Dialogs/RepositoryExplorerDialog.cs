@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
@@ -9,7 +10,6 @@ using Codice.Client.Common;
 using PlasticGui;
 using PlasticGui.WorkspaceWindow.Home.Repositories;
 using PlasticGui.WebApi;
-using PlasticGui.WorkspaceWindow.Home;
 using PlasticGui.WorkspaceWindow.Servers;
 using Unity.PlasticSCM.Editor.UI;
 using Unity.PlasticSCM.Editor.UI.Progress;
@@ -122,16 +122,16 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace.Dialogs
                 null,
                 null,
                 this,
-                ResolveServer.FromUserInput(mState.SelectedServer, CmConnection.Get().UnityOrgResolver),
+                mState.Server,
                 false,
                 false,
                 true);
         }
 
-        void KnownServersListOperations.IKnownServersList.FillValues(List<string> knownServers)
+        void KnownServersListOperations.IKnownServersList.FillValues(
+            List<string> values)
         {
-            mState.AvailableServers = knownServers.Select(ResolveServer.ToDisplayString).ToList();
-            mState.AvailableServers.Sort();
+            mState.AvailableServers = values;
 
             Refresh();
         }
@@ -143,8 +143,7 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace.Dialogs
 
         void OnServerSelected(object server)
         {
-            mState.SelectedServer = server.ToString();
-
+            mState.Server = server.ToString();
             Repaint();
             Refresh();
         }
@@ -164,8 +163,8 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace.Dialogs
 
             GUI.enabled = isEnabled;
 
-            state.SelectedServer = DoDropDownTextField(
-                state.SelectedServer,
+            state.Server = DoDropDownTextField(
+                state.Server,
                 state.AvailableServers,
                 selectServerAction,
                 refreshAction);
@@ -176,7 +175,8 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace.Dialogs
 
             GUILayout.FlexibleSpace();
 
-            DrawSearchField.For(searchField, listView, SEARCH_FIELD_WIDTH);
+            DrawSearchField.For(
+                searchField, listView, SEARCH_FIELD_WIDTH);
 
             GUI.enabled = true;
 
@@ -216,9 +216,11 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace.Dialogs
                 DROPDOWN_CONTROL_NAME,
                 options,
                 selectServerAction,
+
                 GUILayout.Width(DROPDOWN_WIDTH));
 
-            if (isEnterKeyPressed && GUI.GetNameOfFocusedControl() == DROPDOWN_CONTROL_NAME)
+            if (isEnterKeyPressed &&
+                GUI.GetNameOfFocusedControl() == DROPDOWN_CONTROL_NAME)
             {
                 e.Use();
                 enterKeyAction();
@@ -301,7 +303,7 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace.Dialogs
 
             mState = new State()
             {
-                SelectedServer = ResolveServer.ToDisplayString(defaultServer),
+                Server = defaultServer,
                 ProgressData = new ProgressControlsForDialogs.Data()
             };
 
@@ -328,7 +330,7 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace.Dialogs
         class State
         {
             internal List<string> AvailableServers { get; set; }
-            internal string SelectedServer { get; set; }
+            internal string Server { get; set; }
             internal ProgressControlsForDialogs.Data ProgressData { get; set; }
         }
     }

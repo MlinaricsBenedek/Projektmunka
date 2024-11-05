@@ -1,4 +1,5 @@
 ﻿using Codice.Client.Common.FsNodeReaders;
+using Codice.CM.Common;
 using Codice.LogWrapper;
 using PlasticPipe.Client;
 
@@ -10,10 +11,13 @@ namespace Unity.PlasticSCM.Editor
         {
             mLog.Debug("Shutdown");
 
+            WorkspaceInfo wkInfo = FindWorkspace.InfoForApplicationPath(
+                ApplicationDataPath.Get(), PlasticGui.Plastic.API);
+
             WorkspaceFsNodeReaderCachesCleaner.Shutdown();
 
             PlasticPlugin.Shutdown();
-            PlasticApp.Dispose();
+            PlasticApp.Dispose(wkInfo);
 
             ClientConnectionPool.Shutdown();
         }

@@ -239,6 +239,14 @@ namespace Unity.PlasticSCM.Editor.AssetMenu
 
         void IAssetMenuOperations.ShowHistory()
         {
+            if (mShowDownloadPlasticExeWindow.Show(
+                   mWkInfo,
+                   mIsGluonMode,
+                   TrackFeatureUseEvent.Features.InstallPlasticCloudFromShowHistory,
+                   TrackFeatureUseEvent.Features.InstallPlasticEnterpriseFromShowHistory,
+                   TrackFeatureUseEvent.Features.CancelPlasticInstallationFromShowHistory))
+                return;
+
             Asset selectedAsset = AssetsSelection.GetSelectedAsset(
                 mWkInfo.ClientPath,
                 mAssetSelection.GetSelectedAssets());
@@ -272,7 +280,7 @@ namespace Unity.PlasticSCM.Editor.AssetMenu
 
             FilterRulesConfirmationData filterRulesConfirmationData = 
                 FilterRulesConfirmationDialog.AskForConfirmation(
-                    rules, isAddOperation, isApplicableToAllWorkspaces, EditorWindow.focusedWindow);
+                    rules, isAddOperation, isApplicableToAllWorkspaces, null);
 
             AddFilesFilterPatternsOperation.Run(
                 mWkInfo, mWorkspaceWindow, type, operation, filterRulesConfirmationData);

@@ -27,7 +27,7 @@ namespace Unity.PlasticSCM.Editor.UI
             if (disableCollabWhenLoaded)
                 window.DisableCollabIfEnabledWhenLoaded();
 
-            window.UpdateWindowIcon(PlasticPlugin.GetNotificationStatus());
+            window.SetupWindowTitle(PlasticNotification.Status.None);
 
             return window;
         }

@@ -52,9 +52,11 @@ namespace Unity.PlasticSCM.Editor.Configuration.CloudEdition.Welcome
             return GetWindow<CloudEditionWelcomeWindow>();
         }
 
-        // Save the Default Server in the config files of all clients, so they are already configured.
-        // Avoids having the Desktop application asking the user again later.
-        internal static void SaveDefaultCloudServer(string cloudServer, string username)
+        // Set the Default Server in the config files of all our clients so they are already all configured at once
+        // this avoids having the Desktop application asking the user again later
+        internal static void JoinCloudServer(
+            string cloudServer,
+            string username)
         {
             SaveCloudServer.ToPlasticGuiConfig(cloudServer);
             SaveCloudServer.ToPlasticGuiConfigFile(
@@ -65,7 +67,7 @@ namespace Unity.PlasticSCM.Editor.Configuration.CloudEdition.Welcome
             KnownServers.ServersFromCloud.InitializeForWindows(
                 PlasticGuiConfig.Get().Configuration.DefaultCloudServer);
 
-            SetupUnityEditionToken.CreateCloudEditionTokenIfNeeded();
+            SetupUnityEditionToken.CreateCloudEditionToken();
 
             ClientConfigData clientConfigData = ConfigurationChecker.GetClientConfigData();
 
@@ -109,9 +111,9 @@ namespace Unity.PlasticSCM.Editor.Configuration.CloudEdition.Welcome
             }
         }
 
-        internal void SaveDefaultCloudServer(string organization)
+        internal void JoinOrganizationAndWelcomePage(string organization)
         {
-            SaveDefaultCloudServer(organization, mUserName);
+            JoinCloudServer(organization, mUserName);
         }
 
         internal void ReplaceRootPanel(VisualElement panel)

@@ -117,7 +117,8 @@ namespace Unity.PlasticSCM.Editor.Configuration
                 return;
             }
 
-            CloudEditionWelcomeWindow.SaveDefaultCloudServer(mServer, userName);
+            CloudEditionWelcomeWindow.JoinCloudServer(
+                mServer, userName);
 
             GetWindow<PlasticWindow>().InitializePlastic();
             OkButtonAction();

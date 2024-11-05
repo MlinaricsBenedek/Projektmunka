@@ -123,13 +123,6 @@
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER
-<<<<<<< Updated upstream
-=======
--define:PHOTON_UNITY_NETWORKING
--define:PUN_2_0_OR_NEWER
--define:PUN_2_OR_NEWER
--define:PUN_2_19_OR_NEWER
->>>>>>> Stashed changes
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -define:UNITY_EDITOR_ONLY_COMPILATION
@@ -482,7 +475,6 @@
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Inspector/InspectorAssetSelection.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/MetaPath.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/NewIncomingChanges.cs"
-"Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/OrganizationsInformation.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/ParentWindow.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/PlasticApp.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/PlasticConnectionMonitor.cs"
@@ -533,6 +525,8 @@
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/UI/HandleMenuItem.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/UI/Images.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/UI/MeasureMaxWidth.cs"
+"Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/UI/Message/DrawDialogIcon.cs"
+"Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/UI/Message/PlasticQuestionAlert.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/UI/OverlayRect.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/UI/PlasticDialog.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/UI/PlasticSplitterGUILayout.cs"
@@ -580,8 +574,7 @@
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/Branch/BranchesTab.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/Branch/BranchesViewMenu.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/Branch/BranchListViewItem.cs"
-"Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/Branch/Dialogs/CreateBranchDialog.cs"
-"Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/Branch/Dialogs/DeleteBranchDialog.cs"
+"Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/Branch/CreateBranchDialog.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/Branch/Dialogs/RenameBranchDialog.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/Changesets/ChangesetListViewItem.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/Changesets/ChangesetsListHeaderState.cs"
@@ -613,7 +606,7 @@
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/Diff/GetClientDiffInfos.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/Diff/MergeCategoryTreeViewItem.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/Diff/UnityDiffTree.cs"
-"Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/DownloadPlasticExeDialog.cs"
+"Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/DownloadPlasticExeWindow.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/FileSystemOperation.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/History/HistoryListHeaderState.cs"
 "Library/PackageCache/com.unity.collab-proxy/Editor/PlasticSCM/Views/History/HistoryListView.cs"

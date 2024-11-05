@@ -5,8 +5,10 @@ using UnityEditor;
 using UnityEngine;
 
 using Codice.Client.Common.Connection;
+using Codice.Client.Common.FsNodeReaders;
 using Codice.CM.Common;
 using Codice.LogWrapper;
+using PlasticPipe.Client;
 using Unity.PlasticSCM.Editor.AssetMenu;
 using Unity.PlasticSCM.Editor.AssetsOverlays;
 using Unity.PlasticSCM.Editor.AssetsOverlays.Cache;
@@ -30,14 +32,14 @@ namespace Unity.PlasticSCM.Editor
         /// </summary>
         public static event Action OnNotificationUpdated = delegate { };
 
-        internal static IAssetStatusCache AssetStatusCache
-        {
-            get { return mAssetStatusCache; }
+        internal static IAssetStatusCache AssetStatusCache 
+        { 
+            get { return mAssetStatusCache; } 
         }
 
-        internal static WorkspaceOperationsMonitor WorkspaceOperationsMonitor
-        {
-            get { return mWorkspaceOperationsMonitor; }
+        internal static WorkspaceOperationsMonitor WorkspaceOperationsMonitor 
+        { 
+            get { return mWorkspaceOperationsMonitor; } 
         }
 
         internal static PlasticConnectionMonitor ConnectionMonitor
@@ -174,7 +176,10 @@ namespace Unity.PlasticSCM.Editor
 
                 DisableForWorkspace();
 
-                PlasticApp.Dispose();
+                WorkspaceInfo wkInfo = FindWorkspace.InfoForApplicationPath(
+                    ApplicationDataPath.Get(), PlasticGui.Plastic.API);
+
+                PlasticApp.Dispose(wkInfo);
             }
             finally
             {
@@ -188,9 +193,9 @@ namespace Unity.PlasticSCM.Editor
         {
             mNotificationStatus = status;
 
-            plasticWindow.UpdateWindowIcon(status);
+            plasticWindow.SetupWindowTitle(status);
 
-            if (OnNotificationUpdated != null)
+            if (OnNotificationUpdated != null) 
                 OnNotificationUpdated.Invoke();
         }
 
@@ -215,11 +220,6 @@ namespace Unity.PlasticSCM.Editor
             }
         }
 
-        internal static PlasticNotification.Status GetNotificationStatus()
-        {
-            return mNotificationStatus;
-        }
-
         static WorkspaceOperationsMonitor BuildWorkspaceOperationsMonitor(
             PlasticAssetsProcessor plasticAssetsProcessor,
             bool isGluonMode)
@@ -236,7 +236,7 @@ namespace Unity.PlasticSCM.Editor
         {
             if (IsUnitTesting)
                 return;
-
+                
             RepositorySpec repSpec = PlasticGui.Plastic.API.GetRepositorySpec(wkInfo);
 
             plasticConnectionMonitor.SetRepositorySpecForEventTracking(repSpec);

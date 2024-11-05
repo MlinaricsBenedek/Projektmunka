@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+
 using Codice.Client.Commands.CheckIn;
 using Codice.Client.BaseCommands;
 using Codice.Client.Common;
@@ -312,30 +311,8 @@ namespace Unity.PlasticSCM.Editor.Views.PendingChanges
                 dependenciesCandidates,
                 mPendingMergeLinks.Count,
                 keepLocalChanges,
-                () => AfterUndoOperation(changesToUndo, keepLocalChanges),
+                RefreshAsset.UnityAssetDatabase,
                 null);
-        }
-
-        void AfterUndoOperation(List<ChangeInfo> changesToUndo, bool keepLocalChanges)
-        {
-            if (keepLocalChanges)
-            {
-                return;
-            }
-
-            if (changesToUndo.Any(change => AssetsPath.IsPackagesRootElement(change.Path) && !IsAddedChange(change)))
-            {
-                RefreshAsset.UnityAssetDatabaseAndPackageManagerAsync();
-            }
-            else
-            {
-                RefreshAsset.UnityAssetDatabase();
-            }
-        }
-
-        static bool IsAddedChange(ChangeInfo change)
-        {
-            return ChangeTypesOperator.ContainsAny(change.ChangeTypes, ChangeTypesClassifier.ADDED_TYPES);
         }
 
         void UndoUnchanged()

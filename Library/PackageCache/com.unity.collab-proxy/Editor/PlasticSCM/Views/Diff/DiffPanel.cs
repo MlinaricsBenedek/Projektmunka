@@ -70,12 +70,6 @@ namespace Unity.PlasticSCM.Editor.Views.Diff
             mParentWindow.Repaint();
         }
 
-        internal void OnEnable()
-        {
-            mSearchField.downOrUpArrowKeyPressed +=
-                SearchField_OnDownOrUpArrowKeyPressed;
-        }
-
         internal void OnDisable()
         {
             mSearchField.downOrUpArrowKeyPressed -=

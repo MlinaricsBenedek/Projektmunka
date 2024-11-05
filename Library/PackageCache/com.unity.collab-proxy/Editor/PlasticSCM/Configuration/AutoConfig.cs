@@ -2,7 +2,6 @@
 using Codice.Client.Common;
 using Codice.CM.Common;
 using Codice.LogWrapper;
-using PlasticGui;
 using PlasticGui.WorkspaceWindow.Home;
 using Unity.PlasticSCM.Editor.Configuration.CloudEdition.Welcome;
 using Unity.PlasticSCM.Editor.WebApi;
@@ -16,7 +15,7 @@ namespace Unity.PlasticSCM.Editor.Configuration
             string unityAccessToken,
             string serverName)
         {
-            SetupUnityEditionToken.CreateCloudEditionTokenIfNeeded();
+            SetupUnityEditionToken.CreateCloudEditionToken();
 
             var startTick = Environment.TickCount;
 
@@ -26,16 +25,14 @@ namespace Unity.PlasticSCM.Editor.Configuration
 
             if (tokenExchangeResponse == null)
             {
-                var warning = PlasticLocalization.GetString(PlasticLocalization.Name.TokenExchangeResponseNull);
-                mLog.Warn(warning);
-                Debug.LogWarning(warning);
+                mLog.Warn("Token exchange response null");
+                Debug.LogWarning("Token exchange response null");
                 return null;
             }
 
             if (tokenExchangeResponse.Error != null)
             {
-                var warning = string.Format(
-                    PlasticLocalization.GetString(PlasticLocalization.Name.TokenExchangeResponseError),
+                var warning = string.Format("Unable to exchange token: {0} [code {1}]",
                     tokenExchangeResponse.Error.Message, tokenExchangeResponse.Error.ErrorCode);
                 mLog.ErrorFormat(warning);
                 Debug.LogWarning(warning);
@@ -44,12 +41,10 @@ namespace Unity.PlasticSCM.Editor.Configuration
 
             if (string.IsNullOrEmpty(tokenExchangeResponse.AccessToken))
             {
-                var warning = string.Format(
-                    PlasticLocalization.GetString(PlasticLocalization.Name.TokenExchangeAccessEmpty), 
+                var warning = string.Format("Access token is empty for user: {0}", 
                     tokenExchangeResponse.User);
                 mLog.InfoFormat(warning);
                 Debug.LogWarning(warning);
-                return tokenExchangeResponse;
             }
             
             // This creates the client.conf if needed but doesn't overwrite it if it exists already,
@@ -63,7 +58,7 @@ namespace Unity.PlasticSCM.Editor.Configuration
                 null,
                 null);
 
-            CloudEditionWelcomeWindow.SaveDefaultCloudServer(
+            CloudEditionWelcomeWindow.JoinCloudServer(
                 serverName,
                 tokenExchangeResponse.User);
 

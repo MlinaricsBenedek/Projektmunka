@@ -1059,9 +1059,6 @@ namespace UnityEditor.Timeline
                 var animators = m_PreviewedAnimators.GetBindingsForObject(track);
                 foreach (var animator in animators)
                 {
-                    if (animator == null)
-                        continue;
-
                     if (inputGameObject.transform.IsChildOf(animator.transform))
                         return false;
                 }

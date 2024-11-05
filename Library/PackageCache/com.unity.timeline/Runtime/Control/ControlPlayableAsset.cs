@@ -63,14 +63,7 @@ namespace UnityEngine.Timeline
         /// <summary>
         /// Indicates the active state of the GameObject when Timeline is stopped.
         /// </summary>
-        [SerializeField]
-        public ActivationControlPlayable.PostPlaybackState postPlayback = ActivationControlPlayable.PostPlaybackState.Revert;
-
-        /// <summary>
-        /// Which action to apply to the <see cref="PlayableDirector"/> at the end of the control clip. <seealso cref="DirectorControlPlayable.PauseAction"/>
-        /// </summary>
-        [SerializeField]
-        public DirectorControlPlayable.PauseAction directorOnClipEnd;
+        [SerializeField] public ActivationControlPlayable.PostPlaybackState postPlayback = ActivationControlPlayable.PostPlaybackState.Revert;
 
         PlayableAsset m_ControlDirectorAsset;
         double m_Duration = PlayableBinding.DefaultDuration;
@@ -234,10 +227,7 @@ namespace UnityEngine.Timeline
                 {
                     if (director.playableAsset != m_ControlDirectorAsset)
                     {
-                        ScriptPlayable<DirectorControlPlayable> directorControlPlayable = DirectorControlPlayable.Create(graph, director);
-                        directorControlPlayable.GetBehaviour().pauseAction = directorOnClipEnd;
-                        outplayables.Add(directorControlPlayable);
-
+                        outplayables.Add(DirectorControlPlayable.Create(graph, director));
                         controllingDirectors = true;
                     }
                     // if this self references, disable the director.

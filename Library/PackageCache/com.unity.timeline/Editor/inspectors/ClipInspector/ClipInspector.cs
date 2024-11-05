@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.UIElements;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Timeline;
-using UnityEngine.UIElements;
 
 namespace UnityEditor.Timeline
 {
@@ -14,8 +12,6 @@ namespace UnityEditor.Timeline
     {
         internal static class Styles
         {
-            public const string stylesheetPath = DirectorStyles.stylesheetsPath + "ClipInspector.uss";
-
             public static readonly GUIContent StartName = L10n.TextContent("Start", "The start time of the clip");
             public static readonly GUIContent DurationName = L10n.TextContent("Duration", "The length of the clip");
             public static readonly GUIContent EndName = L10n.TextContent("End", "The end time of the clip");
@@ -45,9 +41,18 @@ namespace UnityEditor.Timeline
         class EditorClipSelection : ICurvesOwnerInspectorWrapper
         {
             public EditorClip editorClip { get; }
-            public TimelineClip clip => editorClip == null ? null : editorClip.clip;
+
+            public TimelineClip clip
+            {
+                get { return editorClip == null ? null : editorClip.clip; }
+            }
+
             public SerializedObject serializedPlayableAsset { get; }
-            public ICurvesOwner curvesOwner => clip;
+
+            public ICurvesOwner curvesOwner
+            {
+                get { return clip; }
+            }
 
             public int lastCurveVersion { get; set; }
             public double lastEvalTime { get; set; }
@@ -59,7 +64,7 @@ namespace UnityEditor.Timeline
                 lastEvalTime = -1;
 
                 var so = new SerializedObject(editorClip);
-                SerializedProperty playableAssetProperty = so.FindProperty("m_Clip.m_Asset");
+                var playableAssetProperty = so.FindProperty("m_Clip.m_Asset");
                 if (playableAssetProperty != null)
                 {
                     var asset = playableAssetProperty.objectReferenceValue as UnityEngine.Playables.PlayableAsset;
@@ -70,69 +75,7 @@ namespace UnityEditor.Timeline
 
             public double ToLocalTime(double time)
             {
-                return clip?.ToLocalTime(time) ?? time;
-            }
-        }
-
-        class CustomPropertiesElement : VisualElement
-        {
-            const string k_Name = "clip-inspector-custom-properties";
-            const string k_ClassName = "clip-inspector-custom-properties";
-            const string k_FoldoutClassName = "clip-inspector-custom-properties__foldout";
-            const string k_InspectorElementClassName = "clip-inspector-custom-properties__inspector";
-
-            public event Action OnPropertyChanged;
-
-            static StyleSheet s_StyleSheet;
-            readonly VisualElement m_Container;
-
-            public CustomPropertiesElement(Editor editor, string title)
-            {
-                name = k_Name;
-
-                if (s_StyleSheet == null)
-                    s_StyleSheet = DirectorStyles.LoadStyleSheet(Styles.stylesheetPath);
-
-                styleSheets.Add(s_StyleSheet);
-                AddToClassList(k_ClassName);
-
-                var foldout = new Foldout { text = title };
-                foldout.AddToClassList(k_FoldoutClassName);
-                Add(foldout);
-
-                m_Container = new VisualElement();
-                foldout.Add(m_Container);
-
-#if UNITY_2021_2_OR_NEWER
-                var inspectorElement = new InspectorElement(editor);
-                inspectorElement.AddToClassList(k_InspectorElementClassName);
-                inspectorElement.TrackSerializedObjectValue(editor.serializedObject, _ => OnPropertyChanged?.Invoke());
-
-                // when an ExposedReference is changed, its ID does not change and does not trigger a property change
-                // add a callback on the context object (which is usually the Playable Director) when the exposed reference property table is modified
-                using SerializedProperty property = TimelineInspectorUtility.FindExposedReferenceTableFrom(editor.m_Context);
-                if (property != null)
-                    this.TrackPropertyValue(property, _ => OnPropertyChanged?.Invoke());
-
-                m_Container.Add(inspectorElement);
-#else
-                m_Container.Add(new IMGUIContainer(() =>
-                {
-                    using (var scope = new EditorGUI.ChangeCheckScope())
-                    {
-                        editor.OnInspectorGUI();
-                        if (scope.changed)
-                            OnPropertyChanged?.Invoke();
-                    }
-                }));
-#endif
-            }
-
-            public void UpdateLockState(bool locked)
-            {
-                bool enabled = !locked;
-                if (m_Container.enabledSelf != enabled)
-                    m_Container.SetEnabled(enabled);
+                return clip == null ? time : clip.ToLocalTime(time);
             }
         }
 
@@ -143,10 +86,6 @@ namespace UnityEditor.Timeline
             MixOut = 2
         }
 
-        const double k_TimeScaleSensitivity = 0.003;
-        const int k_TopMargin = 5;
-        const double k_MixMinimum = 0.0;
-        const string k_CommonPropertiesName = "clip-inspector-common-properties";
 
         SerializedProperty m_DisplayNameProperty;
         SerializedProperty m_BlendInDurationProperty;
@@ -184,14 +123,24 @@ namespace UnityEditor.Timeline
         }
 
         TimelineAsset m_TimelineAsset;
+
         List<EditorClipSelection> m_SelectionCache;
         Editor m_SelectedPlayableAssetsInspector;
+
         ClipInspectorCurveEditor m_ClipCurveEditor;
         CurvePresetLibrary m_CurvePresets;
+
+        bool m_IsClipAssetInspectorExpanded = true;
+        GUIContent m_ClipAssetTitle = new GUIContent();
         string m_MultiselectionHeaderTitle;
+
         ClipInspectorSelectionInfo m_SelectionInfo;
+
+        // the state of the mixin curve preview
         PreviewCurveState m_PreviewCurveState;
-        CustomPropertiesElement m_CustomPropertiesElement;
+
+        const double k_TimeScaleSensitivity = 0.003;
+
 
         bool hasMultipleSelection
         {
@@ -212,33 +161,6 @@ namespace UnityEditor.Timeline
                     && m_SelectionInfo.supportsExtrapolation
                     && m_SelectionInfo.supportsSpeedMultiplier);
             }
-        }
-
-        public override VisualElement CreateInspectorGUI()
-        {
-            var root = new VisualElement();
-
-            if (m_SelectionInfo == null)
-                return root;
-
-            root.Add(new IMGUIContainer(DrawCommonProperties) { name = k_CommonPropertiesName });
-
-            UnityEngine.Object[] selectedAssets = m_SelectionCache.Select(e => e.clip.asset).ToArray();
-
-            if (m_SelectionInfo.selectedAssetTypesAreHomogeneous)
-            {
-                m_SelectedPlayableAssetsInspector = TimelineInspectorUtility.GetInspectorForObjects(selectedAssets, null);
-                if (CanShowPlayableAssetInspector())
-                {
-                    string title = PlayableAssetSectionTitle();
-                    m_CustomPropertiesElement = new CustomPropertiesElement(m_SelectedPlayableAssetsInspector, title);
-                    m_CustomPropertiesElement.OnPropertyChanged += OnCustomInspectorChanged;
-                    m_CustomPropertiesElement.UpdateLockState(IsLocked());
-                    root.Add(m_CustomPropertiesElement);
-                }
-            }
-
-            return root;
         }
 
         public override bool RequiresConstantRepaint()
@@ -282,8 +204,9 @@ namespace UnityEditor.Timeline
             using (new EditorGUI.DisabledScope(IsLocked()))
             {
                 var helpSize = EditorStyles.iconButton.CalcSize(EditorGUI.GUIContents.helpIcon);
+                const int kTopMargin = 5;
                 // Show Editor Header Items.
-                return EditorGUIUtility.DrawEditorHeaderItems(new Rect(r.xMax - helpSize.x, r.y + k_TopMargin, helpSize.x, helpSize.y), targets);
+                return EditorGUIUtility.DrawEditorHeaderItems(new Rect(r.xMax - helpSize.x, r.y + kTopMargin, helpSize.x, helpSize.y), targets);
             }
         }
 
@@ -336,7 +259,15 @@ namespace UnityEditor.Timeline
 
             InitializeProperties();
             m_SelectionInfo = new ClipInspectorSelectionInfo(selectedClips);
+
+            if (m_SelectionInfo.selectedAssetTypesAreHomogeneous)
+            {
+                var selectedAssets = m_SelectionCache.Select(e => e.clip.asset).ToArray();
+                m_SelectedPlayableAssetsInspector = TimelineInspectorUtility.GetInspectorForObjects(selectedAssets, m_SelectedPlayableAssetsInspector);
+            }
+
             m_MultiselectionHeaderTitle = m_SelectionCache.Count + " " + Styles.MultipleSelectionTitle.text;
+            m_ClipAssetTitle.text = PlayableAssetSectionTitle();
         }
 
         void OnDisable()
@@ -347,7 +278,7 @@ namespace UnityEditor.Timeline
 
         void DrawClipProperties()
         {
-            IEnumerable<EditorClipSelection> dirtyEditorClipSelection = m_SelectionCache.Where(s => s.editorClip.GetHashCode() != s.editorClip.lastHash);
+            var dirtyEditorClipSelection = m_SelectionCache.Where(s => s.editorClip.GetHashCode() != s.editorClip.lastHash);
             UnselectCurves();
 
             EditorGUI.BeginChangeCheck();
@@ -403,21 +334,21 @@ namespace UnityEditor.Timeline
 
             EditorGUI.indentLevel--;
 
-            var hasDirtyEditorClips = false;
-            foreach (EditorClipSelection editorClipSelection in dirtyEditorClipSelection)
+            bool hasDirtyEditorClips = false;
+            foreach (var editorClipSelection in dirtyEditorClipSelection)
             {
                 EditorUtility.SetDirty(editorClipSelection.editorClip);
                 hasDirtyEditorClips = true;
             }
 
             //Re-evaluate the graph in case of a change in properties
-            var propertiesHaveChanged = false;
+            bool propertiesHaveChanged = false;
             if (EditorGUI.EndChangeCheck() || hasDirtyEditorClips)
             {
-                if (TimelineEditor.state != null && TimelineWindow.IsEditingTimelineAsset(m_TimelineAsset))
+                if (TimelineWindow.IsEditingTimelineAsset(m_TimelineAsset) && TimelineWindow.instance.state != null)
                 {
-                    TimelineEditor.state.Evaluate();
-                    TimelineEditor.window.Repaint();
+                    TimelineWindow.instance.state.Evaluate();
+                    TimelineWindow.instance.Repaint();
                 }
                 propertiesHaveChanged = true;
             }
@@ -444,21 +375,25 @@ namespace UnityEditor.Timeline
 
             EditorGUILayout.Space();
 
+            if (CanShowPlayableAssetInspector())
+            {
+                DrawClipAssetGui();
+            }
+
             if (propertiesHaveChanged)
             {
-                foreach (EditorClipSelection item in m_SelectionCache)
+                foreach (var item in m_SelectionCache)
                     item.editorClip.lastHash = item.editorClip.GetHashCode();
                 m_SelectionInfo.Update();
             }
         }
 
-        void DrawCommonProperties()
+        public override void OnInspectorGUI()
         {
-            if (TimelineEditor.window == null || m_TimelineAsset == null)
+            if (TimelineWindow.instance == null || m_TimelineAsset == null)
                 return;
 
             using (new EditorGUI.DisabledScope(IsLocked()))
-            using (new LabelWidthScope(0f)) //reset label width to prevent state pollution by unrelated IMGUI code
             {
                 EditMode.HandleModeClutch();
 
@@ -466,15 +401,6 @@ namespace UnityEditor.Timeline
                 DrawClipProperties();
                 ApplyModifiedProperties();
             }
-
-            //the playable asset needs to be refresh on each frame
-            UpdatePlayableAsset();
-        }
-
-        void UpdatePlayableAsset()
-        {
-            PreparePlayableAssets();
-            m_CustomPropertiesElement?.UpdateLockState(IsLocked());
         }
 
         internal override bool IsEnabled()
@@ -482,7 +408,7 @@ namespace UnityEditor.Timeline
             if (!TimelineUtility.IsCurrentSequenceValid() || IsCurrentSequenceReadOnly())
                 return false;
 
-            if (m_TimelineAsset != TimelineEditor.state.editSequence.asset)
+            if (m_TimelineAsset != TimelineWindow.instance.state.editSequence.asset)
                 return false;
             return base.IsEnabled();
         }
@@ -533,6 +459,26 @@ namespace UnityEditor.Timeline
 
             var newStartValue = m_SelectionInfo.multipleClipStart + (newEndTime - m_SelectionInfo.multipleClipEnd);
             EditMode.inputHandler.ProcessMove(inputEvent, newStartValue);
+        }
+
+        void DrawClipAssetGui()
+        {
+            const float labelIndent = 34;
+            if (m_SelectedPlayableAssetsInspector == null)
+                return;
+
+            var rect = GUILayoutUtility.GetRect(GUIContent.none, EditorStyles.inspectorTitlebar);
+            var oldWidth = EditorGUIUtility.labelWidth;
+            EditorGUIUtility.labelWidth = rect.width - labelIndent;
+            m_IsClipAssetInspectorExpanded = EditorGUI.FoldoutTitlebar(rect, m_ClipAssetTitle, m_IsClipAssetInspectorExpanded, false);
+            EditorGUIUtility.labelWidth = oldWidth;
+            if (m_IsClipAssetInspectorExpanded)
+            {
+                EditorGUILayout.Space();
+                EditorGUI.indentLevel++;
+                ShowPlayableAssetInspector();
+                EditorGUI.indentLevel--;
+            }
         }
 
         void DrawExtrapolationOptions()
@@ -596,7 +542,7 @@ namespace UnityEditor.Timeline
 
         void SetCurveEditorTrackHead()
         {
-            if (TimelineEditor.window == null || TimelineEditor.state == null)
+            if (TimelineWindow.instance == null || TimelineWindow.instance.state == null)
                 return;
 
             if (hasMultipleSelection)
@@ -606,7 +552,7 @@ namespace UnityEditor.Timeline
             if (editorClip == null)
                 return;
 
-            var director = TimelineEditor.state.editSequence.director;
+            var director = TimelineWindow.instance.state.editSequence.director;
 
             if (director == null)
                 return;
@@ -690,27 +636,36 @@ namespace UnityEditor.Timeline
             EditorGUILayout.EndHorizontal();
         }
 
-        void OnCustomInspectorChanged()
+        void ShowPlayableAssetInspector()
         {
-            MarkClipsDirty();
-            if (TimelineWindow.IsEditingTimelineAsset(m_TimelineAsset) && TimelineEditor.state != null)
-            {
-                //the playable asset editor can control how it handles property changes
-                if (m_SelectedPlayableAssetsInspector is IInspectorChangeHandler inspectorChangeHandler)
-                    inspectorChangeHandler.OnPlayableAssetChangedInInspector();
-                else //refresh the timeline by default
-                    TimelineEditor.Refresh(RefreshReason.ContentsModified);
-            }
-        }
+            if (!m_SelectionInfo.selectedAssetTypesAreHomogeneous)
+                return;
 
-        void PreparePlayableAssets()
-        {
             if (m_SelectedPlayableAssetsInspector != null)
             {
                 if (Event.current.type == EventType.Repaint || Event.current.type == EventType.Layout)
                 {
-                    foreach (EditorClipSelection selectedItem in m_SelectionCache)
+                    foreach (var selectedItem in m_SelectionCache)
                         CurvesOwnerInspectorHelper.PreparePlayableAsset(selectedItem);
+                }
+
+                EditorGUI.BeginChangeCheck();
+                using (new EditorGUI.DisabledScope(IsLocked()))
+                {
+                    m_SelectedPlayableAssetsInspector.OnInspectorGUI();
+                }
+
+                if (EditorGUI.EndChangeCheck())
+                {
+                    MarkClipsDirty();
+                    if (TimelineWindow.IsEditingTimelineAsset(m_TimelineAsset) && TimelineWindow.instance.state != null)
+                    {
+                        var inspectorChangeHandler = m_SelectedPlayableAssetsInspector as IInspectorChangeHandler;
+                        if (inspectorChangeHandler != null)
+                            inspectorChangeHandler.OnPlayableAssetChangedInInspector();
+                        else
+                            TimelineEditor.Refresh(RefreshReason.ContentsModified);
+                    }
                 }
             }
         }
@@ -772,14 +727,12 @@ namespace UnityEditor.Timeline
 
         bool CanShowPlayableAssetInspector()
         {
-            if (m_SelectedPlayableAssetsInspector != null)
-            {
-                bool isValidMultipleSelection = m_SelectedPlayableAssetsInspector.canEditMultipleObjects &&
+            if (hasMultipleSelection)
+                return m_SelectedPlayableAssetsInspector != null &&
+                    m_SelectedPlayableAssetsInspector.canEditMultipleObjects &&
                     m_SelectionInfo.selectedAssetTypesAreHomogeneous;
-                return !hasMultipleSelection || isValidMultipleSelection;
-            }
-
-            return false;
+            else
+                return true;
         }
 
         void DrawDurationProperty()
@@ -798,6 +751,7 @@ namespace UnityEditor.Timeline
 
         void DrawBlendingProperties()
         {
+            const double mixMinimum = 0.0;
             var inputEvent = InputEvent.None;
             double blendMax;
             GUIContent label;
@@ -808,7 +762,7 @@ namespace UnityEditor.Timeline
             {
                 currentMixInProperty = m_EaseInDurationProperty;
                 var blendOutStart = m_SelectionInfo.duration - m_BlendOutDurationProperty.doubleValue;
-                blendMax = Math.Min(Math.Max(k_MixMinimum, m_SelectionInfo.maxMixIn), blendOutStart);
+                blendMax = Math.Min(Math.Max(mixMinimum, m_SelectionInfo.maxMixIn), blendOutStart);
                 label = Styles.EaseInDurationName;
             }
             else
@@ -818,7 +772,7 @@ namespace UnityEditor.Timeline
                 label = Styles.BlendInDurationName;
             }
             if (blendMax > TimeUtility.kTimeEpsilon)
-                TimelineInspectorUtility.TimeField(currentMixInProperty, label, useBlendIn, currentFrameRate, k_MixMinimum,
+                TimelineInspectorUtility.TimeField(currentMixInProperty, label, useBlendIn, currentFrameRate, mixMinimum,
                     blendMax, ref inputEvent);
 
 
@@ -828,7 +782,7 @@ namespace UnityEditor.Timeline
             {
                 currentMixOutProperty = m_EaseOutDurationProperty;
                 var blendInEnd = m_SelectionInfo.duration - m_BlendInDurationProperty.doubleValue;
-                blendMax = Math.Min(Math.Max(k_MixMinimum, m_SelectionInfo.maxMixOut), blendInEnd);
+                blendMax = Math.Min(Math.Max(mixMinimum, m_SelectionInfo.maxMixOut), blendInEnd);
                 label = Styles.EaseOutDurationName;
             }
             else
@@ -839,7 +793,7 @@ namespace UnityEditor.Timeline
             }
             if (blendMax > TimeUtility.kTimeEpsilon)
                 TimelineInspectorUtility.TimeField(currentMixOutProperty, label, useBlendOut, currentFrameRate,
-                    k_MixMinimum, blendMax, ref inputEvent);
+                    mixMinimum, blendMax, ref inputEvent);
         }
 
         void DrawClipInProperty()
@@ -881,7 +835,7 @@ namespace UnityEditor.Timeline
 
         static bool IsCurrentSequenceReadOnly()
         {
-            return TimelineEditor.state.editSequence.isReadOnly;
+            return TimelineWindow.instance.state.editSequence.isReadOnly;
         }
 
         void OnUndoRedoPerformed()

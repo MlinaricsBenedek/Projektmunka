@@ -37,10 +37,12 @@ namespace Unity.PlasticSCM.Editor.Hub.Operations
             string defaultCloudAlias = new PlasticWebRestApi()
                 .GetDefaultCloudAlias();
 
-            return RepositorySpec.BuildFromNameAndResolvedServer(
-                repository,
-                CloudServer.BuildFullyQualifiedName(organization, defaultCloudAlias)
-            );
+            return new RepositorySpec()
+            {
+                Name = repository,
+                Server = CloudServer.BuildFullyQualifiedName(
+                    organization, defaultCloudAlias)
+            };
         }
 
         OperationParams(

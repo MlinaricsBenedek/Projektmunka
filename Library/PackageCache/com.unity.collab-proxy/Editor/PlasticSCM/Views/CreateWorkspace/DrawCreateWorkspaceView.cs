@@ -92,10 +92,11 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
         {
             EditorGUILayout.BeginHorizontal();
 
-            DoLabel(PlasticLocalization.GetString(PlasticLocalization.Name.Repository));
+            DoLabel(
+                PlasticLocalization.GetString(PlasticLocalization.Name.RepositoryName));
 
-            state.Repository = DoTextField(
-                state.Repository,
+            state.RepositoryName = DoTextField(
+                state.RepositoryName,
                 !state.ProgressData.IsOperationRunning,
                 LABEL_WIDTH,
                 TEXTBOX_WIDTH - BROWSE_BUTTON_WIDTH);
@@ -134,12 +135,13 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
                     createRepositoryAction,
                     parentWindow,
                     plasticWebRestApi,
-                    state.Repository,
+                    state.RepositoryName,
                     defaultServer);
                 EditorGUIUtility.ExitGUI();
             }
 
-            ValidationResult validationResult = ValidateRepository(state.Repository);
+            ValidationResult validationResult = ValidateRepositoryName(
+                state.RepositoryName);
 
             if (!validationResult.IsValid)
                 DoWarningLabel(validationResult.ErrorMessage,
@@ -234,28 +236,28 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
             string defaultServer,
             ref CreateWorkspaceViewState state)
         {
-            string selectedRepository = RepositoryExplorerDialog.BrowseRepository(
+            string result = RepositoryExplorerDialog.BrowseRepository(
                 parentWindow,
                 plasticWebRestApi,
                 defaultServer);
 
-            if (string.IsNullOrEmpty(selectedRepository))
+            if (string.IsNullOrEmpty(result))
                 return;
 
-            state.Repository = selectedRepository;
+            state.RepositoryName = result;
         }
 
         static void DoNewRepositoryButton(
             Action<RepositoryCreationData> createRepositoryAction,
             EditorWindow parentWindow,
             IPlasticWebRestApi plasticWebRestApi,
-            string repository,
+            string repositoryName,
             string defaultServer)
         {
             string proposedRepositoryName = string.Empty;
             string proposedServer = string.Empty;
 
-            RepositorySpec repSpec = GetRepSpecFromName(repository);
+            RepositorySpec repSpec = GetRepSpecFromName(repositoryName);
 
             if (repSpec != null)
             {
@@ -360,7 +362,6 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
             GUI.enabled = isEnabled;
 
             GUIStyle radioButtonStyle = new GUIStyle(EditorStyles.radioButton);
-            radioButtonStyle.padding.left = RADIO_BUTTON_LEFT_PADDING;
 
             var rect = GUILayoutUtility.GetRect(
                 new GUIContent(text),
@@ -467,7 +468,7 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
         static bool IsValidState(
             CreateWorkspaceViewState state)
         {
-            if (!ValidateRepository(state.Repository).IsValid)
+            if (!ValidateRepositoryName(state.RepositoryName).IsValid)
                 return false;
 
             if (!ValidateWorkspaceName(state.WorkspaceName).IsValid)
@@ -476,11 +477,11 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
             return true;
         }
 
-        static ValidationResult ValidateRepository(string repository)
+        static ValidationResult ValidateRepositoryName(string repositoryName)
         {
             ValidationResult result = new ValidationResult();
 
-            if (string.IsNullOrEmpty(repository))
+            if (string.IsNullOrEmpty(repositoryName))
             {
                 result.ErrorMessage = PlasticLocalization.GetString(PlasticLocalization.Name.RepositoryNameEmpty);
                 result.IsValid = false;
@@ -512,7 +513,7 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
                 return null;
 
             return new SpecGenerator().
-                GenRepositorySpec(false, repositoryName, CmConnection.Get().UnityOrgResolver);
+                GenRepositorySpec(false, repositoryName);
         }
 
         class ValidationResult
@@ -528,7 +529,6 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
         const float BUTTON_MARGIN = 2;
         const float LABEL_MARGIN = 2;
         const float RADIO_BUTTON_MARGIN = 38;
-        const int RADIO_BUTTON_LEFT_PADDING = 20;
         const float PROGRESS_MARGIN = 5;
         const float CREATE_WORKSPACE_BUTTON_MARGIN = 32;
         const float CREATE_WORKSPACE_BUTTON_WIDTH = 160;

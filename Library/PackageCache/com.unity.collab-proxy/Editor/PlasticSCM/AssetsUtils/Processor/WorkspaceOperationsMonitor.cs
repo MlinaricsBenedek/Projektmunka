@@ -38,7 +38,7 @@ namespace Unity.PlasticSCM.Editor.AssetUtils.Processor
         }
 
         internal void RegisterWindow(
-            IWorkspaceWindow workspaceWindow,
+            WorkspaceWindow workspaceWindow,
             ViewHost viewHost,
             NewIncomingChangesUpdater incomingChangesUpdater)
         {

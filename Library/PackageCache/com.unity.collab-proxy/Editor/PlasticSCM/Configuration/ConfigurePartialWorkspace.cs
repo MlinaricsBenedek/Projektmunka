@@ -21,8 +21,9 @@ namespace Unity.PlasticSCM.Editor.Configuration
             WorkspaceTreeNode rootWkNode = CmConnection.Get().GetWorkspaceTreeHandler().
                 WkGetWorkspaceTreeNode(rootPath);
 
-            FullyCheckedDirectory rootDirectory = new FullyCheckedDirectory(
-                MountPointId.WORKSPACE_ROOT, rootWkNode.RevInfo.ItemId);
+            FullyCheckedDirectory rootDirectory = new FullyCheckedDirectory();
+            rootDirectory.MountId = MountPointId.WORKSPACE_ROOT;
+            rootDirectory.ItemId = rootWkNode.RevInfo.ItemId;
 
             List<FullyCheckedDirectory> directoryList = new List<FullyCheckedDirectory>();
             directoryList.Add(rootDirectory);

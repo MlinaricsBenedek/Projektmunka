@@ -8,21 +8,6 @@
     "E:\\unity\\Projektmunka2\\Projektmunka\\Projektmunka\\Packages\\packages-lock.json"
   ],
   "outputs": {
-    "com.unity.collab-proxy@2.5.2": {
-      "name": "com.unity.collab-proxy",
-      "resolvedPath": "E:\\unity\\Projektmunka2\\Projektmunka\\Projektmunka\\Library\\PackageCache\\com.unity.collab-proxy",
-      "fingerprint": "da7e55b87e08569f31766e7cabc37bc033c9c7f9",
-      "editorCompatibility": "2020.3.48f1",
-      "version": "2.5.2",
-      "source": "registry"
-    },
-    "com.unity.feature.development@1.0.2": {
-      "name": "com.unity.feature.development",
-      "resolvedPath": "E:\\unity\\Projektmunka2\\Projektmunka\\Projektmunka\\Library\\PackageCache\\com.unity.feature.development",
-      "fingerprint": "c770b6a36a30949b030c5ec02d835f771b975cbb",
-      "version": "1.0.2",
-      "source": "builtin"
-    },
     "com.unity.multiplayer.center@1.0.0": {
       "name": "com.unity.multiplayer.center",
       "resolvedPath": "E:\\unity\\Projektmunka2\\Projektmunka\\Projektmunka\\Library\\PackageCache\\com.unity.multiplayer.center",
@@ -31,15 +16,38 @@
       "version": "1.0.0",
       "source": "builtin"
     },
-    "com.unity.timeline@1.8.7": {
-      "name": "com.unity.timeline",
-      "resolvedPath": "E:\\unity\\Projektmunka2\\Projektmunka\\Projektmunka\\Library\\PackageCache\\com.unity.timeline",
-      "fingerprint": "c58b4ee65782ad38338e29f7ee67787cb6998f04",
-      "editorCompatibility": "2019.3.0a1",
-      "version": "1.8.7",
+    "com.unity.collab-proxy@2.4.4": {
+      "name": "com.unity.collab-proxy",
+      "resolvedPath": "E:\\unity\\Projektmunka2\\Projektmunka\\Projektmunka\\Library\\PackageCache\\com.unity.collab-proxy",
+      "fingerprint": "f073ab5b7d4916dd0953caa6b29a435a4e9a3df8",
+      "editorCompatibility": "2020.3.48f1",
+      "version": "2.4.4",
       "source": "registry"
     },
-    "com.unity.ugui@2.0.0": {
+    "com.unity.feature.development@1.0.1": {
+      "name": "com.unity.feature.development",
+      "resolvedPath": "E:\\unity\\Projektmunka2\\Projektmunka\\Projektmunka\\Library\\PackageCache\\com.unity.feature.development",
+      "fingerprint": "c770b6a36a30949b030c5ec02d835f771b975cbb",
+      "version": "1.0.2",
+      "source": "builtin"
+    },
+    "com.unity.textmeshpro@3.0.6": {
+      "name": "com.unity.textmeshpro",
+      "resolvedPath": "E:\\unity\\Projektmunka2\\Projektmunka\\Projektmunka\\Library\\PackageCache\\com.unity.textmeshpro",
+      "fingerprint": "53f43edfd2e0bf2438ca6e2038ba12107a181253",
+      "editorCompatibility": "2023.2.0a1",
+      "version": "5.0.0",
+      "source": "builtin"
+    },
+    "com.unity.timeline@1.7.6": {
+      "name": "com.unity.timeline",
+      "resolvedPath": "E:\\unity\\Projektmunka2\\Projektmunka\\Projektmunka\\Library\\PackageCache\\com.unity.timeline",
+      "fingerprint": "5a51cce2c258ee031e9ec9d89af6d301f0d02ee8",
+      "editorCompatibility": "2019.3.0a1",
+      "version": "1.7.6",
+      "source": "registry"
+    },
+    "com.unity.ugui@1.0.0": {
       "name": "com.unity.ugui",
       "resolvedPath": "E:\\unity\\Projektmunka2\\Projektmunka\\Projektmunka\\Library\\PackageCache\\com.unity.ugui",
       "fingerprint": "8f98c6a1c75e66adfac0fb4351d51a0b4d92c018",

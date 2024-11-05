@@ -39,10 +39,12 @@ namespace Unity.PlasticSCM.Editor.Views.Locks
             ((IRefreshableView) this).Refresh();
         }
 
-        internal void OnEnable()
+        internal void DrawSearchFieldForLocksTab()
         {
-            mSearchField.downOrUpArrowKeyPressed +=
-                SearchField_OnDownOrUpArrowKeyPressed;
+            DrawSearchField.For(
+                mSearchField,
+                mLocksListView,
+                UnityConstants.SEARCH_FIELD_WIDTH);
         }
 
         internal void OnDisable()
@@ -70,14 +72,6 @@ namespace Unity.PlasticSCM.Editor.Views.Locks
             DoLocksArea(
                 mLocksListView,
                 mProgressControls.IsOperationRunning());
-        }
-
-        internal void DrawSearchFieldForLocksTab()
-        {
-            DrawSearchField.For(
-                mSearchField,
-                mLocksListView,
-                UnityConstants.SEARCH_FIELD_WIDTH);
         }
 
         void IRefreshableView.Refresh()

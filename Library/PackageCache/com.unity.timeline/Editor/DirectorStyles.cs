@@ -2,7 +2,6 @@ using UnityEditor.Experimental;
 using UnityEditor.StyleSheets;
 using UnityEngine;
 using UnityEngine.Timeline;
-using UnityEngine.UIElements;
 
 namespace UnityEditor.Timeline
 {
@@ -10,12 +9,9 @@ namespace UnityEditor.Timeline
     {
         const string k_Elipsis = "…";
         const string k_ImagePath = "Packages/com.unity.timeline/Editor/StyleSheets/Images/Icons/{0}.png";
-        const string k_ResourcesPath = stylesheetsPath + "res/";
-        const string k_DarkSkinPath = k_ResourcesPath + "Timeline_DarkSkin.txt";
-        const string k_LightSkinPath = k_ResourcesPath + "Timeline_LightSkin.txt";
+        public const string resourcesPath = "Packages/com.unity.timeline/Editor/StyleSheets/res/";
 
         //Timeline resources
-        public const string stylesheetsPath = "Packages/com.unity.timeline/Editor/StyleSheets/";
         public const string newTimelineDefaultNameSuffix = "Timeline";
 
         public static readonly GUIContent referenceTrackLabel = TrTextContent("R", "This track references an external asset");
@@ -118,6 +114,9 @@ namespace UnityEditor.Timeline
         DirectorNamedColor m_DarkSkinColors;
         DirectorNamedColor m_LightSkinColors;
         DirectorNamedColor m_DefaultSkinColors;
+
+        const string k_DarkSkinPath = resourcesPath + "Timeline_DarkSkin.txt";
+        const string k_LightSkinPath = resourcesPath + "Timeline_LightSkin.txt";
 
         static readonly GUIContent s_TempContent = new GUIContent();
 
@@ -366,11 +365,6 @@ namespace UnityEditor.Timeline
             var blockName = GUIStyleExtensions.StyleNameToBlockName(style.name, false);
             var styleBlock = EditorResources.GetStyle(blockName, state);
             return styleBlock.GetTexture(StyleCatalogKeyword.backgroundImage);
-        }
-
-        public static StyleSheet LoadStyleSheet(string path)
-        {
-            return AssetDatabase.LoadAssetAtPath<StyleSheet>(path);
         }
     }
 }

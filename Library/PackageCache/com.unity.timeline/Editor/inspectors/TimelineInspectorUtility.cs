@@ -343,14 +343,5 @@ namespace UnityEditor.Timeline
 
             return null;
         }
-
-        public static SerializedProperty FindExposedReferenceTableFrom(UnityEngine.Object context)
-        {
-            const string exposedReferencesPropertyPath = "m_ExposedReferences";
-
-            if (context as IExposedPropertyTable == null) return null;
-            var so = new SerializedObject(context);
-            return so.FindProperty(exposedReferencesPropertyPath);
-        }
     }
 }

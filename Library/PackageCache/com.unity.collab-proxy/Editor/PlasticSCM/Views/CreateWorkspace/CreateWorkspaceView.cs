@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+
 using UnityEngine;
 
 using Codice.Client.Common;
@@ -57,7 +56,7 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
                     mCreateWorkspaceState.ProgressData);
             }
 
-            string repository = mCreateWorkspaceState.Repository;
+            string repositoryName = mCreateWorkspaceState.RepositoryName;
 
             DrawCreateWorkspace.ForState(
                 CreateRepository,
@@ -67,7 +66,7 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
                 mDefaultServer,
                 ref mCreateWorkspaceState);
 
-            if (repository == mCreateWorkspaceState.Repository)
+            if (repositoryName == mCreateWorkspaceState.RepositoryName)
                 return;
 
             OnRepositoryChanged(
@@ -82,7 +81,6 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
 
             WorkspaceInfo[] allWorkspaces = null;
             IList allRepositories = null;
-            string repositoryProject = null;
 
             IThreadWaiter waiter = ThreadWaiter.GetWaiter(10);
             waiter.Execute(
@@ -91,21 +89,14 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
                     mDefaultServer = GetDefaultServer.ToCreateWorkspace(plasticWebRestApi);
 
                     allWorkspaces = plasticApi.GetAllWorkspacesArray();
-                    allRepositories = plasticApi.GetAllRepositories(mDefaultServer, true);
 
-                    if (OrganizationsInformation.IsUnityOrganization(mDefaultServer))
-                    {
-                        List<string> serverProjects = OrganizationsInformation.GetOrganizationProjects(mDefaultServer);
-
-                        if (serverProjects.Count > 0)
-                        {
-                            repositoryProject = serverProjects.First();
-                        }
-                    }
+                    allRepositories = plasticApi.GetAllRepositories(
+                        mDefaultServer,
+                        true);
                 },
                 /*afterOperationDelegate*/ delegate
                 {
-                    ((IProgressControls) mProgressControls).HideProgress();
+                    ((IProgressControls)mProgressControls).HideProgress();
 
                     if (waiter.Exception != null)
                     {
@@ -113,21 +104,18 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
                         return;
                     }
 
-                    string serverSpecPart = string.Format("@{0}", ResolveServer.ToDisplayString(mDefaultServer));
+                    string serverSpecPart = string.Format("@{0}", mDefaultServer);
 
-                    mCreateWorkspaceState.Repository = ValidRepositoryName.Get(
-                        string.Format("{0}{1}", mCreateWorkspaceState.Repository, serverSpecPart),
+                    mCreateWorkspaceState.RepositoryName = ValidRepositoryName.Get(
+                        string.Format("{0}{1}",
+                            mCreateWorkspaceState.RepositoryName,
+                            serverSpecPart),
                         allRepositories);
 
-                    if (repositoryProject != null)
-                    {
-                        mCreateWorkspaceState.Repository = string.Format("{0}/{1}", repositoryProject, mCreateWorkspaceState.Repository);
-                    }
-
-                    string proposedWorkspaceName = mCreateWorkspaceState.Repository.Replace(serverSpecPart, string.Empty);
-
-                    mCreateWorkspaceState.WorkspaceName = CreateWorkspaceDialogUserAssistant.GetNonExistingWkNameForName(
-                        proposedWorkspaceName, allWorkspaces);
+                    mCreateWorkspaceState.WorkspaceName =
+                        mCreateWorkspaceState.RepositoryName.Replace(
+                            serverSpecPart,
+                            string.Empty);
 
                     mDialogUserAssistant = CreateWorkspaceDialogUserAssistant.ForWkPathAndName(
                         mWorkspacePath,
@@ -149,7 +137,7 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
                 return;
 
             dialogUserAssistant.RepositoryChanged(
-                createWorkspaceState.Repository,
+                createWorkspaceState.RepositoryName,
                 createWorkspaceState.WorkspaceName,
                 workspacePath);
 
@@ -189,31 +177,33 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
                     if (createdRepository == null)
                         return;
 
-                    mCreateWorkspaceState.Repository = createdRepository.GetRepSpec().ToDisplayString();
+                    mCreateWorkspaceState.RepositoryName =
+                        createdRepository.GetRepSpec().ToString();
                 });
         }
 
         void ValidateAndCreateWorkspace(
             CreateWorkspaceViewState state)
         {
-            mWkCreationData = BuildCreationDataFromState(state, mWorkspacePath);
+            mWkCreationData = BuildCreationDataFromState(
+                state, mWorkspacePath);
 
-            // validation calls IPlasticDialogCloser.CloseDialog()
-            // when the validation is ok
             WorkspaceCreationValidation.AsyncValidation(
                 mWkCreationData, this, mProgressControls);
+            // validation calls IPlasticDialogCloser.CloseDialog()
+            // when the validation is ok
         }
 
         void IPlasticDialogCloser.CloseDialog()
         {
-            ((IProgressControls) mProgressControls).ShowProgress(string.Empty);
+            ((IProgressControls)mProgressControls).ShowProgress(string.Empty);
 
             IThreadWaiter waiter = ThreadWaiter.GetWaiter(10);
             waiter.Execute(
                 /*threadOperationDelegate*/ delegate
                 {
                     RepositorySpec repSpec = new SpecGenerator().GenRepositorySpec(
-                        false, mWkCreationData.Repository, CmConnection.Get().UnityOrgResolver);
+                        false, mWkCreationData.Repository);
 
                     bool repositoryExist = PlasticGui.Plastic.API.CheckRepositoryExists(
                         repSpec.Server, repSpec.Name);
@@ -255,14 +245,10 @@ namespace Unity.PlasticSCM.Editor.Views.CreateWorkspace
             CreateWorkspaceViewState state,
             string workspacePath)
         {
-            // We need a conversion here because the actual repSpec is the one to be used during wk creation
-            RepositorySpec repSpec = new SpecGenerator().GenRepositorySpec(
-                false, state.Repository, CmConnection.Get().UnityOrgResolver);
-
             return new WorkspaceCreationData(
                 state.WorkspaceName,
                 workspacePath,
-                repSpec.ToString(),
+                state.RepositoryName,
                 state.WorkspaceMode == CreateWorkspaceViewState.WorkspaceModes.Gluon,
                 false);
         }

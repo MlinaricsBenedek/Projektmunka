@@ -5,8 +5,9 @@ using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-using Codice.Client.Common.Threading;
 using Codice.CM.Common;
+using Codice.Client.Common.Threading;
+
 using PlasticGui;
 using PlasticGui.WorkspaceWindow;
 using PlasticGui.WorkspaceWindow.QueryViews;
@@ -23,10 +24,10 @@ using GluonNewIncomingChangesUpdater = PlasticGui.Gluon.WorkspaceWindow.NewIncom
 
 namespace Unity.PlasticSCM.Editor.Views.Branches
 {
-    internal class BranchesTab :
+    internal class BranchesTab : 
         IRefreshableView,
-        IQueryRefreshableView,
-        IBranchMenuOperations
+        IBranchMenuOperations,
+        IQueryRefreshableView
     {
         internal BranchesListView Table { get { return mBranchesListView; } }
         internal IBranchMenuOperations Operations { get { return this; } }
@@ -60,22 +61,6 @@ namespace Unity.PlasticSCM.Editor.Views.Branches
             ((IRefreshableView)this).Refresh();
         }
 
-        internal void OnEnable()
-        {
-            mSearchField.downOrUpArrowKeyPressed +=
-                SearchField_OnDownOrUpArrowKeyPressed;
-        }
-
-        internal void OnDisable()
-        {
-            mSearchField.downOrUpArrowKeyPressed -=
-                SearchField_OnDownOrUpArrowKeyPressed;
-
-            TreeHeaderSettings.Save(
-                mBranchesListView.multiColumnHeader.state,
-                UnityConstants.BRANCHES_TABLE_SETTINGS_NAME);
-        }
-
         internal void Update()
         {
             mProgressControls.UpdateProgress(mParentWindow);
@@ -90,38 +75,6 @@ namespace Unity.PlasticSCM.Editor.Views.Branches
                 mProgressControls.IsOperationRunning());
         }
 
-        internal void DrawSearchFieldForBranchesTab()
-        {
-            DrawSearchField.For(
-                mSearchField,
-                mBranchesListView,
-                UnityConstants.SEARCH_FIELD_WIDTH);
-        }
-
-        internal void DrawDateFilter()
-        {
-            GUI.enabled = !mProgressControls.IsOperationRunning();
-
-            EditorGUI.BeginChangeCheck();
-
-            mDateFilter.FilterType = (DateFilter.Type)
-                EditorGUILayout.EnumPopup(
-                    mDateFilter.FilterType,
-                    EditorStyles.toolbarDropDown,
-                    GUILayout.Width(100));
-
-            if (EditorGUI.EndChangeCheck())
-            {
-                EnumPopupSetting<DateFilter.Type>.Save(
-                    mDateFilter.FilterType,
-                    UnityConstants.BRANCHES_DATE_FILTER_SETTING_NAME);
-
-                ((IRefreshableView)this).Refresh();
-            }
-
-            GUI.enabled = true;
-        }
-
         internal void SetWorkingObjectInfo(WorkingObjectInfo homeInfo)
         {
             lock(mLock)
@@ -130,6 +83,41 @@ namespace Unity.PlasticSCM.Editor.Views.Branches
             }
 
             mBranchesListView.SetLoadedBranchId(mLoadedBranchId);
+        }
+
+        static void DoBranchesArea(
+            BranchesListView branchesListView,
+            bool isOperationRunning)
+        {
+            EditorGUILayout.BeginVertical();
+
+            GUI.enabled = !isOperationRunning;
+
+            Rect rect = GUILayoutUtility.GetRect(0, 100000, 0, 100000);
+
+            branchesListView.OnGUI(rect);
+
+            GUI.enabled = true;
+
+            EditorGUILayout.EndVertical();
+        }
+
+        internal void DrawSearchFieldForBranchesTab()
+        {
+            DrawSearchField.For(
+                mSearchField,
+                mBranchesListView,
+                UnityConstants.SEARCH_FIELD_WIDTH);
+        }
+
+        internal void OnDisable()
+        {
+            mSearchField.downOrUpArrowKeyPressed -=
+                SearchField_OnDownOrUpArrowKeyPressed;
+
+            TreeHeaderSettings.Save(
+                mBranchesListView.multiColumnHeader.state,
+                UnityConstants.BRANCHES_TABLE_SETTINGS_NAME);
         }
 
         void IRefreshableView.Refresh()
@@ -145,8 +133,7 @@ namespace Unity.PlasticSCM.Editor.Views.Branches
 
             string query = GetBranchesQuery(mDateFilter);
 
-            FillBranches(mWkInfo, query, BranchesSelection.
-                GetSelectedRepObjectInfos(mBranchesListView));
+            FillBranches(mWkInfo, query, BranchesSelection.GetSelectedRepObjectInfos(mBranchesListView));
         }
 
         //IQueryRefreshableView
@@ -154,112 +141,12 @@ namespace Unity.PlasticSCM.Editor.Views.Branches
         {
             string query = GetBranchesQuery(mDateFilter);
 
-            FillBranches(mWkInfo, query, new List<RepObjectInfo> { repObj });
+            FillBranches(mWkInfo,
+                query,
+                new List<RepObjectInfo> { repObj });
         }
-
-        int IBranchMenuOperations.GetSelectedBranchesCount()
-        {
-            return BranchesSelection.GetSelectedBranchesCount(mBranchesListView);
-        }
-
-        void IBranchMenuOperations.CreateBranch()
-        {
-            RepositorySpec repSpec = BranchesSelection.GetSelectedRepository(mBranchesListView);
-            BranchInfo branchInfo = BranchesSelection.GetSelectedBranch(mBranchesListView);
-
-            BranchCreationData branchCreationData = CreateBranchDialog.CreateBranchFromLastParentBranchChangeset(
-                mParentWindow,
-                repSpec,
-                branchInfo);
-
-            mBranchOperations.CreateBranch(
-                branchCreationData,
-                RefreshAsset.BeforeLongAssetOperation,
-                RefreshAsset.AfterLongAssetOperation);
-        }
-
-        void IBranchMenuOperations.CreateTopLevelBranch() { }
-
-        void IBranchMenuOperations.SwitchToBranch()
-        {
-            RepositorySpec repSpec = BranchesSelection.GetSelectedRepository(mBranchesListView);
-            BranchInfo branchInfo = BranchesSelection.GetSelectedBranch(mBranchesListView);
-
-            mBranchOperations.SwitchToBranch(
-                repSpec,
-                branchInfo,
-                RefreshAsset.BeforeLongAssetOperation,
-                RefreshAsset.AfterLongAssetOperation);
-        }
-
-        void IBranchMenuOperations.MergeBranch() { }
-
-        void IBranchMenuOperations.CherrypickBranch() { }
-
-        void IBranchMenuOperations.MergeToBranch() { }
-
-        void IBranchMenuOperations.PullBranch() { }
-
-        void IBranchMenuOperations.PullRemoteBranch() { }
-
-        void IBranchMenuOperations.SyncWithGit() { }
-
-        void IBranchMenuOperations.PushBranch() { }
-
-        void IBranchMenuOperations.DiffBranch() { }
-
-        void IBranchMenuOperations.DiffWithAnotherBranch() { }
-
-        void IBranchMenuOperations.ViewChangesets() { }
-
-        void IBranchMenuOperations.RenameBranch()
-        {
-            RepositorySpec repSpec = BranchesSelection.GetSelectedRepository(mBranchesListView);
-            BranchInfo branchInfo = BranchesSelection.GetSelectedBranch(mBranchesListView);
-
-            BranchRenameData branchRenameData = RenameBranchDialog.GetBranchRenameData(
-                repSpec,
-                branchInfo,
-                mParentWindow);
-
-            mBranchOperations.RenameBranch(branchRenameData);
-        }
-
-        void IBranchMenuOperations.DeleteBranch()
-        {
-            var branchesToDelete = BranchesSelection.GetSelectedBranches(mBranchesListView);
-
-            if (!DeleteBranchDialog.ConfirmDelete(branchesToDelete))
-                return;
-
-            mBranchOperations.DeleteBranch(
-                BranchesSelection.GetSelectedRepositories(mBranchesListView),
-                branchesToDelete,
-                DeleteBranchOptions.IncludeChangesets);
-        }
-
-        void IBranchMenuOperations.CreateCodeReview() { }
-
-        void IBranchMenuOperations.ViewPermissions() { }
-
-        void SearchField_OnDownOrUpArrowKeyPressed()
-        {
-            mBranchesListView.SetFocusAndEnsureSelectedItem();
-        }
-
-        void OnBranchesListViewSizeChanged()
-        {
-            if (!mShouldScrollToSelection)
-                return;
-
-            mShouldScrollToSelection = false;
-            TableViewOperations.ScrollToSelection(mBranchesListView);
-        }
-
-        void FillBranches(
-            WorkspaceInfo wkInfo,
-            string query,
-            List<RepObjectInfo> branchesToSelect)
+ 
+        void FillBranches(WorkspaceInfo wkInfo, string query, List<RepObjectInfo> branchesToSelect)
         {
             if (mIsRefreshing)
                 return;
@@ -321,6 +208,16 @@ namespace Unity.PlasticSCM.Editor.Views.Branches
                 });
         }
 
+        static long GetLoadedBranchId(WorkspaceInfo wkInfo)
+        {
+            BranchInfo brInfo = PlasticGui.Plastic.API.GetWorkingBranch(wkInfo);
+
+            if (brInfo != null)
+                return brInfo.BranchId;
+
+            return -1;
+        }
+
         static void UpdateBranchesList(
              BranchesListView branchesListView,
              ViewQueryResult queryResult,
@@ -336,17 +233,7 @@ namespace Unity.PlasticSCM.Editor.Views.Branches
             branchesListView.Reload();
         }
 
-        static long GetLoadedBranchId(WorkspaceInfo wkInfo)
-        {
-            BranchInfo brInfo = PlasticGui.Plastic.API.GetWorkingBranch(wkInfo);
-
-            if (brInfo != null)
-                return brInfo.BranchId;
-
-            return -1;
-        }
-
-        static int GetBranchesCount(
+        internal static int GetBranchesCount(
             ViewQueryResult queryResult)
         {
             if (queryResult == null)
@@ -355,7 +242,7 @@ namespace Unity.PlasticSCM.Editor.Views.Branches
            return queryResult.Count();
         }
 
-        static string GetBranchesQuery(DateFilter dateFilter)
+        internal static string GetBranchesQuery(DateFilter dateFilter)
         {
             if (dateFilter.FilterType == DateFilter.Type.AllTime)
                 return QueryConstants.BranchesBeginningQuery;
@@ -368,10 +255,40 @@ namespace Unity.PlasticSCM.Editor.Views.Branches
                 whereClause);
         }
 
-        static void DoActionsToolbar(ProgressControlsForViews progressControls)
+        internal void DrawDateFilter()
+        {
+            GUI.enabled = !mProgressControls.IsOperationRunning();
+
+            EditorGUI.BeginChangeCheck();
+
+            mDateFilter.FilterType = (DateFilter.Type)
+                EditorGUILayout.EnumPopup(
+                    mDateFilter.FilterType,
+                    EditorStyles.toolbarDropDown,
+                    GUILayout.Width(100));
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                EnumPopupSetting<DateFilter.Type>.Save(
+                    mDateFilter.FilterType,
+                    UnityConstants.BRANCHES_DATE_FILTER_SETTING_NAME);
+
+                ((IRefreshableView)this).Refresh();
+            }
+
+            GUI.enabled = true;
+        }
+
+        void SearchField_OnDownOrUpArrowKeyPressed()
+        {
+            mBranchesListView.SetFocusAndEnsureSelectedItem();
+        }
+
+        static void DoActionsToolbar(
+            ProgressControlsForViews progressControls)
         {
             EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
-
+             
             if (progressControls.IsOperationRunning())
             {
                 DrawProgressForViews.ForIndeterminateProgress(
@@ -381,23 +298,6 @@ namespace Unity.PlasticSCM.Editor.Views.Branches
             GUILayout.FlexibleSpace();
 
             EditorGUILayout.EndHorizontal();
-        }
-
-        static void DoBranchesArea(
-            BranchesListView branchesListView,
-            bool isOperationRunning)
-        {
-            EditorGUILayout.BeginVertical();
-
-            GUI.enabled = !isOperationRunning;
-
-            Rect rect = GUILayoutUtility.GetRect(0, 100000, 0, 100000);
-
-            branchesListView.OnGUI(rect);
-
-            GUI.enabled = true;
-
-            EditorGUILayout.EndVertical();
         }
 
         void BuildComponents(
@@ -445,6 +345,96 @@ namespace Unity.PlasticSCM.Editor.Views.Branches
                 new ContinueWithPendingChangesQuestionerBuilder(viewSwitcher, parentWindow),
                 developerNewIncomingChangesUpdater);
         }
+
+        void OnBranchesListViewSizeChanged()
+        {
+            if (!mShouldScrollToSelection)
+                return;
+
+            mShouldScrollToSelection = false;
+            TableViewOperations.ScrollToSelection(mBranchesListView);
+        }
+
+        int IBranchMenuOperations.GetSelectedBranchesCount()
+        {
+            return BranchesSelection.GetSelectedBranchesCount(mBranchesListView);
+        }
+
+        void IBranchMenuOperations.CreateBranch()
+        {
+            RepositorySpec repSpec = BranchesSelection.GetSelectedRepository(mBranchesListView);
+            BranchInfo branchInfo = BranchesSelection.GetSelectedBranch(mBranchesListView);
+
+            BranchCreationData branchCreationData = CreateBranchDialog.CreateBranchFromLastParentBranchChangeset(
+                mParentWindow,
+                repSpec,
+                branchInfo);
+
+            mBranchOperations.CreateBranch(
+                branchCreationData,
+                RefreshAsset.BeforeLongAssetOperation,
+                RefreshAsset.AfterLongAssetOperation);
+        }
+		
+		void IBranchMenuOperations.CreateTopLevelBranch() { }
+
+        void IBranchMenuOperations.SwitchToBranch()
+        {
+            RepositorySpec repSpec = BranchesSelection.GetSelectedRepository(mBranchesListView);
+            BranchInfo branchInfo = BranchesSelection.GetSelectedBranch(mBranchesListView);
+
+            mBranchOperations.SwitchToBranch(
+                repSpec,
+                branchInfo,
+                RefreshAsset.BeforeLongAssetOperation,
+                RefreshAsset.AfterLongAssetOperation);
+        }
+
+        void IBranchMenuOperations.MergeBranch() { }
+
+        void IBranchMenuOperations.CherrypickBranch() { }
+
+        void IBranchMenuOperations.MergeToBranch() { }
+
+        void IBranchMenuOperations.PullBranch() { }
+
+        void IBranchMenuOperations.PullRemoteBranch() { }
+
+        void IBranchMenuOperations.SyncWithGit() { }
+
+        void IBranchMenuOperations.PushBranch() { }
+
+        void IBranchMenuOperations.DiffBranch() { }
+
+        void IBranchMenuOperations.DiffWithAnotherBranch() { }
+
+        void IBranchMenuOperations.ViewChangesets() { }
+
+        void IBranchMenuOperations.RenameBranch()
+        {
+            RepositorySpec repSpec = BranchesSelection.GetSelectedRepository(mBranchesListView);
+            BranchInfo branchInfo = BranchesSelection.GetSelectedBranch(mBranchesListView);
+
+            BranchRenameData branchRenameData = RenameBranchDialog.GetBranchRenameData(
+                repSpec,
+                branchInfo,
+                mParentWindow);
+
+            mBranchOperations.RenameBranch(branchRenameData);
+        }
+
+        void IBranchMenuOperations.DeleteBranch()
+        {
+            RepositorySpec repSpec = BranchesSelection.GetSelectedRepository(mBranchesListView);
+            List<RepositorySpec> repositories = BranchesSelection.GetSelectedRepositories(mBranchesListView);
+            List<BranchInfo> branchesToDelete = BranchesSelection.GetSelectedBranches(mBranchesListView);
+
+            mBranchOperations.DeleteBranch(repositories, branchesToDelete);
+        }
+
+        void IBranchMenuOperations.CreateCodeReview() { }
+
+        void IBranchMenuOperations.ViewPermissions() { }
 
         SearchField mSearchField;
         bool mIsRefreshing;
