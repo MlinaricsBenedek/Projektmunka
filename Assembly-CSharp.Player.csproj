@@ -60,19 +60,18 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.35f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GunController.cs" />
-    <Compile Include="Assets\FirstPersonController.cs" />
-    <Compile Include="Assets\GunScriptableObject.cs" />
-    <Compile Include="Assets\ShootConfigurationScriptableObject.cs" />
-    <Compile Include="Assets\PlayerGunSelector.cs" />
-    <Compile Include="Assets\PlayerAction.cs" />
-    <Compile Include="Assets\GunType.cs" />
-    <Compile Include="Assets\TrailConfigurationScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\GunIKController.cs" />
+    <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\PlayerAction.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\PlayerGunSelector.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\GunController.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\TrailConfigurationScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\FirstPersonController.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\GunType.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\GunScriptableObject.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\ShootConfigurationScriptableObject.cs" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
-    <None Include="Assets\OccaSoftware\Crosshairs\Readme.txt" />
-=======
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -83,20 +82,17 @@
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
-    <None Include="Assets\ToonSoldiers_WW2_demo\ToonSoldiers_WW2_demo_README.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\OccaSoftware\Crosshairs\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
->>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -861,29 +857,41 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.Timeline.Player.csproj">
-      <Project>{E4C5BF29-FDFE-4467-EDD2-5C9A198884B0}</Project>
-      <Name>Unity.Timeline.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.Player.csproj">
-      <Project>{1B5AF758-B534-0278-4174-0CA3F20E1CA7}</Project>
-      <Name>UnityEngine.UI.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.Player.csproj">
-      <Project>{4057B1E1-0F51-27C1-4770-C017DB21F3A0}</Project>
-      <Name>Unity.TextMeshPro.Player</Name>
+    <ProjectReference Include="Unity.Burst.Player.csproj">
+      <Project>{AC62DFCB-F068-31A8-4CD8-6298EE2D4192}</Project>
+      <Name>Unity.Burst.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Core.Player.csproj">
       <Project>{BF8772FD-B4E5-42C3-DB6F-F02EBC0AD234}</Project>
       <Name>Unity.VisualScripting.Core.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
-      <Project>{D23A0A9E-B47E-4DC7-DE1B-AEC0B1516E55}</Project>
-      <Name>Unity.VisualScripting.State.Player</Name>
+    <ProjectReference Include="UnityEngine.UI.Player.csproj">
+      <Project>{1B5AF758-B534-0278-4174-0CA3F20E1CA7}</Project>
+      <Name>UnityEngine.UI.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Flow.Player.csproj">
       <Project>{8EF08F19-A8F8-D82C-747F-726844986458}</Project>
       <Name>Unity.VisualScripting.Flow.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.Player.csproj">
+      <Project>{E4C5BF29-FDFE-4467-EDD2-5C9A198884B0}</Project>
+      <Name>Unity.Timeline.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Mathematics.Player.csproj">
+      <Project>{4E3F8452-7041-FD9F-AF13-14AEB2E49590}</Project>
+      <Name>Unity.Mathematics.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.Player.csproj">
+      <Project>{4057B1E1-0F51-27C1-4770-C017DB21F3A0}</Project>
+      <Name>Unity.TextMeshPro.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
+      <Project>{D23A0A9E-B47E-4DC7-DE1B-AEC0B1516E55}</Project>
+      <Name>Unity.VisualScripting.State.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Animation.Rigging.Player.csproj">
+      <Project>{CFB19842-1CEF-5DE2-8F14-3F8DEA01B0A9}</Project>
+      <Name>Unity.Animation.Rigging.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,41 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\mlina\\Projektmunka\\",
   "Documents": [
     {
-<<<<<<< Updated upstream
-      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\scripts\\gunikcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gunikcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|c:\\users\\mlina\\projektmunka\\assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-=======
-      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\Assets\\Scripts\\FirstPersonController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:Assets\\Scripts\\FirstPersonController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> Stashed changes
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|c:\\users\\mlina\\projektmunka\\assets\\scripts\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\trailconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\trailconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|c:\\users\\mlina\\projektmunka\\assets\\scriptek amik nem kellenek\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\scriptek amik nem kellenek\\shootconfigurationscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\gunscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\gunscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\playergunselector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\playergunselector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\guncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\guncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|C:\\Users\\mlina\\Projektmunka\\assets\\playeraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61B7E4D0-A2AA-797F-3811-CB0771CD176E}|Assembly-CSharp.csproj|solutionrelative:assets\\playeraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mlina\\Projektmunka\\Assets\\Photon\\Fusion\\Editor\\Fusion.Unity.Editor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Photon\\Fusion\\Editor\\Fusion.Unity.Editor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,124 +30,80 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-<<<<<<< Updated upstream
-          "SelectedChildIndex": 4,
-=======
-          "SelectedChildIndex": 1,
->>>>>>> Stashed changes
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Bullet.cs",
+              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\Scripts\\Bullet.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Bullet.cs",
+              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\Scripts\\Bullet.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Bullet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T11:33:50.683Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ShootConfigurationScriptableObject.cs",
+              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\scriptek amik nem kellenek\\ShootConfigurationScriptableObject.cs",
+              "RelativeDocumentMoniker": "Assets\\scriptek amik nem kellenek\\ShootConfigurationScriptableObject.cs",
+              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\scriptek amik nem kellenek\\ShootConfigurationScriptableObject.cs",
+              "RelativeToolTip": "Assets\\scriptek amik nem kellenek\\ShootConfigurationScriptableObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T11:23:47.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Fusion.Unity.Editor.cs",
+              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\Photon\\Fusion\\Editor\\Fusion.Unity.Editor.cs",
+              "RelativeDocumentMoniker": "Assets\\Photon\\Fusion\\Editor\\Fusion.Unity.Editor.cs",
+              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\Photon\\Fusion\\Editor\\Fusion.Unity.Editor.cs [Read Only]",
+              "RelativeToolTip": "Assets\\Photon\\Fusion\\Editor\\Fusion.Unity.Editor.cs [Read Only]",
+              "ViewState": "AgIAAPYUAAAAAAAAAADwvwUVAABZAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T12:59:57.987Z",
+              "EditorCaption": " [Read Only]"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-<<<<<<< Updated upstream
-              "DocumentIndex": 1,
-=======
               "DocumentIndex": 0,
->>>>>>> Stashed changes
+              "Title": "GunIKController.cs",
+              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\Scripts\\GunIKController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GunIKController.cs",
+              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\Scripts\\GunIKController.cs [Read Only]",
+              "RelativeToolTip": "Assets\\Scripts\\GunIKController.cs [Read Only]",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAUAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-01T18:06:33.692Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "FirstPersonController.cs",
-              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\FirstPersonController.cs",
-              "RelativeDocumentMoniker": "Assets\\FirstPersonController.cs",
-              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\FirstPersonController.cs",
-              "RelativeToolTip": "Assets\\FirstPersonController.cs",
-<<<<<<< Updated upstream
-              "ViewState": "AgIAAEQAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
-=======
-              "ViewState": "AgIAADkAAAAAAAAAAAAqwFYAAAAZAAAAAAAAAA==",
->>>>>>> Stashed changes
+              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\Scripts\\FirstPersonController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\FirstPersonController.cs",
+              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\Scripts\\FirstPersonController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\FirstPersonController.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAYwGUAAAByAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T17:44:31.719Z",
+              "WhenOpened": "2024-11-01T17:42:58.934Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GunController.cs",
-              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\GunController.cs",
-              "RelativeDocumentMoniker": "Assets\\GunController.cs",
-              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\GunController.cs",
-              "RelativeToolTip": "Assets\\GunController.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAgwBAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T17:38:27.811Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PlayerAction.cs",
-              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\PlayerAction.cs",
-              "RelativeDocumentMoniker": "Assets\\PlayerAction.cs",
-              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\PlayerAction.cs",
-              "RelativeToolTip": "Assets\\PlayerAction.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T16:20:54.704Z"
-            },
-            {
-              "$type": "Document",
-<<<<<<< Updated upstream
-              "DocumentIndex": 0,
-=======
-              "DocumentIndex": 1,
->>>>>>> Stashed changes
-              "Title": "ShootConfigurationScriptableObject.cs",
-              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\ShootConfigurationScriptableObject.cs",
-              "RelativeDocumentMoniker": "Assets\\ShootConfigurationScriptableObject.cs",
-              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\ShootConfigurationScriptableObject.cs",
-              "RelativeToolTip": "Assets\\ShootConfigurationScriptableObject.cs",
-<<<<<<< Updated upstream
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-28T20:39:48.284Z",
-              "EditorCaption": ""
-=======
-              "ViewState": "AgIAAAcAAAAAAAAAAABRwAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-28T20:39:48.284Z"
->>>>>>> Stashed changes
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PlayerGunSelector.cs",
-              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\PlayerGunSelector.cs",
-              "RelativeDocumentMoniker": "Assets\\PlayerGunSelector.cs",
-              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\PlayerGunSelector.cs",
-              "RelativeToolTip": "Assets\\PlayerGunSelector.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA4AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-28T20:39:20.295Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TrailConfigurationScriptableObject.cs",
-              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\TrailConfigurationScriptableObject.cs",
-              "RelativeDocumentMoniker": "Assets\\TrailConfigurationScriptableObject.cs",
-              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\TrailConfigurationScriptableObject.cs",
-              "RelativeToolTip": "Assets\\TrailConfigurationScriptableObject.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-<<<<<<< Updated upstream
-              "WhenOpened": "2024-09-28T17:58:03.763Z",
-              "EditorCaption": ""
-=======
-              "WhenOpened": "2024-09-28T17:58:03.763Z"
->>>>>>> Stashed changes
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GunScriptableObject.cs",
-              "DocumentMoniker": "C:\\Users\\mlina\\Projektmunka\\Assets\\GunScriptableObject.cs",
-              "RelativeDocumentMoniker": "Assets\\GunScriptableObject.cs",
-              "ToolTip": "C:\\Users\\mlina\\Projektmunka\\Assets\\GunScriptableObject.cs",
-              "RelativeToolTip": "Assets\\GunScriptableObject.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAYwEgAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-25T17:07:09.628Z"
             }
           ]
         }

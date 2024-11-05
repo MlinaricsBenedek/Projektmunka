@@ -60,19 +60,18 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.35f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GunController.cs" />
-    <Compile Include="Assets\FirstPersonController.cs" />
-    <Compile Include="Assets\GunScriptableObject.cs" />
-    <Compile Include="Assets\ShootConfigurationScriptableObject.cs" />
-    <Compile Include="Assets\PlayerGunSelector.cs" />
-    <Compile Include="Assets\PlayerAction.cs" />
-    <Compile Include="Assets\GunType.cs" />
-    <Compile Include="Assets\TrailConfigurationScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\GunIKController.cs" />
+    <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\PlayerAction.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\PlayerGunSelector.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\GunController.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\TrailConfigurationScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\FirstPersonController.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\GunType.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\GunScriptableObject.cs" />
+    <Compile Include="Assets\scriptek amik nem kellenek\ShootConfigurationScriptableObject.cs" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
-    <None Include="Assets\OccaSoftware\Crosshairs\Readme.txt" />
-=======
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -83,20 +82,17 @@
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
-    <None Include="Assets\ToonSoldiers_WW2_demo\ToonSoldiers_WW2_demo_README.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\OccaSoftware\Crosshairs\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
->>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -929,6 +925,70 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Unity.EditorCoroutines.Editor.csproj">
+      <Project>{79FB34FB-6F99-1B06-E50B-BFDED6FE5792}</Project>
+      <Name>Unity.EditorCoroutines.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
+      <Project>{10ABACA4-5773-01D5-F084-AC5FE3F00A86}</Project>
+      <Name>Unity.PlasticSCM.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Burst.csproj">
+      <Project>{4FFD0592-B471-4151-91DF-5A32E734603A}</Project>
+      <Name>Unity.Burst</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Burst.Editor.csproj">
+      <Project>{E5B722E7-F37F-FD5A-1863-3B6877664EAF}</Project>
+      <Name>Unity.Burst.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Animation.Rigging.Editor.csproj">
+      <Project>{B6CD1E33-B80C-B328-A7F7-562120D1B2A0}</Project>
+      <Name>Unity.Animation.Rigging.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.Editor.csproj">
+      <Project>{B148E9F8-8AD0-72FC-6989-ADAFAA2B3BD1}</Project>
+      <Name>Unity.Timeline.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.Shared.Editor.csproj">
+      <Project>{41DD96EF-CBC8-CED6-B7B0-F51121D352A7}</Project>
+      <Name>Unity.VisualScripting.Shared.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualStudio.Editor.csproj">
+      <Project>{5788D916-8784-F85D-0072-1931EA7BEFF2}</Project>
+      <Name>Unity.VisualStudio.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{7B341CD3-D814-A501-249A-7A6D1DD6784B}</Project>
+      <Name>UnityEditor.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.Core.csproj">
+      <Project>{2D40E33F-A5AA-CF0E-FA86-E5F535B24C11}</Project>
+      <Name>Unity.VisualScripting.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{B14972A6-1B11-B02D-A2E1-8D66FEF98AA0}</Project>
+      <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.Core.Editor.csproj">
+      <Project>{11F8413C-BB57-DFF5-D862-D31340C90E0F}</Project>
+      <Name>Unity.VisualScripting.Core.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Rider.Editor.csproj">
+      <Project>{86DAC619-9603-2605-D8CA-744368D37633}</Project>
+      <Name>Unity.Rider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.Flow.csproj">
+      <Project>{8B2DF698-F929-5DB6-0B82-D34FDAFAC314}</Project>
+      <Name>Unity.VisualScripting.Flow</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.Flow.Editor.csproj">
+      <Project>{716FD675-67A3-6174-28D0-71F6769722EF}</Project>
+      <Name>Unity.VisualScripting.Flow.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Mathematics.Editor.csproj">
+      <Project>{9C022B9F-6B61-33FC-4704-335F2CA5ABD3}</Project>
+      <Name>Unity.Mathematics.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Timeline.csproj">
       <Project>{A5C10106-6C0F-539E-A063-83D83E7D6D1D}</Project>
       <Name>Unity.Timeline</Name>
@@ -936,18 +996,6 @@
     <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.csproj">
       <Project>{BD398319-A082-0D35-A1DD-4A8FBB649CA9}</Project>
       <Name>Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{B14972A6-1B11-B02D-A2E1-8D66FEF98AA0}</Project>
-      <Name>UnityEngine.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.EditorCoroutines.Editor.csproj">
-      <Project>{79FB34FB-6F99-1B06-E50B-BFDED6FE5792}</Project>
-      <Name>Unity.EditorCoroutines.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="OccaSoftware.Crosshairs.Editor.csproj">
-      <Project>{55A8F648-11EC-A3F8-EE4B-4341480D0E55}</Project>
-      <Name>OccaSoftware.Crosshairs.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj">
       <Project>{1416A88E-951C-4ED2-00D9-580609AA1D6D}</Project>
@@ -965,49 +1013,21 @@
       <Project>{915D8755-098C-20F5-4722-CE3E29CCD0D9}</Project>
       <Name>Unity.TestTools.CodeCoverage.Editor.OpenCover.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
-      <Project>{10ABACA4-5773-01D5-F084-AC5FE3F00A86}</Project>
-      <Name>Unity.PlasticSCM.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.State.Editor.csproj">
       <Project>{D2D50C38-E227-4A98-008D-1B7442134085}</Project>
       <Name>Unity.VisualScripting.State.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Timeline.Editor.csproj">
-      <Project>{B148E9F8-8AD0-72FC-6989-ADAFAA2B3BD1}</Project>
-      <Name>Unity.Timeline.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.Shared.Editor.csproj">
-      <Project>{41DD96EF-CBC8-CED6-B7B0-F51121D352A7}</Project>
-      <Name>Unity.VisualScripting.Shared.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.VisualStudio.Editor.csproj">
-      <Project>{5788D916-8784-F85D-0072-1931EA7BEFF2}</Project>
-      <Name>Unity.VisualStudio.Editor</Name>
+    <ProjectReference Include="Unity.Mathematics.csproj">
+      <Project>{AB3E8072-C818-F130-33E0-FE2D31168EB3}</Project>
+      <Name>Unity.Mathematics</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
       <Project>{C0F48EDE-CBE3-7C92-5848-E4F93C94EC8B}</Project>
       <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.Core.csproj">
-      <Project>{2D40E33F-A5AA-CF0E-FA86-E5F535B24C11}</Project>
-      <Name>Unity.VisualScripting.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
       <Project>{C1743C75-E457-682F-F1C0-079A1194CE4C}</Project>
       <Name>Unity.TextMeshPro.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{7B341CD3-D814-A501-249A-7A6D1DD6784B}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.Core.Editor.csproj">
-      <Project>{11F8413C-BB57-DFF5-D862-D31340C90E0F}</Project>
-      <Name>Unity.VisualScripting.Core.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Rider.Editor.csproj">
-      <Project>{86DAC619-9603-2605-D8CA-744368D37633}</Project>
-      <Name>Unity.Rider.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.State.csproj">
       <Project>{186B5CF3-5438-BEE0-07FA-EEEBB9948E2F}</Project>
@@ -1017,13 +1037,9 @@
       <Project>{6DDBA36A-9759-47AD-5264-0969BBCA5293}</Project>
       <Name>Unity.VSCode.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.Flow.csproj">
-      <Project>{8B2DF698-F929-5DB6-0B82-D34FDAFAC314}</Project>
-      <Name>Unity.VisualScripting.Flow</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.Flow.Editor.csproj">
-      <Project>{716FD675-67A3-6174-28D0-71F6769722EF}</Project>
-      <Name>Unity.VisualScripting.Flow.Editor</Name>
+    <ProjectReference Include="Unity.Animation.Rigging.csproj">
+      <Project>{E43983D7-36BD-C4A8-79C9-44BC134D3593}</Project>
+      <Name>Unity.Animation.Rigging</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -30,7 +30,7 @@ public class GunIKController : MonoBehaviour
                 gunAnim.SetIKRotation(AvatarIKGoal.RightHand, targetPosition.transform.rotation);
 
             gunAnim.SetIKPositionWeight(AvatarIKGoal.LeftHand, LeftArm.transform.position.y);
-            gunAnim.SetIKRotationWeight(AvatarIKGoal.RightHand, LeftArm.transform.position.x);
+            gunAnim.SetIKRotationWeight(AvatarIKGoal.LeftHand, LeftArm.transform.rotation.x);
             //gunAnim.SetIKPositionWeight(AvatarIKGoal.LeftHand, LeftArm.transform.position.z);
             gunAnim.SetIKRotationWeight(AvatarIKGoal.LeftHand, LeftArm.transform.rotation.y);
             //gunAnim.SetIKRotationWeight(AvatarIKGoal.LeftHand, LeftArm.transform.rotation.z);

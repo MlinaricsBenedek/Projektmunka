@@ -287,7 +287,7 @@ PrefabInstance:
     - target: {fileID: 2967017264179789133, guid: 48d1dbdc5255f8d479ebcd742127f2f0, type: 3}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 1186168078131376995, guid: 09acb08ecc0358940ae6077a48586f47, type: 3}
+      objectReference: {fileID: 2288701798659589552, guid: a98f6a90807459246b9197c7e80e2f5c, type: 3}
     - target: {fileID: 2967017264179789133, guid: 48d1dbdc5255f8d479ebcd742127f2f0, type: 3}
       propertyPath: UpperBody
       value: 
@@ -1242,7 +1242,7 @@ MonoBehaviour:
       m_Length: 1
       m_Item0:
         transform: {fileID: 486356463}
-        weight: 1
+        weight: 0
       m_Item1:
         transform: {fileID: 0}
         weight: 0
@@ -1265,7 +1265,7 @@ MonoBehaviour:
         transform: {fileID: 0}
         weight: 0
     m_Offset: {x: 0, y: 0, z: 0}
-    m_MinLimit: 0
+    m_MinLimit: -137
     m_MaxLimit: 10
     m_AimAxis: 4
     m_UpAxis: 2
