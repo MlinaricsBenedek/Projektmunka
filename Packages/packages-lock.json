@@ -52,6 +52,7 @@
       },
       "url": "https://packages.unity.com"
     },
+<<<<<<< Updated upstream
     "com.unity.multiplayer.center": {
       "version": "1.0.0",
       "depth": 0,
@@ -59,6 +60,14 @@
       "dependencies": {
         "com.unity.modules.uielements": "1.0.0"
       }
+=======
+    "com.unity.ide.vscode": {
+      "version": "1.2.5",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+>>>>>>> Stashed changes
     },
     "com.unity.performance.profile-analyzer": {
       "version": "1.2.2",

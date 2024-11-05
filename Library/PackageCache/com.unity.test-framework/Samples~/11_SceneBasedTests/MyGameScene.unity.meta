@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Library/PackageCache/com.unity.test-framework/Samples~/11_SceneBasedTests/MyGameScene.unity.meta
 guid: 4932ae75dc76e1a4e9902a892f8d3bde
 DefaultImporter:
+========
+guid: 09acb08ecc0358940ae6077a48586f47
+PrefabImporter:
+>>>>>>>> Stashed changes:Assets/GLASSOFCOINS - FPS low poly fps/bullets/bullets.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
