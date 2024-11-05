@@ -1,8 +1,12 @@
 sceneSetups:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 - path: Assets/map/LowPolyFPSLite/Scenes/LowPolyFPS_Lite_Overview.unity
 =======
 - path: Assets/Simple Modular Dungeon/Scenes/Modular Dungeon.unity
+>>>>>>> Stashed changes
+=======
+- path: Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/DemoLoadBalancing-Scene.unity
 >>>>>>> Stashed changes
   isLoaded: 1
   isActive: 1

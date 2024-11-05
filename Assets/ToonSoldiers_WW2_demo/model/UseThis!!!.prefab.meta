@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/ToonSoldiers_WW2_demo/model/UseThis!!!.prefab.meta
 guid: 48d1dbdc5255f8d479ebcd742127f2f0
 PrefabImporter:
+========
+guid: 787ec048daec145b580d1134da5dd278
+AssemblyDefinitionImporter:
+>>>>>>>> Stashed changes:Library/PackageCache/com.unity.multiplayer.center/Tests/Editor/Unity.Multiplayer.Center.Editor.Tests.asmdef.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

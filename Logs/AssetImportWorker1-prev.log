@@ -1,16 +1,26 @@
 Using pre-set license
+<<<<<<< Updated upstream
 Built from '2022.3/staging' branch; Version is '2022.3.35f1 (011206c7a712) revision 70150'; Using compiler version '192829333'; Build Type 'Release'
 OS: 'Windows 11  (10.0.26100) 64bit Professional' Language: 'hu' Physical Memory: 16110 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
 C:\Program Files\Unity\Hub\Editor\2022.3.35f1\Editor\Unity.exe
+=======
+Built from '6000.0/staging' branch; Version is '6000.0.23f1 (1c4764c07fb4) revision 1853284'; Using compiler version '193933523'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Professional' Language: 'hu' Physical Memory: 8151 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+E:\unity\6000.0.23f1\Editor\Unity.exe
+>>>>>>> Stashed changes
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker1
 -projectPath
+<<<<<<< Updated upstream
 C:/Users/mlina/Projektmunka
 -logFile
 Logs/AssetImportWorker1.log
@@ -22,6 +32,21 @@ Logs/AssetImportWorker1.log
 >>>>>>> Stashed changes
 Successfully changed project path to: C:/Users/mlina/Projektmunka
 C:/Users/mlina/Projektmunka
+=======
+E:/unity/Projektmunka2/Projektmunka/Projektmunka
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+61329
+-job-worker-count
+1
+-background-job-worker-count
+8
+-asset-garbage-collectors
+1
+Successfully changed project path to: E:/unity/Projektmunka2/Projektmunka/Projektmunka
+E:/unity/Projektmunka2/Projektmunka/Projektmunka
+>>>>>>> Stashed changes
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -52,6 +77,7 @@ C:/Users/mlina/Projektmunka
     "memorysetup-temp-allocator-size-audio-worker=65536"
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+<<<<<<< Updated upstream
     "memorysetup-temp-allocator-size-gfx=262144"
 <<<<<<< Updated upstream
 Player connection [8612] Host "[IP] 192.168.0.101 [Port] 0 [Flags] 2 [Guid] 979224335 [EditorId] 979224335 [Version] 1048832 [Id] WindowsEditor(7,Benedek) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
@@ -111,10 +137,63 @@ Mono: successfully reloaded assembly
 Domain Reload Profiling: 1435ms
 	BeginReloadAssembly (309ms)
 >>>>>>> Stashed changes
+=======
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [3696]  Target information:
+
+Player connection [3696]  * "[IP] 26.124.35.102 [Port] 0 [Flags] 2 [Guid] 3107246636 [EditorId] 3107246636 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4A2F609) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [3696]  * "[IP] 192.168.100.2 [Port] 0 [Flags] 2 [Guid] 3107246636 [EditorId] 3107246636 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4A2F609) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [3696] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [3696] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 1
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 223.89 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.0.23f1 (1c4764c07fb4)
+[Subsystems] Discovering subsystems at path E:/unity/6000.0.23f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/unity/Projektmunka2/Projektmunka/Projektmunka/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Radeon RX 560 Series (ID=0x67ff)
+    Vendor:   ATI
+    VRAM:     4074 MB
+    Driver:   31.0.12027.9001
+Initialize mono
+Mono path[0] = 'E:/unity/6000.0.23f1/Editor/Data/Managed'
+Mono path[1] = 'E:/unity/6000.0.23f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'E:/unity/6000.0.23f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56532
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: E:/unity/6000.0.23f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002980 seconds.
+- Loaded All Assemblies, in  3.250 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.817 seconds
+Domain Reload Profiling: 4066ms
+	BeginReloadAssembly (2797ms)
+>>>>>>> Stashed changes
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+<<<<<<< Updated upstream
 		CreateAndSetChildDomain (1ms)
 <<<<<<< Updated upstream
 	RebuildCommonClasses (48ms)
@@ -164,11 +243,37 @@ Domain Reload Profiling: 1435ms
 			ProcessInitializeOnLoadMethodAttributes (104ms)
 >>>>>>> Stashed changes
 			AfterProcessingInitializeOnLoad (0ms)
+=======
+		CreateAndSetChildDomain (2ms)
+	RebuildCommonClasses (61ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (73ms)
+	LoadAllAssembliesAndSetupDomain (301ms)
+		LoadAssemblies (2822ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (268ms)
+			TypeCache.Refresh (267ms)
+				TypeCache.ScanAssembly (247ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (817ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (754ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (35ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (9ms)
+			ProcessInitializeOnLoadAttributes (321ms)
+			ProcessInitializeOnLoadMethodAttributes (103ms)
+			AfterProcessingInitializeOnLoad (281ms)
+>>>>>>> Stashed changes
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (0ms)
 ========================================================================
 Worker process is ready to serve import requests
+<<<<<<< Updated upstream
 Begin MonoManager ReloadAssembly
 <<<<<<< Updated upstream
 - Loaded All Assemblies, in  0.751 seconds
@@ -738,10 +843,22 @@ Mono: successfully reloaded assembly
 - Finished resetting the current domain, in  2.000 seconds
 Domain Reload Profiling: 2508ms
 	BeginReloadAssembly (169ms)
+=======
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  3.996 seconds
+Refreshing native plugins compatible for Editor in 1.11 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.611 seconds
+Domain Reload Profiling: 5606ms
+	BeginReloadAssembly (1387ms)
+>>>>>>> Stashed changes
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (9ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+<<<<<<< Updated upstream
 		CreateAndSetChildDomain (41ms)
 	RebuildCommonClasses (32ms)
 	RebuildNativeTypeToScriptingClass (10ms)
@@ -7993,3 +8110,103 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+=======
+		CreateAndSetChildDomain (47ms)
+	RebuildCommonClasses (49ms)
+	RebuildNativeTypeToScriptingClass (19ms)
+	initialDomainReloadingComplete (49ms)
+	LoadAllAssembliesAndSetupDomain (2490ms)
+		LoadAssemblies (2347ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (299ms)
+			TypeCache.Refresh (221ms)
+				TypeCache.ScanAssembly (201ms)
+			BuildScriptInfoCaches (64ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (1612ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1291ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (20ms)
+			BeforeProcessingInitializeOnLoad (144ms)
+			ProcessInitializeOnLoadAttributes (1077ms)
+			ProcessInitializeOnLoadMethodAttributes (37ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.17 seconds
+Refreshing native plugins compatible for Editor in 0.98 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 23 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3489 unused Assets / (0.6 MB). Loaded Objects now: 4088.
+Memory consumption went from 111.7 MB to 111.1 MB.
+Total: 7.215900 ms (FindLiveObjects: 0.515700 ms CreateObjectMapping: 0.569600 ms MarkObjects: 4.944500 ms  DeleteObjects: 1.184900 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 417963.740805 seconds.
+  path: Assets/ar2(automatic rifle) 1 1.prefab
+  artifactKey: Guid(3b877ac41346e9f42b303b1e145596b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ar2(automatic rifle) 1 1.prefab using Guid(3b877ac41346e9f42b303b1e145596b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b9d28f4a6a846be6ab3b918dd7627c35') in 1.4326032 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 283
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/bullettrailtexture.jpg
+  artifactKey: Guid(718748834a507d64d9226ed767c3d8df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/bullettrailtexture.jpg using Guid(718748834a507d64d9226ed767c3d8df) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4c42b3e9a581e338a6ed460356e7bb13') in 0.0559915 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000052 seconds.
+  path: Assets/ar2(automatic rifle).prefab
+  artifactKey: Guid(625c15270690fa34f9be7e4cb2ea7dc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ar2(automatic rifle).prefab using Guid(625c15270690fa34f9be7e4cb2ea7dc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '05cce4fe785c469979722d84400f0c9c') in 0.0479016 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 283
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/ar2(automatic rifle) 1.prefab
+  artifactKey: Guid(6e982c18ae1858f4eabd7ca93e618111) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ar2(automatic rifle) 1.prefab using Guid(6e982c18ae1858f4eabd7ca93e618111) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '243afbe51296c7a515bcf198ad22bcd0') in 0.0369378 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 283
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/ar2(automatic rifle)_prefab.prefab
+  artifactKey: Guid(90157adab1fcbed4399675a3fb1b1964) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ar2(automatic rifle)_prefab.prefab using Guid(90157adab1fcbed4399675a3fb1b1964) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a519a8fa215f68ef97b984ec05ce4c07') in 0.0440326 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 282
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/SprintBar (1).prefab
+  artifactKey: Guid(2aa92e45fe9503842932bf3a345dfdfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SprintBar (1).prefab using Guid(2aa92e45fe9503842932bf3a345dfdfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '288559986313073edcb54e0d29b75946') in 0.0201311 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/pistol1.fbx
+  artifactKey: Guid(4e98271e1c60ef549b3240179519b7bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/pistol1.fbx using Guid(4e98271e1c60ef549b3240179519b7bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '324c5f73bc24916c9ed205d535060d6a') in 0.4525239 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 151
+
+========================================================================
+Received Import Request.
+  Time since last request: 134.632764 seconds.
+  path: Assets/Prefabs/RoomListItem.prefab
+  artifactKey: Guid(ef133418889390a49bfb4b7adfdaea31) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/RoomListItem.prefab using Guid(ef133418889390a49bfb4b7adfdaea31) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '40ce227e6ae9d45856a1201f8653291a') in 0.0871663 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 20
+
+>>>>>>> Stashed changes

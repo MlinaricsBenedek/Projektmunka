@@ -17,7 +17,11 @@ MonoBehaviour:
   m_Subtarget: 0
   m_PlatformId: 00000000000000000000000000000000
   m_PlatformBuildProfile:
+<<<<<<< Updated upstream
     rid: 4507506273206665217
+=======
+    rid: 4507506323493748737
+>>>>>>> Stashed changes
   m_OverrideGlobalSceneList: 0
   m_Scenes: []
   m_ScriptingDefines: []
@@ -26,10 +30,17 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+<<<<<<< Updated upstream
     - rid: 4507506273206665217
       type: {class: SharedPlatformSettings, ns: UnityEditor.Build.Profile, asm: UnityEditor.CoreModule}
       data:
         m_Development: 0
+=======
+    - rid: 4507506323493748737
+      type: {class: SharedPlatformSettings, ns: UnityEditor.Build.Profile, asm: UnityEditor.CoreModule}
+      data:
+        m_Development: 1
+>>>>>>> Stashed changes
         m_ConnectProfiler: 0
         m_BuildWithDeepProfilingSupport: 0
         m_AllowDebugging: 0

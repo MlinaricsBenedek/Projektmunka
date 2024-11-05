@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Animations.meta
 guid: 6722956752bda1e4ba3bcdc3f18f47b4
+========
+guid: af19581c6078849139e0671f575e4b7c
+>>>>>>>> Stashed changes:Library/PackageCache/com.unity.ext.nunit/net40.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

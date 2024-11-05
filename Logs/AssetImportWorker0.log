@@ -16,7 +16,11 @@ E:/unity/Projektmunka2/Projektmunka/Projektmunka
 Logs/AssetImportWorker0.log
 -srvPort
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 54219
+=======
+61399
+>>>>>>> Stashed changes
 -job-worker-count
 1
 -background-job-worker-count
@@ -25,10 +29,13 @@ Logs/AssetImportWorker0.log
 1
 Successfully changed project path to: E:/unity/Projektmunka2/Projektmunka/Projektmunka
 E:/unity/Projektmunka2/Projektmunka/Projektmunka
+<<<<<<< Updated upstream
 =======
 53110
 Successfully changed project path to: C:/Users/mlina/Projektmunka
 C:/Users/mlina/Projektmunka
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
@@ -66,6 +73,7 @@ C:/Users/mlina/Projektmunka
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Player connection [13260]  Target information:
 
 Player connection [13260]  * "[IP] 26.124.35.102 [Port] 0 [Flags] 2 [Guid] 3117209296 [EditorId] 3117209296 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4A2F609) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
@@ -74,6 +82,16 @@ Player connection [13260]  * "[IP] 192.168.100.2 [Port] 0 [Flags] 2 [Guid] 31172
 
 Player connection [13260] Host joined multi-casting on [225.0.0.222:54997]...
 Player connection [13260] Host joined alternative multi-casting on [225.0.0.222:34997]...
+=======
+Player connection [19092]  Target information:
+
+Player connection [19092]  * "[IP] 26.124.35.102 [Port] 0 [Flags] 2 [Guid] 665842934 [EditorId] 665842934 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4A2F609) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [19092]  * "[IP] 192.168.100.2 [Port] 0 [Flags] 2 [Guid] 665842934 [EditorId] 665842934 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4A2F609) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [19092] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [19092] Host joined alternative multi-casting on [225.0.0.222:34997]...
+>>>>>>> Stashed changes
 JobSystem: Creating JobQueue using job-worker-count value 1
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
@@ -84,6 +102,7 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
+<<<<<<< Updated upstream
 Refreshing native plugins compatible for Editor in 1.60 ms, found 3 plugins.
 =======
 Player connection [7548] Host "[IP] 192.168.0.101 [Port] 0 [Flags] 2 [Guid] 2170407898 [EditorId] 2170407898 [Version] 1048832 [Id] WindowsEditor(7,Benedek) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
@@ -92,6 +111,9 @@ Player connection [7548] Host "[IP] 192.168.0.101 [Port] 0 [Flags] 2 [Guid] 2170
 
 [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
 Refreshing native plugins compatible for Editor in 11.53 ms, found 3 plugins.
+>>>>>>> Stashed changes
+=======
+Refreshing native plugins compatible for Editor in 3.09 ms, found 3 plugins.
 >>>>>>> Stashed changes
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 6000.0.23f1 (1c4764c07fb4)
@@ -105,6 +127,7 @@ Direct3D:
     VRAM:     4074 MB
     Driver:   31.0.12027.9001
 Initialize mono
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 Mono path[0] = 'E:/unity/6000.0.23f1/Editor/Data/Managed'
 Mono path[1] = 'E:/unity/6000.0.23f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
@@ -138,11 +161,28 @@ Domain Reload Profiling: 1098ms
 Domain Reload Profiling: 1013ms
 	BeginReloadAssembly (158ms)
 >>>>>>> Stashed changes
+=======
+Mono path[0] = 'E:/unity/6000.0.23f1/Editor/Data/Managed'
+Mono path[1] = 'E:/unity/6000.0.23f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'E:/unity/6000.0.23f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56404
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: E:/unity/6000.0.23f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.003038 seconds.
+- Loaded All Assemblies, in  0.598 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.829 seconds
+Domain Reload Profiling: 1426ms
+	BeginReloadAssembly (217ms)
+>>>>>>> Stashed changes
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 	RebuildCommonClasses (46ms)
 	RebuildNativeTypeToScriptingClass (15ms)
@@ -191,6 +231,30 @@ Domain Reload Profiling: 1013ms
 			ProcessInitializeOnLoadMethodAttributes (56ms)
 			AfterProcessingInitializeOnLoad (0ms)
 >>>>>>> Stashed changes
+=======
+	RebuildCommonClasses (57ms)
+	RebuildNativeTypeToScriptingClass (18ms)
+	initialDomainReloadingComplete (67ms)
+	LoadAllAssembliesAndSetupDomain (236ms)
+		LoadAssemblies (216ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (233ms)
+			TypeCache.Refresh (231ms)
+				TypeCache.ScanAssembly (210ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (830ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (766ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (41ms)
+			SetLoadedEditorAssemblies (8ms)
+			BeforeProcessingInitializeOnLoad (10ms)
+			ProcessInitializeOnLoadAttributes (275ms)
+			ProcessInitializeOnLoadMethodAttributes (107ms)
+			AfterProcessingInitializeOnLoad (325ms)
+>>>>>>> Stashed changes
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (0ms)
@@ -198,6 +262,7 @@ Domain Reload Profiling: 1013ms
 Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 - Loaded All Assemblies, in  1.214 seconds
 Refreshing native plugins compatible for Editor in 1.29 ms, found 3 plugins.
@@ -359,18 +424,103 @@ Received Import Request.
   path: Assets/map/LowPolyFPSLite/Textures/LowPolyFPSLite_Texture_01.png
   artifactKey: Guid(843b24fbcef09cf4d945d84fcc2b55c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/map/LowPolyFPSLite/Textures/LowPolyFPSLite_Texture_01.png using Guid(843b24fbcef09cf4d945d84fcc2b55c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b6f7a963a08fce1e2a215124bf0bf968') in 0.0264096 seconds
+=======
+- Loaded All Assemblies, in  1.408 seconds
+Refreshing native plugins compatible for Editor in 2.26 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.411 seconds
+Domain Reload Profiling: 2818ms
+	BeginReloadAssembly (615ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (10ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (44ms)
+	RebuildCommonClasses (54ms)
+	RebuildNativeTypeToScriptingClass (18ms)
+	initialDomainReloadingComplete (50ms)
+	LoadAllAssembliesAndSetupDomain (668ms)
+		LoadAssemblies (532ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (322ms)
+			TypeCache.Refresh (235ms)
+				TypeCache.ScanAssembly (213ms)
+			BuildScriptInfoCaches (66ms)
+			ResolveRequiredComponents (17ms)
+	FinalizeReload (1412ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1083ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			SetLoadedEditorAssemblies (7ms)
+			BeforeProcessingInitializeOnLoad (105ms)
+			ProcessInitializeOnLoadAttributes (915ms)
+			ProcessInitializeOnLoadMethodAttributes (44ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Refreshing native plugins compatible for Editor in 1.22 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 23 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3489 unused Assets / (1.1 MB). Loaded Objects now: 4089.
+Memory consumption went from 111.7 MB to 110.6 MB.
+Total: 8.127000 ms (FindLiveObjects: 0.483900 ms CreateObjectMapping: 0.765400 ms MarkObjects: 5.365200 ms  DeleteObjects: 1.511500 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 418415.767198 seconds.
+  path: Assets/ToonSoldiers_WW2_demo/ToonSoldier_WW2_demo_model.prefab
+  artifactKey: Guid(2599104a4a2a5214f8407d03827b5eff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToonSoldiers_WW2_demo/ToonSoldier_WW2_demo_model.prefab using Guid(2599104a4a2a5214f8407d03827b5eff) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fa781336a7c291cf444e331c875022f7') in 0.3476965 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 62
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000054 seconds.
+  path: Assets/ToonSoldiers_WW2_demo/model/Materials/US_soldier_simple.mat
+  artifactKey: Guid(1dcd4ea457239f049875b7a7c8f9509e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToonSoldiers_WW2_demo/model/Materials/US_soldier_simple.mat using Guid(1dcd4ea457239f049875b7a7c8f9509e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1d92073f43b11412b7f8d306a6f9a826') in 0.0667273 seconds
+>>>>>>> Stashed changes
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
 ========================================================================
 Received Import Request.
+<<<<<<< Updated upstream
   Time since last request: 2.892337 seconds.
   path: Assets/map/LowPolyFPSLite/Prefabs
   artifactKey: Guid(c2caba8894c117541b4472d178e5ab1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/map/LowPolyFPSLite/Prefabs using Guid(c2caba8894c117541b4472d178e5ab1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6a35ce1202ff51cfbb68c0e6e3dd8dd1') in 0.0007114 seconds
+=======
+  Time since last request: 0.000042 seconds.
+  path: Assets/Simple Modular Dungeon/ToonSoldier_WW2_demo_model.prefab
+  artifactKey: Guid(fa0217532badc114fb03c8e40ff63e97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Simple Modular Dungeon/ToonSoldier_WW2_demo_model.prefab using Guid(fa0217532badc114fb03c8e40ff63e97) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'cbfe850171a012764886237b3372cf7c') in 0.1137651 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 968
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Toon Muzzleflash Pack/Components/Spritesheets/Front/ToonSoldier_WW2_demo_model.prefab
+  artifactKey: Guid(8ade9d59ff320674f91bfb499990e7e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Toon Muzzleflash Pack/Components/Spritesheets/Front/ToonSoldier_WW2_demo_model.prefab using Guid(8ade9d59ff320674f91bfb499990e7e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3a44d5e4f2bc5ef4bc8fc5980d94daa0') in 0.2859834 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 91
+
+========================================================================
+Received Import Request.
+  Time since last request: 32.179375 seconds.
+  path: Assets/Photon/PhotonChat/Demos/DemoChat/DemoChat-Scene.unity
+  artifactKey: Guid(ec07267f6a28fb044ac89845274e79af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonChat/Demos/DemoChat/DemoChat-Scene.unity using Guid(ec07267f6a28fb044ac89845274e79af) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4ecc9aea57631033e6f69e6a8040ea71') in 0.0005984 seconds
+>>>>>>> Stashed changes
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
+<<<<<<< Updated upstream
   Time since last request: 0.041927 seconds.
   path: Assets/map/LowPolyFPSLite/Prefabs/Box_01.prefab
   artifactKey: Guid(ad36c3d044d312e44a986a07f2c7f0b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
@@ -503,10 +653,17 @@ Received Import Request.
   path: Assets/map/LowPolyFPSLite/Models
   artifactKey: Guid(48789b91ea1baaf4cbee90bad306f57f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/map/LowPolyFPSLite/Models using Guid(48789b91ea1baaf4cbee90bad306f57f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f55c2b3152d80f285b4bb39a9bb2af8e') in 0.0008174 seconds
+=======
+  Time since last request: 4.799220 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Demos/DemoHub/DemoHub-Scene.unity
+  artifactKey: Guid(7dfd47dc8b9484dd79d8636d8603a9e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Demos/DemoHub/DemoHub-Scene.unity using Guid(7dfd47dc8b9484dd79d8636d8603a9e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '160597d1546913ebf803a7b615262c09') in 0.000554 seconds
+>>>>>>> Stashed changes
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
+<<<<<<< Updated upstream
   Time since last request: 0.036581 seconds.
   path: Assets/map/LowPolyFPSLite/Models/Box_01.fbx
   artifactKey: Guid(54b42edcaad42ae47a7bb0aed0c47e98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
@@ -615,10 +772,17 @@ Received Import Request.
   path: Assets/map/LowPolyFPSLite/Materials
   artifactKey: Guid(d0015974c3c97554b9f23815f9f9d8ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/map/LowPolyFPSLite/Materials using Guid(d0015974c3c97554b9f23815f9f9d8ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4f290c02a6ece137c9a74591bd17e00e') in 0.0005312 seconds
+=======
+  Time since last request: 1.030652 seconds.
+  path: Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/DemoLoadBalancing-Scene.unity
+  artifactKey: Guid(a73b0cac1a73cc346aaeb5f8dd0b53f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/DemoLoadBalancing-Scene.unity using Guid(a73b0cac1a73cc346aaeb5f8dd0b53f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7bb6eca427785e70ba0fd307f864594a') in 0.0005349 seconds
+>>>>>>> Stashed changes
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
+<<<<<<< Updated upstream
   Time since last request: 0.037977 seconds.
   path: Assets/map/LowPolyFPSLite/Materials/LowPolyFPSLite_BG.mat
   artifactKey: Guid(5cb6d29d223bf9240a63d960c41cab6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
@@ -698,4 +862,28 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+>>>>>>> Stashed changes
+=======
+  Time since last request: 5.953538 seconds.
+  path: Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/Jura-Medium-LB.ttf
+  artifactKey: Guid(4a4df204c321f9c40b0dbfb1baaffb4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/Jura-Medium-LB.ttf using Guid(4a4df204c321f9c40b0dbfb1baaffb4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'abe00f2f5632567dac9c19b356772982') in 0.061402 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.107631 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scripts/Launcher.cs
+  artifactKey: Guid(4796bc1963eb34e1fa021b0a45b29df4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scripts/Launcher.cs using Guid(4796bc1963eb34e1fa021b0a45b29df4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '83d51e4f85caef96ba95b2d00daac2f3') in 0.0006496 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.288456 seconds.
+  path: Assets/Scripts(pho)/Launcher.cs
+  artifactKey: Guid(a7c76cd88e7a6804194a807afadad59f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts(pho)/Launcher.cs using Guid(a7c76cd88e7a6804194a807afadad59f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6a19e9ad50fd04008f230143ad097c8f') in 0.0004833 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
 >>>>>>> Stashed changes
